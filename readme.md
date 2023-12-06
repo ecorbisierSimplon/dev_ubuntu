@@ -92,34 +92,34 @@ root    ALL=(ALL:ALL) ALL
 ```
 
 **I. Remplacer** 
-```nginx=
-root    ALL=(ALL:ALL) ALL
-```
+>root    ALL=(ALL:ALL) ALL
 
 **par**
 ```nginx=
 root ALL=(ALL:ALL) NOPASSWD: ALL
 ```
 
+---
+
 **II. puis**
-```nginx=
-%admin ALL=(ALL) ALL
-```
+>%admin ALL=(ALL) ALL
 
 **par**
 ```nginx=
 %admin ALL=(ALL:ALL) NOPASSWD: ALL
 ```
 
+---
+
 **III. et enfin**
-```nginx=
-%sudo   ALL=(ALL:ALL) ALL
-```
+>%sudo   ALL=(ALL:ALL) ALL
 
 **par**
 ```nginx=
 %sudo ALL=(ALL:ALL) NOPASSWD: ALL
 ```
+
+---
 
 - Utilisez le raccourci clavier Ctrl + o puis pressez la touche Entrée pour enregistrer les modifications
 - Faites ensuite Ctrl + x pour fermer le fichier
