@@ -28,8 +28,14 @@ sudo ./script-jdk11.sh
 
 ```nginx=
 ssh-keygen -t ed25519 -C "votre_email@email.com"
+```
+```nginx=
 eval "$(ssh-agent -s)"
+```
+```nginx=
 ssh-add ~/.ssh/id_ed25519
+```
+```nginx=
 cat ~/.ssh/id_ed25519.pub
 ```
 
@@ -59,11 +65,11 @@ cat ~/.ssh/id_ed25519.pub
 **Cela va afficher :**
  
 
-```nginx=
-pub   rsa3072 2023-12-05 [SC] [expire : 2025-12-04]
-      <votre clé>
-uid            <votre nom><email>
-```
+
+>pub   rsa3072 2023-12-05 [SC] [expire : 2025-12-04]
+>     <votre clé>
+>uid            <votre nom><email>
+
 
 
 > copier/coller la commande suivante dans le terminal :
@@ -74,6 +80,7 @@ pass init <votre clé>
 
 **7. Ouvrir docker desktop puis cliquer sur signup et suivre les instructions sur le navigateur.**
 
+> [!IMPORTANT]
 >Si un erreur KVM se produit en ouvrant docker desktop, vérifier si le mode Virtualisation est activé dans le bios.
 
 ---
@@ -130,13 +137,15 @@ root ALL=(ALL:ALL) NOPASSWD: ALL
 #### NodeJs
 
 > [!WARNING]
-> **node js sera à installer dans le répertoire de l'application**
+> **node js sera à installer dans le répertoire du projet**
 
 Copier coller 'script-nodejs.sh' dans le répertoire de votre projet puis ouvri le terminal dans le projet puis
 copier/coller les commandes suivantes dans le terminal où se trouve le projet et suivre les instructions
 
 ```nginx=
 chmod +x script-nodejs.sh
+```
+```nginx=
 sudo ./script-nodejs.sh
 ```
 
