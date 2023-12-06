@@ -68,13 +68,13 @@ gpg --generate-key
 
 >pub   rsa3072 2023-12-05 [SC] [expire : 2025-12-04]
 
->     <votre clé>
+><votre clé>
 
 >uid            <votre nom><email>
 
 
 
-> copier/coller la commande suivante dans le terminal :
+ -  copier/coller la commande suivante dans le terminal :
 
 ```nginx=
 pass init <votre clé>
