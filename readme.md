@@ -60,14 +60,16 @@ cat ~/.ssh/id_ed25519.pub
 
 **6. Pour se connecter sur Docker Desktop, copier/coller la commande suivante dans le terminal et suivre les instructions :**
 
-`gpg --generate-key`
+```nginx
+gpg --generate-key
+```
 
 **Cela va afficher :**
- 
-
 
 >pub   rsa3072 2023-12-05 [SC] [expire : 2025-12-04]
+
 >     <votre clé>
+
 >uid            <votre nom><email>
 
 
@@ -92,6 +94,7 @@ sudo visudo
 ```
 
 > Entrer votre mot de passe session puis
+
 > Déroulez le fichier qui est édité avec les flèches de direction jusqu'à la ligne 
 
 ```nginx=
@@ -139,8 +142,10 @@ root ALL=(ALL:ALL) NOPASSWD: ALL
 > [!WARNING]
 > **node js sera à installer dans le répertoire du projet**
 
-Copier coller 'script-nodejs.sh' dans le répertoire de votre projet puis ouvri le terminal dans le projet puis
-copier/coller les commandes suivantes dans le terminal où se trouve le projet et suivre les instructions
+- Copier coller 'script-nodejs.sh' dans le répertoire de votre projet 
+    - ouvrir le terminal dans le projet
+- copier/coller les commandes suivantes dans le terminal où se trouve le projet
+    - suivre les instructions
 
 ```nginx=
 chmod +x script-nodejs.sh
