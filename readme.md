@@ -175,3 +175,31 @@ export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 6. Sauvegarder et fermer l'éditeur de texte
 7. Re cliquer sur 'CTRL' H pour masquer les fichiers cachés
 8. Redémarrer le terminal ou Vs Code dans le dossier où se trouve votre projet GIT : la branche de travail doit s'afficher.
+
+
+---
+
+# Pour résoudre le problème d'écran noir lors du partage d'écran sur Discord:
+
+```nginx=
+sudo nano /etc/gdm3/custom.conf
+```
+
+et changer la ligne
+
+>#WaylandEnable=false
+
+en
+
+>WaylandEnable=false
+
+puis tu fais 
+- ctrl+x
+- -puis o
+- puis entrée pour sauvegarder et quitter.
+- Ensuite tu peux redémarrer ton pc et normalement
+  
+```nginx=
+echo $XDG_SESSION_TYPE
+```
+te répondra X11 (et tes applis fonctionneront)
