@@ -95,10 +95,7 @@ sudo visudo
 ```
 
 > Entrer votre mot de passe session puis
-
 > Déroulez le fichier qui est édité avec les flèches de direction jusqu'à la ligne 
-
-
 > root    ALL=(ALL:ALL) ALL
 
 
