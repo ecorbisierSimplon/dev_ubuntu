@@ -2,21 +2,21 @@
 marp: true
 ---
 
-#### Installer Docker, JDK11
+#### Installer Docker, JDK17
 
 
 **1. Ouvrir le terminal dans le dossier où se trouve les script.sh et copier/coller :**
 
 ```nginx=
 chmod +x script-docker.sh
-chmod +x script-jdk11.sh
+chmod +x script-jdk17.sh
 ```
 
 **2. lancer les script suivants**
 
 ```nginx=
 sudo ./script-docker.sh
-sudo ./script-jdk11.sh
+sudo ./script-jdk17.sh
 ```
 
 ---
