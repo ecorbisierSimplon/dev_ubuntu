@@ -2,26 +2,26 @@
 marp: true
 ---
 
-#### Installer Docker, JDK17
+# Installer Docker, JDK 17, Node JS 21
 
+## Installation des scripts
 
-**1. Ouvrir le terminal dans le dossier où se trouve les script.sh et copier/coller :**
+### **1. Ouvrir le terminal dans le dossier où se trouve les script.sh et copier/coller :**
 
 ```nginx=
-chmod +x script-docker.sh
-chmod +x script-jdk17.sh
+chmod +x script.sh
 ```
 
-**2. lancer les script suivants**
+### **2. lancer les script suivants**
 
 ```nginx=
-sudo ./script-docker.sh
-sudo ./script-jdk17.sh
+sudo ./script.sh
 ```
 
 ---
 
-**3. Créer clé pour github**
+## Github
+### **3. Créer clé pour github**
 
 > copier/coller une par une les commandes suivantes dans le terminal et suivre les instructions
 
@@ -40,7 +40,7 @@ cat ~/.ssh/id_ed25519.pub
 ```
 
 
-**4. Copier la clé dans github (comprends ed25519 et votre email)**
+### **4. Copier la clé dans github (comprends ed25519 et votre email)**
 
 
 > Créer la clé (le script-cle-ssh-github.sh crée la clé et l'affiche)
@@ -51,14 +51,15 @@ cat ~/.ssh/id_ed25519.pub
 
 
 ---
+## Docker
 
-**5. Télécharger, [en cliquant ici](https://desktop.docker.com/linux/main/amd64/docker-desktop-4.26.0-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64), le fichier pour installer docker desktop (ce trouve également dans le répertoire de ce fichier)**
+### **5. Télécharger, [en cliquant ici](https://desktop.docker.com/linux/main/amd64/docker-desktop-4.26.0-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64)**
 
 
 
-> L'installer en faisant clique droit / Installer avec un autre programme / Programme d'installation
+> Installer Docker en faisant clique droit / Installer avec un autre programme / Programme d'installation
 
-**6. Pour se connecter sur Docker Desktop, copier/coller la commande suivante dans le terminal et suivre les instructions :**
+### **6. Pour se connecter sur Docker Desktop, copier/coller la commande suivante dans le terminal et suivre les instructions :**
 
 ```nginx
 gpg --generate-key
@@ -80,14 +81,14 @@ gpg --generate-key
 pass init <votre clé>
 ```
 
-**7. Ouvrir docker desktop puis cliquer sur signup et suivre les instructions sur le navigateur.**
+### **7. Ouvrir docker desktop puis cliquer sur signup et suivre les instructions sur le navigateur.**
 
 > [!IMPORTANT]
 >Si un erreur KVM se produit en ouvrant docker desktop, vérifier si le mode Virtualisation est activé dans le bios.
 
 ---
-
-#### Pour supprimer le mot de passe sudo, écrire dans le terminal :
+## Options :
+### Pour supprimer le mot de passe sudo, écrire dans le terminal :
 
 ```nginx=
 sudo visudo
@@ -137,26 +138,7 @@ root ALL=(ALL:ALL) NOPASSWD: ALL
 
 ---
 
-#### NodeJs
-
-> [!WARNING]
-> **node js sera à installer dans le répertoire du projet**
-
-- Copier coller 'script-nodejs.sh' dans le répertoire de votre projet 
-    - ouvrir le terminal dans le projet
-- copier/coller les commandes suivantes dans le terminal où se trouve le projet
-    - suivre les instructions
-
-```nginx=
-chmod +x script-nodejs.sh
-```
-```nginx=
-sudo ./script-nodejs.sh
-```
-
----
-
-#### Pour afficher la branche git de travail dans le terminal de linux sous Ubuntu
+### Pour afficher la branche git de travail dans le terminal de linux sous Ubuntu
 
 1. Ouvrir l'explorateur de fichiers
 2. Aller dans "Dossier Personnel"
@@ -179,7 +161,7 @@ export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 ---
 
-# Pour résoudre le problème d'écran noir lors du partage d'écran sur Discord:
+## Pour résoudre le problème d'écran noir lors du partage d'écran sur Discord:
 
 ```nginx=
 sudo nano /etc/gdm3/custom.conf
