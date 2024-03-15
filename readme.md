@@ -98,9 +98,9 @@ sudo visudo
 
 > Déroulez le fichier qui est édité avec les flèches de direction jusqu'à la ligne 
 
-```nginx=
-root    ALL=(ALL:ALL) ALL
-```
+
+> root    ALL=(ALL:ALL) ALL
+
 
 **I. Remplacer** 
 >root    ALL=(ALL:ALL) ALL
