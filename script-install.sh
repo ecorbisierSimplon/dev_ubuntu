@@ -7,11 +7,11 @@ sudo snap install code --classic
 sudo snap install android-studio --classic
 sudo snap install git-ubuntu --classic
 sudo snap install eclipse --classic
+sudo snap install shotcut --classic
 sudo snap install --beta office365webdesktop
 
 sudo snap refresh
 
-sudo snap install shotcut
 sudo snap install gimp
 sudo snap install discord
 sudo snap install postman
