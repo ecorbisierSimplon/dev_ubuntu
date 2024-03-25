@@ -1,21 +1,31 @@
-sudo apt update
+#!/bin/bash
+version_nodejs=21
+# Récupérer la version de Node.js
+version=$(node -v)
 
-sudo apt install nodejs
+# Extraire la partie numérique de la version (en supposant que la version est sous le format 'vX.Y.Z')
+version_number=${version#v}           # Supprimer le préfixe 'v'
+version_integer=${version_number//./} # Supprimer les points pour obtenir un nombre entier
 
-node -v
-# v12.09 
+# Vérifier si la version de Node.js est supérieure ou égale à 21
+if [ "$version_integer" -ge "$version_nodejs" ]; then
+    echo " * Node.js"
+    echo "     est déjà installé avec la version $version_number."
+else
+    # Mise à jour des dépôts et installation de Node.js
+    sudo apt update
+    sudo apt install -y nodejs
 
-sudo apt install npm
+    # Installation de npm
+    sudo apt install -y npm
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+    # Installation de NVM (Node Version Manager)
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+    source ~/.bashrc # Charger les modifications du fichier .bashrc dans l'environnement actuel
 
-source ~/.bashrc
+    # Installation de Node.js version 21
+    nvm install $version_nodejs
 
-nvm install 21
-
-node -v
-# v21.04 
-
-# npm install express-session
-
-# npm install @types/express-session --save-dev
+    # Afficher la version actuelle de Node.js
+    echo " * Version de Node.js : $(node -v)"
+fi
