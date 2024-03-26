@@ -1,4 +1,8 @@
 #!/bin/bash
+# Inclure le fichier de fonctions
+functions_file="$1"
+source script-functions.sh
+
 version_nodejs=21
 # Récupérer la version de Node.js
 version=$(node -v)
@@ -9,8 +13,7 @@ version_integer=${version_number//./} # Supprimer les points pour obtenir un nom
 
 # Vérifier si la version de Node.js est supérieure ou égale à 21
 if [ "$version_integer" -ge "$version_nodejs" ]; then
-    echo " * Node.js"
-    echo "     est déjà installé avec la version $version_number."
+    dial " * Node.js\n     est déjà installé avec la version $version_number."
 else
     # Mise à jour des dépôts et installation de Node.js
     sudo apt update
@@ -27,5 +30,5 @@ else
     nvm install $version_nodejs
 
     # Afficher la version actuelle de Node.js
-    echo " * Version de Node.js : $(node -v)"
+    dial " * Node.js\n     est déjà installé avec la version $(node -v)"
 fi

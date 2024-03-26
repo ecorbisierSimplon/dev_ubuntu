@@ -69,3 +69,42 @@ echo_bold_color() {
         echo "$(printf '%*s' $message_length | tr ' ' '-')"
     fi
 }
+
+dial() {
+    local message="$1"
+    local underline="${2:-false}"
+    local time="${3:-10}"
+    local text="${4:-false}"
+
+    echo "$message" >>zenity_text.txt
+
+    local message_length=10 #${#message}
+    if [ "$underline" != "false" ]; then
+        echo "$(printf '%*s' $message_length | tr ' ' '-')" >>zenity_text.txt
+    fi
+
+    if [ "$text" = "false" ]; then
+        zenity \
+            --text-info \
+            --title="Information" \
+            --filename=zenity_text.txt \
+            --ok-label="Ok" \
+            --cancel-label="" \
+            --width=640 \
+            --height=860 \
+            --timeout="$time" &
+
+    else
+        zenity \
+            --info \
+            --title="Information" \
+            --text="$message" \
+            --ok-label="" \
+            --cancel-label="" \
+            --width=640 \
+            --height=200 \
+            --timeout="$time" &
+    fi
+    sleep 1
+}
+#

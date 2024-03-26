@@ -1,9 +1,11 @@
 #!/bin/bash
+# Inclure le fichier de fonctions
+functions_file="$1"
+source script-functions.sh
 
 if dpkg-query -l docker-compose >/dev/null 2>&1; then
 
-    echo " * Docker-compose"
-    echo "     est déjà installé avec la version $(docker-compose -v)."
+    dial " * Docker-compose\n     est déjà installé avec la version $(docker-compose -v)."
 else
 
     # Installer Docker Compose
@@ -35,4 +37,6 @@ else
     sudo apt install docker-compose
 
     sudo apt update
+
+    dial " * Docker-compose\n     est installé avec la version $(docker-compose -v)."
 fi
