@@ -5,7 +5,7 @@ echo $name_github
 
 # Récupération du dossier personnel
 home=~
-clear
+pause c s 1
 dial " script-copy.sh"
 dial " --------------"
 dial " * curl est installé avec la version $(curl --version)."
@@ -23,7 +23,7 @@ error_input="<b>\nest <span color=\"red\">non valide !</span></b>"
 text="export PATH=\$PATH:\$HOME/bin"
 file=~/.bashrc
 test=$(grep "$text" $file)
-if [ "$test" = "" ]; then
+if [[ "$test" == "" ]]; then
     echo "$text" >>$file
     echo "Fichier .bashrc modifié."
     echo "Exécution du fichier .bashrc"
@@ -34,7 +34,7 @@ fi
 
 zenity --question --title="$title" --text="Voulez vous ajouter les paramètres de vos comptes Github ?\n(.gitconfig)"
 repons=$?
-if [ "$repons" != "0" ]; then
+if [[ "$repons" != "0" ]]; then
     dial "Aucun paramètres de vos comptes Github ajouté."
     exit 1
 fi
@@ -47,7 +47,7 @@ while true; do
         --entry-text "$name_github")
 
     return=$?
-    if [ "$return" = "0" ]; then
+    if [[ "$return" == "0" ]]; then
 
         if is_valid_name "$name_github"; then
             # URL à vérifier
@@ -57,7 +57,7 @@ while true; do
             response=$(curl -s --head -w "%{http_code}" "$url" -o /dev/null)
 
             # Vérifier le code de réponse HTTP
-            if [ "$response" == "200" ]; then
+            if [[ "$response" == "200" ]]; then
                 dial "L'adresse '$url' est validée"
                 break
             else
@@ -68,7 +68,7 @@ while true; do
             zenity --error --timeout=3 --text="<b>'$name_github' $error_input</b>"
         fi
     else
-        if [ "$return" = "1" ]; then
+        if [[ "$return" == "1" ]]; then
             dial "Aucun compte ajouté."
             if zenity --question --title="$title" --text="$error"; then
                 exit 1
@@ -88,7 +88,7 @@ while true; do
         --entry-text "$firstname")
 
     return=$?
-    if [ "$return" = "0" ]; then
+    if [[ "$return" == "0" ]]; then
 
         if is_valid_name "$firstname"; then
             firstname=$(echo "$firstname" | sed 's/.*/\L\u&/')
@@ -99,7 +99,7 @@ while true; do
             zenity --error --timeout=3 --text="<b>'$firstname' $error_input</b>"
         fi
     else
-        if [ "$return" = "1" ]; then
+        if [[ "$return" == "1" ]]; then
             dial "Aucun compte ajouté."
             if zenity --question --title="$title" --text="$error"; then
                 exit 1
@@ -116,7 +116,7 @@ while true; do
         --entry-text "$email_github")
 
     return=$?
-    if [ "$return" = "0" ]; then
+    if [[ "$return" == "0" ]]; then
 
         if is_valid_email "$email_github"; then
             if zenity --question --cancel-label="Modifier" --ok-label="Email ok" --title="$title" --text="Veux tu valider ton email : '$email_github' ?"; then
@@ -129,7 +129,7 @@ while true; do
             zenity --error --timeout=3 --text="<b>'$email_github' $error_input</b>"
         fi
     else
-        if [ "$return" = "1" ]; then
+        if [[ "$return" == "1" ]]; then
             dial "Aucun compte ajouté."
             if zenity --question --title="$title" --text="$error"; then
                 exit 1
@@ -142,12 +142,12 @@ done
 echo "=========================================="
 sudo cp $FUNCTIONS_DIRECTORY/layout/.gitconfig $home/.gitconfig
 result=$?
-if [ "$result" = "0" ]; then
+if [[ "$result" == "0" ]]; then
     # Utilisation de sed pour remplacer les placeholders par les valeurs saisies par l'utilisateur
     sed -i "s/<name>/$name_github/g" $home/.gitconfig
     sed -i "s/<firstname>/$firstname/g" $home/.gitconfig
     sed -i "s/<email>/$email_github/g" $home/.gitconfig
-    sleep 1
+    pause s 1
     dial "Le fichier '.gitconfig' est paramétré."
 else
     dial "Le fichier '.gitconfig' n'a pas pu être paramétré ($result)."

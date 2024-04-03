@@ -11,20 +11,20 @@ install_notification() {
     local package_name="$1"
     local instal="${2:-true}"
     local underline="${3:-false}"
-    if [ "$instal" = "true" ]; then
+    if [[ "$instal" == "true" ]]; then
         dial "Installation du paquet '$package_name' en cours..." "$underline" "" ""
     else
         dial "$package_name" "$underline" "" ""
     fi
-    clear
+    pause p c
 }
 
-if [ "$num" = "1" ]; then
+if [[ "$num" == "1" ]]; then
     sudo apt update -y
     sudo apt -y install curl
 fi
 
-if [ "$num" = "1" ]; then
+if [[ "$num" == "1" ]]; then
     # Installation des paquets avec notification
     install_notification "refresh" "f"
     sudo snap refresh
@@ -37,7 +37,7 @@ if [ "$num" = "1" ]; then
         "notepad-plus-plus notepad-plus-plus"
     )
 else
-    if [ "$num" = "2" ]; then
+    if [[ "$num" == "2" ]]; then
         applications=(
             "git-ubuntu git-ubuntu --classic"
             "docker docker"
@@ -91,11 +91,11 @@ for app_cmd in "${applications[@]}"; do
         return_code=$?
         # echo $return_code
         # Vérifier le code de retour
-        if [ $return_code -eq 0 ]; then
+        if [[ $return_code -eq 0 ]]; then
             install_notification "L'installation de '$app_name' s'est terminée avec succès." "f"
         # install_notification "'$app_name' est installé avec la version $($app_name --version)." "f" "-"
         else
-            if [ $return_code -eq 5 ]; then
+            if [[ $return_code -eq 5 ]]; then
                 install_notification " * L'application '$app_name' est déjà installé." "f"
 
             else
@@ -108,7 +108,7 @@ done
 # -----------------------------
 # APT
 # -----------------------------
-if [ "$num" = "1" ]; then
+if [[ "$num" == "1" ]]; then
     applications=(
         "xclip xclip"
         "wget wget"
@@ -117,7 +117,7 @@ if [ "$num" = "1" ]; then
         "google-chrome google-chrome-stable"
     )
 else
-    if [ "$num" = "2" ]; then
+    if [[ "$num" == "2" ]]; then
         applications=(
             ""
         )
@@ -153,11 +153,11 @@ for app_cmd in "${applications[@]}"; do
         return_code=$?
         # echo $return_code
         # Vérifier le code de retour
-        if [ $return_code -eq 0 ]; then
+        if [[ $return_code -eq 0 ]]; then
             install_notification "L'installation de '$app_name' s'est terminée avec succès." "f"
         # install_notification "'$app_name' est installé avec la version $($app_name --version)." "f" "-"
         else
-            if [ $return_code -eq 5 ]; then
+            if [[ $return_code -eq 5 ]]; then
                 install_notification " * L'application '$app_name' est déjà installé." "f"
 
             else
@@ -171,12 +171,12 @@ done
 # WGET
 # -----------------------------
 
-if [ "$num" = "1" ]; then
+if [[ "$num" == "1" ]]; then
     applications=(
         ""
     )
 else
-    if [ "$num" = "2" ]; then
+    if [[ "$num" == "2" ]]; then
         applications=(
             "docker-desktop $dl_docker"
             "github-desktop $dl_github"
@@ -210,11 +210,11 @@ for app_cmd in "${applications[@]}"; do
         return_code=$?
         # echo $return_code
         # Vérifier le code de retour
-        if [ $return_code -eq 0 ]; then
+        if [[ $return_code -eq 0 ]]; then
             install_notification "L'installation de '$app_name' s'est terminée avec succès." "f"
         # install_notification "'$app_name' est installé avec la version $($app_name --version)." "f" "-"
         else
-            if [ $return_code -eq 5 ]; then
+            if [[ $return_code -eq 5 ]]; then
                 install_notification " * L'application '$app_name' est déjà installé." "f"
 
             else
@@ -224,62 +224,62 @@ for app_cmd in "${applications[@]}"; do
     fi
 done
 
-if [ "$num" = "1000" ]; then
+if [[ "$num" == "1000" ]]; then
     install_notification "execution de 'autoremove'" "f"
     sudo apt autoremove -y
     return_code=$?
-    if [ $return_code -eq 0 ]; then
+    if [[ $return_code -eq 0 ]]; then
         dial " ** 'Autoremove' OK"
     else
         dial " ** Erreur de 'autoremove' : $result" "-"
     fi
-    clear
+    pause p c
 
     install_notification "execution de 'update'" "f"
     sudo apt update -y
     return_code=$?
-    if [ $return_code -eq 0 ]; then
+    if [[ $return_code -eq 0 ]]; then
         dial " ** 'Mise à jour' OK"
     else
         dial " ** Erreur de 'mise à jour' : $result" "-"
     fi
-    clear
+    pause p c
 
     install_notification "execution de 'upgrade'" "f"
     sudo apt full-upgrade -y
     return_code=$?
-    if [ $return_code -eq 0 ]; then
+    if [[ $return_code -eq 0 ]]; then
         dial " ** 'Upgrade' OK"
     else
         dial " ** Erreur de 'upgrade' : $result" "-"
     fi
-    clear
 
     install_notification "execution de 'snap refresh'" "f"
     sudo snap refresh
     return_code=$?
-    if [ $return_code -eq 0 ]; then
+    if [[ $return_code -eq 0 ]]; then
         dial " ** 'Refresh' OK"
     else
         dial " ** Erreur de 'refresh' : $result" "-"
     fi
 else
-    if [ "num_inst" = "0" ]; then
+    if [[ "num_inst" == "0" ]]; then
         sudo apt update -y
         return_code=$?
-        if [ $return_code -eq 0 ]; then
+        if [[ $return_code -eq 0 ]]; then
             dial " ** 'Mise à jour' OK"
         else
             dial " ** Erreur de 'mise à jour' : $result" "-"
         fi
     fi
 fi
-clear
-if [ "$num" = "1" ]; then
+
+pause p c
+
+if [[ "$num" == "1" ]]; then
     if dpkg-query -l google-chrome-stable >/dev/null 2>&1; then
         if zenity --question --title=$title --text="Veux tu ouvrir google chrome pour te connecter ?"; then
             URL "https://www.google.fr"
         fi
     fi
 fi
-clear

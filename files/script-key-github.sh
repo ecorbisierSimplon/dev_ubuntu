@@ -14,7 +14,7 @@ echo "email_github : $email_github"
 
 dial " script-key-github.sh"
 dial " --------------------"
-sleep 3
+pause s 3
 
 if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n(/.ssh)"; then
     while true; do
@@ -25,7 +25,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
                 --entry-text "$name_github")
 
             return=$?
-            if [ "$return" = "0" ]; then
+            if [[ "$return" == "0" ]]; then
 
                 if is_valid_name "$name_github"; then
                     # URL à vérifier
@@ -35,7 +35,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
                     response=$(curl -s --head -w "%{http_code}" "$url" -o /dev/null)
 
                     # Vérifier le code de réponse HTTP
-                    if [ "$response" == "200" ]; then
+                    if [[ "$response" == "200" ]]; then
                         dial "L'adresse '$url' est validée"
                         break
                     else
@@ -46,7 +46,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
                     zenity --error --timeout=3 --text="<b>'$name_github' $error_input</b>"
                 fi
             else
-                if [ "$return" = "1" ]; then
+                if [[ "$return" == "1" ]]; then
                     dial "Aucun compte ajouté."
                     if zenity --question --title="$title" --text="$error"; then
                         stop="1"
@@ -59,7 +59,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
 
         done
 
-        if [ "$stop" = "0" ]; then
+        if [[ "$stop" == "0" ]]; then
 
             if zenity --question --title="Connexion Github" --text="Voulez vous vérifier si vous êtes bien connecté à\n'$url' ?"; then
                 URL "$url"
@@ -71,7 +71,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
                     --entry-text "$name_local")
 
                 return=$?
-                if [ "$return" = "0" ]; then
+                if [[ "$return" == "0" ]]; then
 
                     if is_valid_name "$name_local"; then
                         break
@@ -80,7 +80,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
                         zenity --error --timeout=3 --text="<b>'$name_local' $error_input</b>"
                     fi
                 else
-                    if [ "$return" = "1" ]; then
+                    if [[ "$return" == "1" ]]; then
                         dial "Aucun dépot ajouté."
                         if zenity --question --title="$title" --text="$error"; then
                             stop="1"
@@ -92,7 +92,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
                 fi
             done
         fi
-        if [ "$stop" = "0" ]; then
+        if [[ "$stop" == "0" ]]; then
             text=""
             while true; do
                 email_github=$(zenity --entry --title "$title" \
@@ -100,7 +100,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
                     --entry-text "$email_github")
 
                 return=$?
-                if [ "$return" = "0" ]; then
+                if [[ "$return" == "0" ]]; then
 
                     if is_valid_email "$email_github"; then
                         if zenity --question --title="$title" --text="Merci de vérifier l'email : '$email_github' ?"; then
@@ -112,7 +112,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
                         zenity --error --timeout=3 --text="<b>'$email_github' $error_input</b>"
                     fi
                 else
-                    if [ "$return" = "1" ]; then
+                    if [[ "$return" == "1" ]]; then
                         dial "Aucun dépot ajouté."
                         if zenity --question --title="$title" --text="$error"; then
                             stop="1"
@@ -124,7 +124,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
                 fi
             done
         fi
-        if [ "$stop" = "0" ]; then
+        if [[ "$stop" == "0" ]]; then
             # Remplacer les espaces par des tirets
 
             space "$name_local"
@@ -134,11 +134,11 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
 
             dial "Le repertoire et le fichier : < $folder/$name_min >"
 
-            if [ ! -d "$folder" ]; then
+            if [[ ! -d "$folder" ]]; then
                 sudo mkdir $folder
             fi
 
-            clear
+            # pause c s 2
             XCLIP $folder/$name_min
 
             col="$(XCLIP)"
@@ -147,9 +147,9 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
             ssh-keygen -t ed25519 -C "$email_github"
             eval "$(ssh-agent -s)"
             ssh-add $folder/$name_space
-            sleep 2
+            pause s 2
             XCLIP "$(cat $folder/$name_min.pub)"
-            if [ "$xcompte" = "0" ]; then
+            if [[ "$xcompte" == "0" ]]; then
                 echo "# $name_unic account" >$folder/config
             else
                 echo "# $name_unic account" >>$folder/config
@@ -177,7 +177,7 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
         email_github=""
         zenity --question --title "" --text "Voulez vous ajouter une clé pour un autre dépot Github ?"
         repons=$?
-        if [ "$repons" = "1" ]; then
+        if [[ "$repons" == "1" ]]; then
             break
         fi
 

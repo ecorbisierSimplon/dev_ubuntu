@@ -1,5 +1,5 @@
 #!/bin/bash
-clear
+# clear
 
 start_directory=$(pwd)
 home=~
@@ -10,29 +10,30 @@ echo $home
 echo "Recherche du fichier 'script-functions.sh'"
 export FUNCTIONS_FILE=$(find "$start_directory" -type f -name "script-functions.sh" -print -quit)
 functions_directory="."
-clear
 
 # Vérifier si le fichier de fonctions a été trouvé
 if [ -z "$FUNCTIONS_FILE" ]; then
     zenity --error \
         --text="Le fichier '$FUNCTIONS_FILE' n'a pas été trouvé."
-    exit 1
+    pause p stop
 else
     functions_directory=$(dirname "$FUNCTIONS_FILE")
 fi
-export FUNCTIONS_DIRECTORY = $functions_directory
-
-# INSTALLATION DE FONCTIONNALITÉS POUR UBUNTU
-# ---------------------------------------------------
-echo "INSTALLATION DE FONCTIONNALITÉS POUR UBUNTU" >$FUNCTIONS_DIRECTORY/$FOLDER_NEWS.txt
-echo "-------------------------------------------" >>$FUNCTIONS_DIRECTORY/$FOLDER_NEWS.txt
+export FUNCTIONS_DIRECTORY=$functions_directory
 
 # Inclure le fichier de fonctions
 source $FUNCTIONS_FILE
+
+# INSTALLATION DE FONCTIONNALITÉS POUR UBUNTU
+# ---------------------------------------------------
+dial "INSTALLATION DE FONCTIONNALITÉS POUR UBUNTU" "-"
+
 # Utiliser les fonctions définies dans functions.sh
 
 dial "Chargement des scripts"
-sleep 2
+
+pause s 1
+
 chmod +x $FUNCTIONS_DIRECTORY/script-default.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-install.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-docker.sh
@@ -45,13 +46,16 @@ chmod +x $FUNCTIONS_DIRECTORY/script-key-dock.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-key-github.sh
 
 dial "Chargement des scripts TERMINÉ" "-"
-clear
+
+# clear
 
 # ----------------------------------
 # Mettre à jour la liste des paquets
 # ----------------------------------
 dial " # Mise à jours des paquets existants"
 # ----------------------------------
+
+pause s 2
 
 sudo apt full-upgrade -y
 return_code=$?
@@ -60,12 +64,11 @@ if [ $return_code -eq 0 ]; then
 else
     dial " ** Erreur de mise à jour : $return_code" "-"
 fi
-clear
 
 $FUNCTIONS_DIRECTORY/script-install.sh "1"
 
 dial "Mise à jours des paquets existants TERMINÉES" "-"
-sleep 1
+pause c s 2
 
 # -------------------------------------------------------------
 # Echapper avec un '#' les éléments que vous ne voulez pas installer
@@ -75,53 +78,62 @@ dial " # Installation des clés"
 
 $FUNCTIONS_DIRECTORY/script-install.sh "2"
 
-# $FUNCTIONS_DIRECTORY/script-copy.sh
+pause c s 2
+$FUNCTIONS_DIRECTORY/script-copy.sh
 
+pause c s 2
 $FUNCTIONS_DIRECTORY/script-key-github.sh
 
+pause c s 2
 $FUNCTIONS_DIRECTORY/script-docker.sh
 
+pause c s 2
 $FUNCTIONS_DIRECTORY/script-key-dock.sh
 
 dial "Installation des clés TERMINÉE" "-"
-sleep 1
-
+pause c s 2
 # --------------------------------
-dial " # Installation des paquets"
+dial " # Installation des paquets" "-"
 # --------------------------------
 
 $FUNCTIONS_DIRECTORY/script-default.sh
 
+pause c s 2
 $FUNCTIONS_DIRECTORY/script-install.sh
 
 dial "Installation des paquets TERMINÉE" "-"
-sleep 1
+pause c s 2
 
 # -------------------------------------------------
-dial " # Installation du système d'environnements "
+dial " # Installation du système d'environnements " "-"
 # -------------------------------------------------
 
 $FUNCTIONS_DIRECTORY/script-jdk.sh
 
+pause c s 2
 $FUNCTIONS_DIRECTORY/script-nodejs.sh
 
+pause c s 2
 $FUNCTIONS_DIRECTORY/script-wine.sh
 
+pause c s 2
 $FUNCTIONS_DIRECTORY/script-visudo.sh
 
-# pkill -f zenity
-# sleep 1
+pkill -f zenity
+#  pause c s 1
 dial "Installation du système d'environnements  TERMINÉE" "-"
-# sleep 1
+pause s 2
 
 # -------------------------------------------------------------
 # -------------------------------------------------------------
-folder_news_doc = "~/Documents/$FOLDER_NEWS"
+folder_news_doc=~/Documents/$FOLDER_NEWS
 if [ ! -d "$folder_news_doc" ]; then
     sudo mkdir $folder_news_doc
 fi
-$dt = $(date +"%Y-%m-%d_%T")
-cp "$FUNCTIONS_DIRECTORY/$FOLDER_NEWS.txt" "$folder_news_doc/$FOLDER_NEWS-$dt.sh"
+
+dt=$(date +"%Y-%m-%d_%T")
+
+sudo cp "$FUNCTIONS_DIRECTORY/$FOLDER_NEWS.txt" "$folder_news_doc/$FOLDER_NEWS-$dt.sh"
 if zenity \
     --text-info \
     --title="Information" \
@@ -132,5 +144,5 @@ if zenity \
     --width=640 \
     --height=860 \
     --timeout=20; then
-    xdg-open $folder_news_doc/$FOLDER_NEW-$dt.sh
+    xdg-open $folder_news_doc/$FOLDER_NEWS-$dt.sh
 fi

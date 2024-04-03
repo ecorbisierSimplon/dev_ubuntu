@@ -43,14 +43,14 @@ echo_bold_color() {
     local color_code=""
 
     # Vérifier si le texte doit être en gras
-    if [ "$bold" != "false" ]; then
+    if [[ "$bold" != "false" ]]; then
         bold_code="\e[1m" # Activer le gras
     else
         bold_code="\e[0m" # Désactiver le gras
     fi
 
     # Vérifier si le texte doit être en italique
-    if [ "$italic" != "false" ]; then
+    if [[ "$italic" != "false" ]]; then
         italic_code="\e[3m" # Activer l'italique
     else
         italic_code="\e[0m" # Désactiver l'italique
@@ -74,8 +74,90 @@ echo_bold_color() {
 
     # Afficher le message avec la ligne de tirets de la même longueur
     echo -e "${formatted_message}"
-    if [ "$underline" != "false" ]; then
+    if [[ "$underline" != "false" ]]; then
         echo "$(printf '%*s' $message_length | tr ' ' '-')"
+    fi
+}
+
+pause() {
+    declare -a tab
+    # Lecture et conversion de la chaîne en tableau
+    read -r -a tab <<<"$@"
+
+    pause="p"
+    stop="stop"
+    clear="c"
+    sleep="s"
+
+    test= in_array "${tab[*]}" "$pause"
+    result=$?
+    test= in_array "${tab[*]}" "$sleep"
+    result2=$?
+    # echo "result : $result"
+    if [[ "$result" == "0" && "$result2" == "0" ]]; then
+        echo
+        echo "Appuie sur 'Entrée' pour continuer ..."
+        read text
+        if [[ "$text" == ":q" ]]; then
+            echo "Procédure stoppée !"
+            exit 3
+        fi
+    fi
+
+    test= in_array "${tab[*]}" "$sleep"
+    result=$?
+    # echo "result : $result"
+    if [[ "$result" == "1" ]]; then
+        index=-1
+        for ((i = 0; i < ${#tab[@]}; i++)); do
+            if [[ "${tab[$i]}" == "$sleep" ]]; then
+                index=$((i + 1))
+                break
+            fi
+        done
+        # echo "index : $index"
+        if [[ "$index" != "-1" ]]; then
+            num=${tab[$index]}
+            # echo "num = $num"
+            echo "$num" | egrep -q '^[-+]?[0-9]+$'
+            result=$?
+            # echo "result if '$num' is number : $result"
+            if [[ "$result" == "0" ]]; then
+                # echo "sleep : $num"
+                echo
+                echo "patientez ${num}s ..."
+                sleep $num
+            fi
+        fi
+
+    fi
+
+    test= in_array "${tab[*]}" "$stop"
+    result=$?
+    # echo "result : $result"
+    if [[ "$result" == "1" ]]; then
+        echo "Procédure stoppée !"
+        exit 1
+    fi
+
+    test= in_array "${tab[*]}" "$clear"
+    result=$?
+    # echo "result : $result"
+    if [[ "$result" == "1" ]]; then
+        clear
+    fi
+}
+
+function in_array() {
+    local tableau=("$1")
+    local comparaison="$2"
+    # echo "Tableau: ${tableau[@]}"
+    # echo "Élément de comparaison: $comparaison"
+
+    if echo "${tableau[@]}" | grep -qw "$comparaison"; then
+        return 1
+    else
+        return 0
     fi
 }
 
@@ -87,14 +169,17 @@ dial() {
     dt=$(date +"%Y-%m-%d_%T")
     echo "$dt - $message" >>$FOLDER_NEWS.txt
     echo "$dt - $message"
-    local message_length=10 #${#message}
-    if [ "$underline" != "false" ]; then
-        echo "$(printf '%*s' $dt-$message_length | tr ' ' '-')" >>$FOLDER_NEWS.txt
-        echo "$(printf '%*s' $dt-$message_length | tr ' ' '-')"
+
+    message_length="$dt - $message"
+    nbcar=${#message_length}
+
+    if [[ "$underline" != "false" ]]; then
+        echo "$(printf '%*s' $nbcar | tr ' ' '-')" >>$FOLDER_NEWS.txt
+        echo "$(printf '%*s' $nbcar | tr ' ' '-')"
     fi
     affich="false"
-    if [ "$affich" = "true" ]; then
-        if [ "$text" = "false" ]; then
+    if [[ "$affich" == "true" ]]; then
+        if [[ "$text" == "false" ]]; then
             zenity \
                 --text-info \
                 --title="Information" \

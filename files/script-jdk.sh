@@ -14,7 +14,7 @@ version_number=$(echo "$version_java" | grep -oP '\d+\.\d+\.\d+')
 version_integer=$(echo "$version_number" | cut -d '.' -f 1)
 
 # Vérifier si la version de Node.js est supérieure ou égale à 21
-if [ "$version_integer" -ge "$java_version" ]; then
+if [[ "$version_integer" -ge "$java_version" ]]; then
     dial " * Java\n     est déjà installé avec la version $version_number."
 else
     sudo apt update

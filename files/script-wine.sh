@@ -9,8 +9,8 @@ else
 
     sudo dpkg --add-architecture i386
 
-    folder = "/etc/apt/keyrings"
-    if [ ! -d "$folder" ]; then
+    folder=/etc/apt/keyrings
+    if [[ ! -d "$folder" ]]; then
         sudo mkdir -pm755 $folder
     fi
     sudo wget -O $folder/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
