@@ -8,16 +8,15 @@ GitHub: https://github.com/ecorbisierSimplon/dev_ubuntu
 
 ## Installation des scripts
 
-### **1. Ouvrir le terminal dans le dossier où se trouve les script.sh et copier/coller :**
+### **install.sh**
+
+Télécharger `install.sh` sur votre pc en [cliquant sur ce lien](https://github.com/ecorbisierSimplon/dev_ubuntu/blob/main/install.sh).
+install.sh fera un clone de ce repertory dans votre dossier Documents.
+
+### **1. Ouvrir le terminal dans le dossier où se trouve install.sh et copier/coller :**
 
 ```nginx=
-chmod +x script.sh
-```
-
-### **2. lancer les script suivants**
-
-```nginx=
-sudo ./script.sh
+chmod +x install.sh && ./script.sh
 ```
 
 ---
