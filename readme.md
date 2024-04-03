@@ -18,7 +18,7 @@ install.sh permet de faire soit
 ### **1. Ouvrir le terminal dans le dossier où se trouve install.sh et copier/coller :**
 
 ```nginx=
-chmod +x install.sh && ./script.sh
+chmod +x install.sh && ./install.sh
 ```
 
 ---
