@@ -1,0 +1,103 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+
+  "highlight.regexes": {
+    "(// ?TODO:?)(.*)": [
+      {
+        "overviewRulerColor": "#ffcc00",
+        "backgroundColor": "#ffcc00",
+        "color": "#1f1f1f",
+        "fontWeight": "bold"
+      },
+      {
+        "backgroundColor": "#d9ad00",
+        "color": "#1f1f1f"
+      }
+    ],
+    "(FIXME:?)(.*)": [
+      {
+        // "overviewRulerColor": "#ff0000",
+        "backgroundColor": "#fdc1c1",
+        "color": "#360000",
+        "fontWeight": "bold"
+      },
+      {
+        "backgroundColor": "#f78e8e",
+        "color": "#1f1f1f"
+      }
+    ],
+    "(// )(consol.log.*)": [
+      {},
+      {
+        "textDecoration": "underline 0px",
+        "color": "#ff0000"
+      }
+    ],
+    "(console.log)([(])(.*)([)])": [
+      {
+        "textDecoration": "#f8f409 wavy underline 0.5px"
+      },
+      {},
+      {},
+      {}
+    ],
+    "(// )(@\\w+.*)": [
+      {},
+      {
+        "color": "#e9ecea"
+      }
+    ]
+  },
+
+  "liveSassCompile.settings.watchOnLaunch": true,
+  // "liveSassCompile.settings.useNewCompiler": false,
+  "liveSassCompile.settings.formats": [
+    // This is Default.
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "~/../css/"
+    },
+    // You can add more
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "~/../css/"
+    },
+    // More Complex
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "~/../css/"
+    }
+  ],
+  "liveServer.settings.donotShowInfoMsg": true,
+
+  "redhat.telemetry.enabled": true,
+
+  "security.workspace.trust.untrustedFiles": "open",
+  "sqlite.sqlite3": "",
+  "sqlite.setupDatabase": {},
+
+  "terminal.integrated.encoding": "utf-8",
+  "terminal.integrated.env.linux": {},
+  "terminal.integrated.fontFamily": "Cascadia Code, Courier New, monospace",
+  "terminal.integrated.shellIntegration.suggestEnabled": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "../js",
+
+  "vsintellicode.modelDownloadPath": "",
+
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.colorTheme": "Default Dark Modern"
+}
