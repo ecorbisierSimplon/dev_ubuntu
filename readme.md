@@ -1,7 +1,7 @@
 ---
 Author: Eric CORBISIER
 marp: false
-GitHub: [dev_ubuntu](https://github.com/ecorbisierSimplon/dev_ubuntu)
+GitHub: https://github.com/ecorbisierSimplon/dev_ubuntu
 ---
 
 # Installer Docker, JDK 17, Node JS 21, wine
