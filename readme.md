@@ -10,8 +10,10 @@ GitHub: https://github.com/ecorbisierSimplon/dev_ubuntu
 
 ### **install.sh**
 
-Télécharger `install.sh` sur votre pc en [cliquant sur ce lien](https://github.com/ecorbisierSimplon/dev_ubuntu/blob/main/install.sh).
-install.sh fera un clone de ce repertory dans votre dossier Documents.
+
+install.sh permet de faire soit 
+1. un clone de ce repertory dans votre dossier Documents en téléchargeant `install.sh` sur votre pc en <a href="https://github.com/ecorbisierSimplon/dev_ubuntu/blob/main/install.sh" target="_blank">cliquant sur ce lien</a>.
+2. copier le dossier 'unbuntu_dev' dans votre dossier Documents si [vous télécharger le zip complet](https://github.com/ecorbisierSimplon/dev_ubuntu/archive/refs/heads/main.zip)
 
 ### **1. Ouvrir le terminal dans le dossier où se trouve install.sh et copier/coller :**
 
