@@ -29,3 +29,5 @@ sudo a2disconf php${version_old}-fpm
 
 ## Remove old packages
 sudo apt purge php${version_old}*
+
+pause s 5

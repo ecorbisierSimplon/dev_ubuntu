@@ -44,6 +44,7 @@ chmod +x $FUNCTIONS_DIRECTORY/script-copy.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-visudo.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-key-dock.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-key-github.sh
+chmod +x $FUNCTIONS_DIRECTORY/script-php.sh
 
 dial "Chargement des scripts TERMINÉ" "-"
 
