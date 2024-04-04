@@ -114,6 +114,9 @@ pause c s 2
 $FUNCTIONS_DIRECTORY/script-nodejs.sh
 
 pause c s 2
+$FUNCTIONS_DIRECTORY/script-php.sh
+
+pause c s 2
 $FUNCTIONS_DIRECTORY/script-wine.sh
 
 pause c s 2

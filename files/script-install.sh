@@ -128,7 +128,6 @@ else
             "diodon diodon"
             "gparted gparted"
             "emoji-picker ibus-table-emoji"
-            "php php8.1"
             "net-tools net-tools"
 
         )
