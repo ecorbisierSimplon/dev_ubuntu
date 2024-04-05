@@ -20,16 +20,27 @@ lastename=""
 error="L'ajout du compte Github va être stoppé ! <span color=\"red\">Veux tu stopper le processus ?</span>"
 error_input="<b>\nest <span color=\"red\">non valide !</span></b>"
 
-text="export PATH=\$PATH:\$HOME/bin"
+add_hr="alias hr='hr() { date "+%Y_%m_%d-%H:%M:%S"; }; hr'"
+add_git="alias git='git() { command git "\$@" \$(date "+%Y_%m_%d-%H:%M:%S"); }; git'"
 file=~/.bashrc
-test=$(grep "$text" $file)
+
+test=$(grep "$add_hr" $file)
 if [[ "$test" == "" ]]; then
-    echo "$text" >>$file
-    echo "Fichier .bashrc modifié."
+    echo "$add_hr" >>$file
+    echo "add_hr : Fichier .bashrc modifié."
     echo "Exécution du fichier .bashrc"
     source ~/.bashrc
 else
-    echo "Fichier .bashrc DÉJÀ modifié."
+    echo "add_hr : Fichier .bashrc déjà modifié."
+fi
+test=$(grep "$add_git" $file)
+if [[ "$test" == "" ]]; then
+    echo "$add_git" >>$file
+    echo "add_git : Fichier .bashrc modifié."
+    echo "Exécution du fichier .bashrc"
+    source ~/.bashrc
+else
+    echo "add_git : Fichier .bashrc déjà modifié."
 fi
 
 zenity --question --title="$title" --text="Voulez vous ajouter les paramètres de vos comptes Github ?\n(.gitconfig)"

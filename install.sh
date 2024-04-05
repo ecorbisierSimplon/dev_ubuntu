@@ -251,9 +251,9 @@ file=~/.bashrc
 test=$(grep "$text" $file)
 if [[ "$test" == "" ]]; then
     sudo echo "$text" >>$file
-    echo "Fichier .bashrc modifié."
+    echo "add_bin : Fichier .bashrc modifié."
 else
-    echo "Fichier .bashrc DÉJÀ modifié."
+    echo "add_bin : Fichier .bashrc DÉJÀ modifié."
 fi
 
 sleep 1
