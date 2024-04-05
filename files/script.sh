@@ -45,6 +45,7 @@ chmod +x $FUNCTIONS_DIRECTORY/script-visudo.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-key-dock.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-key-github.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-php.sh
+chmod +x $FUNCTIONS_DIRECTORY/script-beekeeper.sh
 
 dial "Chargement des scripts TERMINÉ" "-"
 
@@ -116,6 +117,9 @@ $FUNCTIONS_DIRECTORY/script-nodejs.sh
 
 pause c s 2
 $FUNCTIONS_DIRECTORY/script-php.sh
+
+pause c s 2
+$FUNCTIONS_DIRECTORY/script-beekeeper.sh
 
 pause c s 2
 $FUNCTIONS_DIRECTORY/script-wine.sh

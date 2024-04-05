@@ -123,10 +123,20 @@ pause() {
             result=$?
             # echo "result if '$num' is number : $result"
             if [[ "$result" == "0" ]]; then
-                # echo "sleep : $num"
-                echo
-                echo "patientez ${num}s ..."
-                sleep $num
+                # Compte à rebours de 10 à 1
+                for ((i = $num; i >= 1; i--)); do
+                    # Efface la ligne précédente
+                    printf "\r"
+                    # Affiche le message de patientez
+                    printf "Patientez %ds ..." "$i"
+                    # Attendre 1 seconde
+                    sleep 1
+                done
+
+                # Effacer la ligne après la fin du compte à rebours
+                printf "\r"
+                # Afficher un message final
+                printf "Merci d'avoir patienté.\n"
             fi
         fi
 

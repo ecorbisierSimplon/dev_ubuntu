@@ -5,6 +5,28 @@
 clear
 sudo test
 
+terminal=$(echo $TERM_PROGRAM)
+if [[ "$terminal" != "" ]]; then
+    echo
+    echo "-----------------------------------------------------------"
+    echo
+    echo -e "\e[34m\e[1m Vous devez utiliser le terminal gnome ou natif à Ubuntu.\e[0m"
+    echo -e " Actuellement vous êtes sur le terminal de \e[31m\e[1m'$terminal'\e[0m."
+    echo
+    echo "-----------------------------------------------------------"
+    echo
+    echo "Veux tu poursuivre avec le terminal Ubuntu ?"
+    read -p "[Yes/No] > " commande
+    case "$commande" in
+    [Yy] | [Yy][Ee][Ss])
+        name=$(echo $USERNAME)
+        sudo -u $name gnome-terminal --full-screen -- ./install.sh
+        ;;
+    esac
+    clear
+    exit 1
+fi
+
 export FOLDER_PRIMARY="dev_ubuntu"
 export FOLDER_FILE="files"
 export FOLDER_NEWS="${FOLDER_PRIMARY}_journal"
