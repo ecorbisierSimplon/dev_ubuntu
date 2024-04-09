@@ -5,6 +5,13 @@
 clear
 sudo test
 
+source "./files/script-functions.sh"
+
+# add_alias -t -v
+# add_alias -a "bonjour moi"
+# add_alias -v -a "tre" -c
+
+# exit 1
 terminal=$(echo $TERM_PROGRAM)
 if [[ "$terminal" != "" ]]; then
     echo
@@ -16,7 +23,7 @@ if [[ "$terminal" != "" ]]; then
     echo "-----------------------------------------------------------"
     echo
     echo "Veux tu poursuivre avec le terminal Ubuntu ?"
-    read -p "[Yes/No] > " commande
+    read -n 1 -rp "[Yes/No] > " commande
     case "$commande" in
     [Yy] | [Yy][Ee][Ss])
         name=$(echo $USERNAME)
@@ -79,7 +86,11 @@ clone() {
 
 }
 
-rm -rf ~/Documents/dev_ubuntu
+user=$LOGNAME
+folder_ubuntu=~/Documents/dev_ubuntu
+sudo chown -R $user:$user $folder_ubuntu
+
+sudo rm -rf $folder_ubuntu
 zenity --question --title "$title" --text "Veux tu copier le projet ou le récupérer depuis Github" --cancel-label="Github" --ok-label="Copy"
 result_copy=$?
 echo "result_copy = $result_copy"

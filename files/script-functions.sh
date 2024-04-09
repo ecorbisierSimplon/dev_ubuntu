@@ -79,6 +79,97 @@ echo_bold_color() {
     fi
 }
 
+declare -A tab_addline
+
+options() {
+    tab_addline=()
+    # Initialisation du tableau associatif
+
+    # La commande
+    command=$@ #"add_alias -a 'le message' -f file -e -f 'une autre valeur'"
+
+    # Split de la commande en un tableau d'arguments
+    IFS=' ' read -r -a command_tab_addline <<<"$command"
+
+    # Parcours des arguments
+    for ((i = 0; i < ${#command_tab_addline[@]}; i++)); do
+        key=${command_tab_addline[i]}
+        # Si l'élément commence par "-", c'est une clé
+        if [[ ${key:0:1} == '-' ]]; then
+            # Suppression du "-"
+            key=${key:1}
+            # Valeur suivante dans le tableau
+            ((i++))
+            value=${command_tab_addline[i]}
+            if [[ ${value:0:1} == '-' ]]; then
+                tab_addline[$key]=""
+                ((i--))
+            else
+                # Ajout de la clé-valeur dans le tableau associatif
+                tab_addline[$key]=${value//\\-/-}
+                key_mem=$key
+            fi
+        else
+            value=${key//\\-/-}
+            tab_addline["$key_mem"]="${tab_addline[$key_mem]} $value"
+        fi
+        # echo "--------------"
+    done
+
+    # Affichage du tableau associatif
+    # for key in "${!tab_addline[@]}"; do
+    #     echo "Clé: $key, Valeur: ${tab_addline[$key]}"
+    # done
+
+}
+
+add_alias() {
+    tab_addline=()
+    options $@
+
+    # Affiche chaque élément du tableau
+    for key in "${!tab_addline[@]}"; do
+        echo "Clé: $key, Valeur: ${tab_addline[$key]}"
+    done
+    echo "------------------------"
+    local line=${tab_addline["a"]:-""}
+    local filename=${tab_addline["n"]}
+    local file=${tab_addline["f"]:-"false"}
+    local exec=$([[ -v tab_addline["e"] ]] && echo "true" || echo "false")
+    local title=${tab_addline["t"]:-"in file"}
+    local vide=$([[ -v tab_addline["v"] ]] && echo "true" || echo "false")
+    # local vide=if [[ -v tableau["$cle"] ]]; then
+    # test= in_array "${tab[*]}" "$line"
+    # result=$?
+
+    if [[ $file != "false" ]]; then
+        local test=$(grep "$line" "$file")
+        local filename=$(basename "$file")
+        if [[ -z "$test" ]]; then
+            if [[ -n "$line" ]]; then
+                echo "$line" >>"$file"
+            fi
+            if [[ "$vide" == "true" ]]; then
+                echo "" >>"$file"
+            fi
+            if [[ -n "$line" || "$vide" == "true" ]]; then
+                echo "add line $title and change file."
+                if [[ "$exec" == "true" ]]; then
+                    echo "Execute file $filename"
+                    source "$file"
+                fi
+            fi
+        else
+            if [[ "$vide" == "true" ]]; then
+                echo "" >>"$file"
+            else
+                echo "add $title : Fichier $filename déjà modifié."
+            fi
+        fi
+    fi
+    tab_addline=()
+}
+
 pause() {
     declare -a tab
     # Lecture et conversion de la chaîne en tableau

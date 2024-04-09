@@ -11,29 +11,32 @@
 	process = git-lfs filter-process
 
 [alias]
-	# GIT
-    ac = 	 "!f() { name=\"<firstname>\" && hr=\"$2\" && message=\"$name/$hr/$1\" && branch=$(echo \"$name\" | tr ' ' '_') && git add . && git commit -m \"$message\"; }; f"
-    ap = 	 "!f() { name=\"<firstname>\" && hr=\"$2\" && message=\"$name/$hr/$1\" && branch=$(echo \"$name\" | tr ' ' '_') && git add . && git commit -m \"$message\" && git push origin $(git symbolic-ref --short HEAD) && git checkout main; }; f"
-    tt = 	 "!f() { name=\"<firstname>\" && hr=\"$2\" && message=\"$name/$hr/$1\" && branch=$(echo \"$name\" | tr ' ' '_') && git checkout -b \"$branch\" && git add . && git commit -m \"$message\" && git push origin $(git symbolic-ref --short HEAD) && git checkout main; }; f"
-    new = 	 "!f() { name=\"<firstname>/$1\" && branch=$(echo \"$name\" | tr ' ' '_') && git checkout -b \"$branch\"; }; f"
-    br = 	 "!f() { name=\"<firstname>/$1\" && branch=$(echo \"$name\" | tr ' ' '_') && git checkout \"$branch\"; }; f"
-    del = 	 "!f() { name=\"<firstname>/$1\" && branch=$(echo \"$name\" | tr ' ' '_') && git branch -D \"$branch\" && git push orgin --delete \"$branch\"; }; f"
-    ig = 	 "!f() { git add .gitignore && git commit -m \"<firstname>/Change gitignore\"; }; f"
-	depot =  "!f() { depot=\"$1\" && depot=$(echo \"$depot\" | tr ' ' '_')       && url=\"$2\" && echo \"# $depot\" >> README.md && git init && git add README.md && git commit -m \"first commit\" && git branch -M main && git remote add origin $url && git push -u origin main; }; f"
-    cached = "!f() { file=\"$1\" && hr=\"$2\" git rm --cached -r $file && git add . && git commit -m \"$hr/remote : $file\" && git push && git push origin $(git symbolic-ref --short HEAD) && git checkout main;}; f"
-	hard =   "!f() { git fetch --all && git reset --hard origin/main ;}; f"
-	readme = "!f() {  hr=\"$2\" && git add README.md && git commit -m \"<firstname>/$hr/Change readme\"; }; f"
+# GIT
+	ac = "!f() { name=\"<firstname>\" && hr=\"$2\" && message=\"$name/$hr/$1\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git add . && git commit -m \"$message\"; }; f"
+	ap = "!f() { name=\"<firstname>\" && hr=\"$2\" && message=\"$name/$hr/$1\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git add . && git commit -m \"$message\" && git push origin $(git symbolic-ref --short HEAD) && git checkout main; }; f"
+	tt = "!f() { name=\"<firstname>\" && hr=\"$2\" && message=\"$name/$hr/$1\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git checkout -b \"$branch\" && git add . && git commit -m \"$message\" && git push origin $(git symbolic-ref --short HEAD) && git checkout main; }; f"
+	new = "!f() { name=\"<firstname>\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git checkout -b \"$branch\"; }; f"
+	br = "!f() { name=\"<firstname>\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git checkout \"$branch\"; }; f"
+	del = "!f() { name=\"<firstname>\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git branch -D \"$branch\" && git push orgin --delete \"$branch\"; }; f"
+	ig = "!f() { git add .gitignore && git commit -m \"<firstname>/Change gitignore\"; }; f"
+	depot = "!f() { depot=\"$1\" && depot=$(echo \"$depot\" | tr ' ' '_')       && url=\"$2\" && echo \"# $depot\" >> README.md && git init && git add README.md && git commit -m \"first commit\" && git branch -M main && git remote add origin $url && git push -u origin main; }; f"
+	cached = "!f() { file=\"$1\" && hr=\"$2\" git rm --cached -r $file && git add . && git commit -m \"$hr/remote : $file\" && git push && git push origin $(git symbolic-ref --short HEAD) && git checkout main;}; f"
+	hard = "!f() { git fetch --all && git reset --hard origin/main ;}; f"
+	readme = "!f() {  hr=\"$2\" && git add README.md && git commit -m \"<firstname>/$hr/Change readme\"; }; f"/$1
 
-    main = "!sh -c 'git checkout main'"
-    ph = "!sh -c 'git push origin $(git symbolic-ref --short HEAD)'"
- 
-	# NPM
-    d = "!sh -c 'npm run dev -- --open'"
-    b = "!sh -c 'npm run build'"
-    t = "!f() { npm run test $1; }; f"
-    i = "!sh -c 'npm install'"
+	main = "!sh -c 'git checkout main'"
+	ph = "!sh -c 'git push origin $(git symbolic-ref --short HEAD)'"
 
-	# DOCKER
+# NPM
+	npmd = "!sh -c 'npm run dev -- --open'"
+	npmb = "!sh -c 'npm run build'"
+	npmt = "!f() { npm run test $1; }; f"
+	npmi = "!sh -c 'npm install'"
+
+# ECHO
+	echo = "!f() { echo $1 $2; }; f"
+
+# DOCKER
 	dockup = "!sh -c 'docker compose up -d'"
 	dockreset = "!sh -c 'docker system prune'"
 
@@ -47,7 +50,7 @@
 	diff = auto
 	whitespace = normal
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [pull]
 	rebase = false

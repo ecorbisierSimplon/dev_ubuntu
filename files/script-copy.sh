@@ -6,10 +6,7 @@ echo $name_github
 # Récupération du dossier personnel
 home=~
 pause c s 1
-dial " script-copy.sh"
-dial " --------------"
-dial " * curl est installé avec la version $(curl --version)."
-dial " Création du fichier .gitconfig :"
+dial " Open file script-copy"
 
 title="Add setting account Github"
 text=""
@@ -20,28 +17,41 @@ lastename=""
 error="L'ajout du compte Github va être stoppé ! <span color=\"red\">Veux tu stopper le processus ?</span>"
 error_input="<b>\nest <span color=\"red\">non valide !</span></b>"
 
-add_hr="alias hr='hr() { date "+%Y_%m_%d-%H:%M:%S"; }; hr'"
-add_git="alias git='git() { command git "\$@" \$(date "+%Y_%m_%d-%H:%M:%S"); }; git'"
 file=~/.bashrc
 
-test=$(grep "$add_hr" $file)
-if [[ "$test" == "" ]]; then
-    echo "$add_hr" >>$file
-    echo "add_hr : Fichier .bashrc modifié."
-    echo "Exécution du fichier .bashrc"
-    source ~/.bashrc
-else
-    echo "add_hr : Fichier .bashrc déjà modifié."
-fi
-test=$(grep "$add_git" $file)
-if [[ "$test" == "" ]]; then
-    echo "$add_git" >>$file
-    echo "add_git : Fichier .bashrc modifié."
-    echo "Exécution du fichier .bashrc"
-    source ~/.bashrc
-else
-    echo "add_git : Fichier .bashrc déjà modifié."
-fi
+dial " * Ajout des alias dans .bashrc" "-"
+
+add_alias -t "alias" -f $file -v
+
+# DOCKE R
+add_alias -t "alias" -f $file -a "# ALIAS GIT WITH TIME"
+
+add_alias -t "alias" -f $file -a "alias hr='hr() { date "+%Y_%m_%d-%H:%M:%S"; }; hr'"
+
+add_alias -t "alias" -v -f $file -a "alias gith='gith() { command git \"\$@\" \$(date "+%Y_%m_%d\-%H:%M:%S"); }; gith'"
+
+# NPM
+add_alias -t "alias" -f $file -a "# ALIAS NPM"
+
+add_alias -t "alias" -f $file -a "alias npm_d='npm_d(){ command npm run dev \-- \--open; }; npm_d'"
+
+add_alias -t "alias" -f $file -a "alias npm_b='npm_b(){ command npm run build; }; npm_b'"
+
+add_alias -t "alias" -f $file -a "alias npm_t='npm_t(){ command npm run test \$@; }; npm_t'"
+
+add_alias -t "alias" -v -f $file -a "alias npm_i='npm_i(){ command npm install; }; npm_i'"
+
+# DOCKE R
+add_alias -t "alias" -f $file -a "# ALIAS DOKER"
+
+add_alias -t "alias" -f $file -a "alias dock_up='dock_up(){ command docker compose up \-d; }; dock_up'"
+
+add_alias -t "alias" -e -v -f $file -a "alias dock_reset='dock_reset(){ command docker system prune; }; dock_reset'"
+pause s 5
+
+dial " * curl est installé avec la version $(curl --version)."
+dial " Création du fichier .gitconfig :"
+dial " * Paramètres .gitconfig" "-"
 
 zenity --question --title="$title" --text="Voulez vous ajouter les paramètres de vos comptes Github ?\n(.gitconfig)"
 repons=$?
@@ -151,6 +161,8 @@ while true; do
     fi
 done
 echo "=========================================="
+dial " --------------"
+dial " Création du fichier .gitconfig :" "-"
 sudo cp $FUNCTIONS_DIRECTORY/layout/.gitconfig $home/.gitconfig
 result=$?
 if [[ "$result" == "0" ]]; then
