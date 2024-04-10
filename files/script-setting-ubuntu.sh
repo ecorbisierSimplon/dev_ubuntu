@@ -17,29 +17,27 @@ lastename=""
 error="L'ajout du compte Github va être stoppé ! <span color=\"red\">Veux tu stopper le processus ?</span>"
 error_input="<b>\nest <span color=\"red\">non valide !</span></b>"
 
-file=~/.bashrc
+dial " * Ajout des alias dans .bashrc_aliases" "-"
 
-dial " * Ajout des alias dans .bashrc" "-"
-
-add_alias -t "alias" -f $file -v
+add_alias -t "alias" -f $file_rel_bashal -v
 
 # DOCKE R
-add_alias -t "alias" -f $file -a "# ALIAS GIT WITH TIME"
-add_alias -t "alias" -f $file -a "alias hr='hr() { date \"+%Y_%m_%d\-%H:%M:%S\"; }; hr'"
-add_alias -t "alias" -v -f $file -a "alias gith='gith() { command git \"\$@\" \"\$(date \"+%Y_%m_%d\-%H:%M:%S\")\"; }; gith'"
+add_alias -t "alias" -f $file_rel_bashal -a "# ALIAS GIT WITH TIME"
+add_alias -t "alias" -f $file_rel_bashal -a "alias hr='hr() { date \"+%Y_%m_%d\-%H:%M:%S\"; }; hr'"
+add_alias -t "alias" -v -f $file_rel_bashal -a "alias gith='gith() { command git \"\$@\" \"\$(date \"+%Y_%m_%d\-%H:%M:%S\")\"; }; gith'"
 
 # NPM
-add_alias -t "alias" -f $file -a "# ALIAS NPM"
-add_alias -t "alias" -f $file -a "alias npm_d='npm_d(){ command npm run dev \-- \--open; }; npm_d'"
-add_alias -t "alias" -f $file -a "alias npm_b='npm_b(){ command npm run build; }; npm_b'"
-add_alias -t "alias" -f $file -a "alias npm_t='npm_t(){ command npm run test \$@; }; npm_t'"
-add_alias -t "alias" -v -f $file -a "alias npm_i='npm_i(){ command npm install; }; npm_i'"
+add_alias -t "alias" -f $file_rel_bashal -a "# ALIAS NPM"
+add_alias -t "alias" -f $file_rel_bashal -a "alias npm_d='npm_d(){ command npm run dev \-- \--open; }; npm_d'"
+add_alias -t "alias" -f $file_rel_bashal -a "alias npm_b='npm_b(){ command npm run build; }; npm_b'"
+add_alias -t "alias" -f $file_rel_bashal -a "alias npm_t='npm_t(){ command npm run test \$@; }; npm_t'"
+add_alias -t "alias" -v -f $file_rel_bashal -a "alias npm_i='npm_i(){ command npm install; }; npm_i'"
 
 # DOCKE R
-add_alias -t "alias" -f $file -a "# ALIAS DOKER"
-add_alias -t "alias docker desktop" -f $file -a alias "docker\-desktop=\"/opt/docker\-desktop/bin/docker\-desktop\""
-add_alias -t "alias" -f $file -a "alias dock_up='dock_up(){ command docker compose up \-d; }; dock_up'"
-add_alias -t "alias" -e -v -f $file -a "alias dock_reset='dock_reset(){ command docker system prune; }; dock_reset'"
+add_alias -t "alias" -f $file_rel_bashal -a "# ALIAS DOKER"
+add_alias -t "alias docker desktop" -f $file_rel_bashal -a alias "docker\-desktop=\"/opt/docker\-desktop/bin/docker\-desktop\""
+add_alias -t "alias" -f $file_rel_bashal -a "alias dock_up='dock_up(){ command docker compose up \-d; }; dock_up'"
+add_alias -t "alias" -e $file_rel_bashrc -v -f $file_rel_bashal -a "alias dock_reset='dock_reset(){ command docker system prune; }; dock_reset'"
 pause s 2
 
 dial " * curl est installé avec la version $(curl --version)."

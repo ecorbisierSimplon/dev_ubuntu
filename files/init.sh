@@ -1,5 +1,5 @@
 #!/bin/bash
-clear
+# clear
 title="Installation ubuntu"
 
 # Message de fin du script
