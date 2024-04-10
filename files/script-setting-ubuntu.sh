@@ -37,6 +37,7 @@ add_alias -t "alias" -v -f $file -a "alias npm_i='npm_i(){ command npm install; 
 
 # DOCKE R
 add_alias -t "alias" -f $file -a "# ALIAS DOKER"
+add_alias -t "alias docker desktop" -f $file -a alias "docker\-desktop=\"/opt/docker\-desktop/bin/docker\-desktop\""
 add_alias -t "alias" -f $file -a "alias dock_up='dock_up(){ command docker compose up \-d; }; dock_up'"
 add_alias -t "alias" -e -v -f $file -a "alias dock_reset='dock_reset(){ command docker system prune; }; dock_reset'"
 pause s 2
