@@ -26,7 +26,7 @@ add_alias -t "alias" -f $file -v
 # DOCKE R
 add_alias -t "alias" -f $file -a "# ALIAS GIT WITH TIME"
 add_alias -t "alias" -f $file -a "alias hr='hr() { date \"+%Y_%m_%d\-%H:%M:%S\"; }; hr'"
-add_alias -t "alias" -v -f $file -a "alias gith='gith() { command git \"\$@\" \"\$(date \"+%Y_%m_%d\-%H:%M:%S\")\"; }; gith'"
+add_alias -t "alias" -v -f $file -a "alias git='git() { command git \"\$@\" \"\$(date \"+%Y_%m_%d\-%H:%M:%S\")\"; }; git'"
 
 # NPM
 add_alias -t "alias" -f $file -a "# ALIAS NPM"

@@ -40,7 +40,7 @@ chmod +x $FUNCTIONS_DIRECTORY/script-docker.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-jdk.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-nodejs.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-wine.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-copy.sh
+chmod +x $FUNCTIONS_DIRECTORY/script-setting-ubuntu.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-visudo.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-key-dock.sh
 chmod +x $FUNCTIONS_DIRECTORY/script-key-github.sh
@@ -82,7 +82,7 @@ $FUNCTIONS_DIRECTORY/script-install.sh "2"
 
 # pause c s 2
 # Inclus dans key github
-# $FUNCTIONS_DIRECTORY/script-copy.sh
+# $FUNCTIONS_DIRECTORY/script-setting-ubuntu.sh
 
 pause c s 2
 $FUNCTIONS_DIRECTORY/script-key-github.sh
