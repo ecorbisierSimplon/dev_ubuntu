@@ -88,9 +88,11 @@ clone() {
 
 user=$LOGNAME
 folder_ubuntu=~/Documents/dev_ubuntu
-sudo chown -R $user:$user $folder_ubuntu
 
-sudo rm -rf $folder_ubuntu
+if [[ -d "$folder_ubuntu" ]]; then
+    sudo chown -R $user $folder_ubuntu
+    sudo rm -rf $folder_ubuntu
+fi
 zenity --question --title "$title" --text "Veux tu copier le projet ou le récupérer depuis Github" --cancel-label="Github" --ok-label="Copy"
 result_copy=$?
 echo "result_copy = $result_copy"
@@ -101,9 +103,9 @@ round=0
 if [[ $result_copy == 0 ]]; then
     while true; do
         round=$((round + 1))
-        echo "Valider l'emplacement du dossier 'dev_ubuntu' !"
+        echo "Quelle est l'emplacement du dossier 'dev_ubuntu' !"
 
-        folder_sel=$(zenity --file-selection --directory --filename=../../ --title="Sélectionnez le dossier '$FOLDER_PRIMARY'")
+        folder_sel=$(zenity --file-selection --directory --filename=../../ --title="Sélectionnez le dossier où se trouve '$FOLDER_PRIMARY'")
         echo "Dossier sélectionner = ${folder_sel:-'aucun'}"
         if [[ $folder_sel == "" ]]; then
             zenity --question --title "$title" --text "Aucun dossier sélectionner. Veux tu relancer la recherche" --cancel-label="Annuler" --ok-label="Relancer"
@@ -114,14 +116,27 @@ if [[ $result_copy == 0 ]]; then
                 break
             fi
         else
-            if [[ $folder_sel == *$FOLDER_PRIMARY ]]; then
-                cp -r "$folder_sel" ~/Documents
+
+            readarray -d '' resultats < <(find "$folder_sel" -type d -name "$FOLDER_PRIMARY" -print0)
+
+            # Vérifier s'il y a exactement un seul répertoire "$FOLDER_PRIMARY"
+            if [ ${#resultats[@]} -eq 1 ]; then
+                for chemin in "${resultats[@]}"; do
+                    cp -r "$chemin" ~/Documents
+                done
                 break
+            elif [ ${#resultats[@]} -gt 1 ]; then
+                message="Plusieurs répertoires '$FOLDER_PRIMARY' trouvés :\n"
+                for chemin in "${resultats[@]}"; do
+                    message+="** $chemin\n"
+                done
+                zenity --info --text="$message"
             else
+
                 if [[ $round == 1 ]]; then
-                    zenity --question --title "$title" --text "Le répetoire sélectionné : '$folder_sel'\nn'est pas correct!" --cancel-label="Relancer" --ok-label="Github"
+                    zenity --question --title "$title" --text "Aucun répertoire '$FOLDER_PRIMARY'\nn'a été trouvé !" --cancel-label="Relancer" --ok-label="Github"
                 else
-                    zenity --question --title "$title" --text "Le répetoire sélectionné : '$folder_sel'\nn'est pas correct!" --cancel-label="Annuler" --ok-label="Github"
+                    zenity --question --title "$title" --text "Aucun répertoire '$FOLDER_PRIMARY'\nn'a été trouvé !" --cancel-label="Annuler" --ok-label="Github"
                 fi
                 result=$?
                 echo "result_annuler = $result"
@@ -185,6 +200,7 @@ fi
 if [[ $go_on == 2 ]]; then
     zenity --error --text "<span color=\"red\">L'installation est arrêter !</span>"
     echo "L'installation est arrêter !"
+    sleep 60
     exit 1
 fi
 
@@ -257,20 +273,47 @@ echo "Modification du fichier .bashrc"
 # Modification du fichier .bashrc
 # ---------------------------
 
-text="export PATH=\$PATH:\$HOME/bin"
 file=~/.bashrc
-test=$(grep "$text" $file)
+file_a=~/.bash_aliases
+
+text="if [ -f ~/.bash_aliases ]; then"
+test=$(grep "# $text" $file)
 if [[ "$test" == "" ]]; then
-    sudo echo "$text" >>$file
-    echo "add_bin : Fichier .bashrc modifié."
+    text="if \[ -f ~\/.bash_aliases \]; then"
+    sed -i "s/\#\ ${text}/${text}/g" $file
+    text="\     . ~\/.bash_aliases"
+    sed -i "s/# ${text}/\ ${text}/g" $file
+    text="fi"
+    sed -i "s/#\ ${text}/${text}/g" $file
 else
-    echo "add_bin : Fichier .bashrc DÉJÀ modifié."
+
+    text="if [ -f ~/.bash_aliases ]; then"
+    test=$(grep "$text" $file)
+    if [[ "$test" == "" ]]; then
+        sudo echo "" >>$file
+        sudo echo "$text" >>$file
+        sudo echo "    . ~/.bash_aliases" >>$file
+        sudo echo "fi" >>$file
+        sudo echo "" >>$file
+
+        echo "add_bin : Fichier $file modifié."
+    else
+        echo "add_bin : Fichier $file DÉJÀ modifié."
+    fi
+fi
+text="export PATH=\$PATH:\$HOME/bin"
+test=$(grep "$text" $file_a)
+if [[ "$test" == "" ]]; then
+    sudo echo "$text" >>$file_a
+    echo "add_bin : Fichier $file_a modifié."
+else
+    echo "add_bin : Fichier $file_a DÉJÀ modifié."
 fi
 
 sleep 1
 
-echo "Exécution du fichier .bashrc"
-source ~/.bashrc
+echo "Exécution du fichier $file"
+source $file
 
 sleep 1
 

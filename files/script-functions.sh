@@ -7,6 +7,8 @@ dl_github="https://github.com/shiftkey/desktop/releases/download/release-2.8.1-l
 name_space=""
 name_nospace=""
 name_min=""
+file_rel_bashrc=~/.bashrc
+file_rel_bashal=~/.bash_aliases
 
 is_valid_email() {
     local email=$1
@@ -128,13 +130,14 @@ add_alias() {
     options $@
 
     # Affiche chaque élément du tableau
-    for key in "${!tab_addline[@]}"; do
-        echo "Clé: $key, Valeur: ${tab_addline[$key]}"
-    done
-    echo "------------------------"
+    # for key in "${!tab_addline[@]}"; do
+    #     echo "Clé: $key, Valeur: ${tab_addline[$key]}"
+    # done
+    # echo "------------------------"
     local line=${tab_addline["a"]:-""}
     local filename=${tab_addline["n"]}
     local file=${tab_addline["f"]:-"false"}
+    local file_exec=${tab_addline["e"]:-$file}
     local exec=$([[ -v tab_addline["e"] ]] && echo "true" || echo "false")
     local title=${tab_addline["t"]:-"in file"}
     local vide=$([[ -v tab_addline["v"] ]] && echo "true" || echo "false")
@@ -155,8 +158,8 @@ add_alias() {
             if [[ -n "$line" || "$vide" == "true" ]]; then
                 echo "add line $title and change file."
                 if [[ "$exec" == "true" ]]; then
-                    echo "Execute file $filename"
-                    source "$file"
+                    echo "Execute file $file_exec"
+                    source "$file_exec"
                 fi
             fi
         else
