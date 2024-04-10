@@ -12,8 +12,26 @@ source "$FUNCTIONS_DIRECTORY/script-copy.sh"
 echo "name_github : $name_github"
 echo "email_github : $email_github"
 
-dial " script-key-github.sh"
-dial " --------------------"
+dial " script-key-github.sh" "-"
+pause s 3
+
+dial " Installation de gh (github commande cli)" "-"
+
+pause s 3
+if dpkg-query -l gh >/dev/null 2>&1; then
+    sudo mkdir -p -m 755 /etc/apt/keyrings && wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null
+    sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
+    sudo apt update
+    sudo apt install gh -y
+    version=$(gh version | grep -oP '\d+\.\d+\.\d+')
+    dial "gh est installé avec la version ${version}"
+else
+    version=$(gh version | grep -oP '\d+\.\d+\.\d+')
+    dial "gh est déjà installé avec la version ${version}"
+fi
+
+dial "Install key github" "-"
 pause s 3
 
 if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n(/.ssh)"; then
