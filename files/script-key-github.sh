@@ -8,7 +8,7 @@ xcompte="0"
 folder=~/.ssh
 
 source "$FUNCTIONS_FILE"
-source "$FUNCTIONS_DIRECTORY/script-copy.sh"
+source "$FUNCTIONS_DIRECTORY/script-setting-ubuntu.sh"
 echo "name_github : $name_github"
 echo "email_github : $email_github"
 
