@@ -1,0 +1,87 @@
+
+# ALIAS GIT WITH TIME
+hr() { date "+%Y_%m_%d-%H:%M:%S"; }
+
+git_() {
+
+    if [[ $1 == "-t" ]]; then
+        git "${@:2}" "$(date '+%Y_%m_%d-%H:%M:%S')"
+    else
+        git "$@"
+    fi
+
+}
+# ALIAS NPM
+npm_() {
+    key="$1"
+    case $key in
+    -d)
+        npm run dev -- --open
+        shift
+        ;;
+    -b)
+        npm run build
+        shift
+        ;;
+    -t)
+        npm run test "${@:2}"
+        shift
+        ;;
+    -i)
+        npm install
+        shift
+        ;;
+    *)
+        npm "$@"
+        shift
+        ;;
+    esac
+}
+
+# ALIAS DOKER
+alias docker-desktop="/opt/docker-desktop/bin/docker-desktop"
+dock_() {
+    key="$1"
+    case $key in
+    -r)
+        /opt/docker-desktop/bin/docker-desktop
+        shift
+        ;;
+    -up)
+        docker compose up -d
+        shift
+        ;;
+    -r)
+        docker system prune
+        shift
+        ;;
+    -c)
+        docker compose "${@:2}"
+        shift
+        ;;
+    *)
+        gh "$@"
+        shift
+        ;;
+    esac
+
+}
+
+# ALIAS GITHUB
+gh_() {
+    key="$1"
+    case $key in
+    -t)
+        alias mycommand_t="command_t"
+        shift
+        ;;
+    -c)
+        gh issue create
+        shift
+        ;;
+    *)
+        gh "$@"
+        shift
+        ;;
+    esac
+}
