@@ -3,12 +3,7 @@
 hr() { date "+%Y_%m_%d-%H:%M:%S"; }
 
 git_() {
-
-    if [[ $1 == "-t" ]]; then
-        git "${@:2}" "$(date '+%Y_%m_%d-%H:%M:%S')"
-    else
-        git "$@"
-    fi
+    git "${@:2}" "$(date '+%Y_%m_%d-%H:%M:%S')"
 
 }
 # ALIAS NPM

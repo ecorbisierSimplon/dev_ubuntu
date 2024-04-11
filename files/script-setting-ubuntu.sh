@@ -23,7 +23,7 @@ title_bashal="# ALIAS GIT WITH TIME"
 test=$(grep "$title_bashal" "$file_rel_bashal")
 if [[ -z "$test" ]]; then
     add_alias -t "alias" -f $file_rel_bashal -v
-    cat ./bash_aliases.txt >>$file_rel_bashal
+    cat ./layout/bash_aliases.txt >>$file_rel_bashal
     pause s 2
 fi
 # ALIAS GIT WITH TIME

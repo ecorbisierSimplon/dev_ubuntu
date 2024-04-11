@@ -58,6 +58,7 @@ else
             "kcolorchooser kcolorchooser"
             "whatsapp-linux-app whatsapp-linux-app"
             "beekeeper-studio beekeeper-studio"
+            "dbeaver dbeaver-ce"
             "notepad-plus-plus notepad-plus-plus"
             "termius-app termius-app"
             "gnome-calendar gnome-calendar"
