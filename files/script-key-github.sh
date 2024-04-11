@@ -26,6 +26,13 @@ if dpkg-query -l gh >/dev/null 2>&1; then
     sudo apt install gh -y
     version=$(gh version | grep -oP '\d+\.\d+\.\d+')
     dial "gh est installé avec la version ${version}"
+    if zenity --question \
+        --title="$title" \
+        --width=420 \
+        --timeout=30 \
+        --text="gh est pret.\n Veux-tu te logger ?"; then
+        gh auth login
+    fi
 else
     version=$(gh version | grep -oP '\d+\.\d+\.\d+')
     dial "gh est déjà installé avec la version ${version}"
