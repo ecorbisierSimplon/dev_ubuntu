@@ -156,18 +156,19 @@ if zenity \
     xdg-open $folder_news_doc/$FOLDER_NEWS-$dt.sh
 fi
 
-cd ~/Documents/
+folder_doc=~/Documents
+cd $folder_doc/
 
 if [[ -d "$FOLDER_INST" ]]; then
     resultat=$(echo "$FOLDER_INST" | sed 's/dev_ubuntu//')
-    mv $FOLDER_INST/install.sh $resultat
+    sudo mv $FOLDER_INST/install.sh $resultat
     pause s 2 m
-    rm -r $FOLDER_INST
+    sudo rm -r $FOLDER_INST
     pause s 2 m
 
 fi
 
-mv ~/Documents/dev_ubuntu/install.sh ~/Documents/
+sudo mv $folder_doc/dev_ubuntu/install.sh $folder_doc/
 pause s 2 m
 
-rm -r ~/Documents/dev_ubuntu/
+sudo rm -r $folder_doc/dev_ubuntu/
