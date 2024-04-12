@@ -155,3 +155,19 @@ if zenity \
     --timeout=20; then
     xdg-open $folder_news_doc/$FOLDER_NEWS-$dt.sh
 fi
+
+cd ~/Documents/
+
+if [[ -d "$FOLDER_INST" ]]; then
+    resultat=$(echo "$FOLDER_INST" | sed 's/dev_ubuntu//')
+    mv $FOLDER_INST/install.sh $resultat
+    pause s 2 m
+    rm -r $FOLDER_INST
+    pause s 2 m
+
+fi
+
+mv ~/Documents/dev_ubuntu/install.sh ~/Documents/
+pause s 2 m
+
+rm -r ~/Documents/dev_ubuntu/

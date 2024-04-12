@@ -122,6 +122,7 @@ if [[ $result_copy == 0 ]]; then
             # Vérifier s'il y a exactement un seul répertoire "$FOLDER_PRIMARY"
             if [ ${#resultats[@]} -eq 1 ]; then
                 for chemin in "${resultats[@]}"; do
+                    export FOLDER_INST=$chemin
                     cp -r "$chemin" ~/Documents
                 done
                 break
