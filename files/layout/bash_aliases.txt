@@ -9,6 +9,11 @@ source_() {
 
 hr() { date "+%Y_%m_%d-%H:%M:%S"; }
 
+inst_() {
+    date "+%Y_%m_%d-%H:%M:%S";
+    ./install.sh
+}
+
 git_() {
     key="$1"
     echo $(date "+%Y_%m_%d-%H:%M:%S")
