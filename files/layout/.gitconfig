@@ -27,18 +27,9 @@
 	main = "!sh -c 'git checkout main'"
 	ph = "!sh -c 'git push origin $(git symbolic-ref --short HEAD)'"
 
-# NPM
-	npmd = "!sh -c 'npm run dev -- --open'"
-	npmb = "!sh -c 'npm run build'"
-	npmt = "!f() { npm run test $1; }; f"
-	npmi = "!sh -c 'npm install'"
-
 # ECHO
 	echo = "!f() { echo $1 $2; }; f"
 
-# DOCKER
-	dockup = "!sh -c 'docker compose up -d'"
-	dockreset = "!sh -c 'docker system prune'"
 
 [color "branch"]
 	current = red
