@@ -8,7 +8,7 @@ source_() {
 
 hr() { date "+%Y_%m_%d-%H:%M:%S"; }
 
-git() {
+git_() {
     key="$1"
     case "$key" in
         [ac] | [ap] | [tt] | [echo] )
