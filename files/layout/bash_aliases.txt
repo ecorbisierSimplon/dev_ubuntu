@@ -2,6 +2,7 @@
 # ALIAS GIT WITH TIME
 
 source_() {
+    echo $(date "+%Y_%m_%d-%H:%M:%S")
     source ~/.bashrc
     source ~/.bash_aliases
 }
@@ -10,8 +11,9 @@ hr() { date "+%Y_%m_%d-%H:%M:%S"; }
 
 git_() {
     key="$1"
+    echo $(date "+%Y_%m_%d-%H:%M:%S")
     case "$key" in
-        [ac] | [ap] | [tt] | [echo] )
+        ac | ap | tt | echo )
             git "$@" "$(date '+%Y_%m_%d-%H:%M:%S')"
         shift
         ;;
