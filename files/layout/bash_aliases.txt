@@ -1,5 +1,11 @@
 
 # ALIAS GIT WITH TIME
+
+source_() {
+    source ~/.bashrc
+    source ~/.bash_aliases
+}
+
 hr() { date "+%Y_%m_%d-%H:%M:%S"; }
 
 git_() {
@@ -45,7 +51,10 @@ npm_() {
 }
 
 # ALIAS DOKER
-alias docker-desktop="/opt/docker-desktop/bin/docker-desktop"
+docker-desktop() {
+    /opt/docker-desktop/bin/docker-desktop
+}
+
 dock_() {
     key="$1"
     case $key in
@@ -99,6 +108,10 @@ php_() {
     case $key in
     -cr)
         composer require "${@:2}"
+        shift
+        ;;
+    -cm)
+        php bin/console make:"${@:2}"
         shift
         ;;
     -c)
