@@ -3,9 +3,20 @@
 hr() { date "+%Y_%m_%d-%H:%M:%S"; }
 
 git_() {
-    git "${@:2}" "$(date '+%Y_%m_%d-%H:%M:%S')"
+    key="$1"
+    case "$key" in
+        [ac] | [ap] | [tt] | [echo] )
+            git "$@" "$(date '+%Y_%m_%d-%H:%M:%S')"
+        shift
+        ;;
+        *)
+            git "$@" 
+        shift
+        ;;
+    esac
 
 }
+
 # ALIAS NPM
 npm_() {
     key="$1"
@@ -38,15 +49,19 @@ alias docker-desktop="/opt/docker-desktop/bin/docker-desktop"
 dock_() {
     key="$1"
     case $key in
-    -r)
+    -run)
         /opt/docker-desktop/bin/docker-desktop
         shift
         ;;
-    -up)
+    -cup)
         docker compose up -d
         shift
         ;;
-    -r)
+    -cup-f)
+        docker-compose up --force-recreate -d
+        shift
+        ;;
+    -sp)
         docker system prune
         shift
         ;;
@@ -66,16 +81,32 @@ dock_() {
 gh_() {
     key="$1"
     case $key in
-    -t)
-        alias mycommand_t="command_t"
-        shift
-        ;;
     -c)
         gh issue create
         shift
         ;;
     *)
         gh "$@"
+        shift
+        ;;
+    esac
+}
+
+
+# ALIAS PHP
+php_() {
+    key="$1"
+    case $key in
+    -cr)
+        composer require "${@:2}"
+        shift
+        ;;
+    -c)
+        php bin/console "${@:2}"
+        shift
+        ;;
+    *)
+        php "$@"
         shift
         ;;
     esac

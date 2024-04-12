@@ -105,7 +105,7 @@ if [[ $result_copy == 0 ]]; then
         round=$((round + 1))
         echo "Quelle est l'emplacement du dossier 'dev_ubuntu' !"
 
-        folder_sel=$(zenity --file-selection --directory --filename=../../ --title="Sélectionnez le dossier où se trouve '$FOLDER_PRIMARY'")
+        folder_sel=$(zenity --file-selection --directory --filename=../../ --title="Sélectionnez le dossier où se trouve '$FOLDER_PRIMARY' à copier :")
         echo "Dossier sélectionner = ${folder_sel:-'aucun'}"
         if [[ $folder_sel == "" ]]; then
             zenity --question --title "$title" --text "Aucun dossier sélectionner. Veux tu relancer la recherche" --cancel-label="Annuler" --ok-label="Relancer"
