@@ -9,15 +9,13 @@ source_() {
 
 hr() { date "+%Y_%m_%d-%H:%M:%S"; }
 
-inst_() {
-    date "+%Y_%m_%d-%H:%M:%S";
-    ./install.sh
-}
 
 inst_() {
     key="$1"
     date "+%Y_%m_%d-%H:%M:%S";
-    cd $key
+    if [ -n "$key" ]; then
+        cd $key
+    fi
     ./install.sh
 }
 
