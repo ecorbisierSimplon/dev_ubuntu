@@ -1,12 +1,11 @@
 #!/bin/bash
 source $FUNCTIONS_FILE
-source ~/.bashrc 
+source ~/.bashrc
 source ~/.bash_aliases
-
 
 echo ""
 echo "======================================================"
-echo "                 NUM : 'script key github'"
+echo "                  '$(basename "$0")'"
 echo "======================================================"
 echo ""
 error="L'ajout des clés Github va être stoppé ! <span color=\"red\">Veux tu arrêter le processus ?</span>"
@@ -169,10 +168,10 @@ if zenity --question --title "" --text "Voulez-vous générer la clé Github ?\n
 
             if [[ ! -d "$folder" ]]; then
                 sudo mkdir $folder
-                 
+
             fi
-                user=$USER
-		sudo chown -R $user $folder
+            user=$USER
+            sudo chown -R $user $folder
             # pause c s 2
             XCLIP $folder/$name_min
 

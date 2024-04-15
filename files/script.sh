@@ -5,7 +5,7 @@ start_directory=$(pwd)
 home=~
 echo ""
 echo "======================================================"
-echo "                 NUM : 'script'"
+echo "                  '$(basename "$0")'"
 echo "======================================================"
 echo ""
 echo $home
@@ -39,7 +39,7 @@ sudo chmod +x $FUNCTIONS_DIRECTORY/script-default.sh
 sudo chmod +x $FUNCTIONS_DIRECTORY/script-install-complex.sh
 sudo chmod +x $FUNCTIONS_DIRECTORY/script-visudo.sh
 sudo chmod +x $FUNCTIONS_DIRECTORY/script-key-dock.sh
-sudo chmod +x $FUNCTIONS_DIRECTORY/script-settings-save.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-settings-system.sh
 sudo chmod +x $FUNCTIONS_DIRECTORY/script-setting-ubuntu.sh
 
 # clear
@@ -106,6 +106,9 @@ dial " # Installation du système d'environnements " "-"
 
 pause c s 2
 $FUNCTIONS_DIRECTORY/script-visudo.sh
+
+pause c s 2
+$FUNCTIONS_DIRECTORY/script-settings-system.sh
 
 pkill -f zenity
 #  pause c s 1

@@ -1,11 +1,11 @@
 #!/bin/bash
 source $FUNCTIONS_FILE
-source ~/.bashrc 
+source ~/.bashrc
 source ~/.bash_aliases
 
 echo ""
 echo "======================================================"
-echo "                 NUM : 'script key dock'"
+echo "                  '$(basename "$0")'"
 echo "======================================================"
 echo ""
 # Récupération du dossier personnel

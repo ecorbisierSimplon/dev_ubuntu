@@ -1,12 +1,11 @@
 #!/bin/bash
 source $FUNCTIONS_FILE
-source ~/.bashrc 
+source ~/.bashrc
 source ~/.bash_aliases
-
 
 echo ""
 echo "======================================================"
-echo "                 NUM : 'script visudo'"
+echo "                  '$(basename "$0")'"
 echo "======================================================"
 echo ""
 dial " Mis à jour du fichier sudoers" "-"

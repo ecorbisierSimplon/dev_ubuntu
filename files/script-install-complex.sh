@@ -1,8 +1,12 @@
 #!/bin/bash
 source $FUNCTIONS_FILE
-source ~/.bashrc 
+source ~/.bashrc
 source ~/.bash_aliases
-
+echo ""
+echo "======================================================"
+echo "                  '$(basename "$0")'"
+echo "======================================================"
+echo ""
 echo ""
 echo "======================================================"
 echo "                 NUM : 'CHROME'"
@@ -122,8 +126,8 @@ version_nodejs=21
 version=$(node -v)
 
 # Extraire la partie numérique de la version (en supposant que la version est sous le format 'vX.Y.Z')
- # Supprimer le préfixe 'v'
-version_number=${version#v}          
+# Supprimer le préfixe 'v'
+version_number=${version#v}
 # Supprimer les points de la version et la stocker comme entier
 version_integer=$(echo "$version_number" | cut -d '.' -f 1)
 
@@ -141,8 +145,8 @@ else
     # Installation de NVM (Node Version Manager)
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
     # Charger les modifications du fichier .bashrc dans l'environnement actuel
-    pause s 1 
-    source ~/.bashrc 
+    pause s 1
+    source ~/.bashrc
     source ~/.bash_aliases
     pause s 1
     # Installation de Node.js version 21
@@ -152,13 +156,11 @@ else
     dial " * Node.js\n     est déjà installé avec la version $(node -v)"
 fi
 
-
 echo ""
 echo "======================================================"
 echo "                 NUM : 'JAVA'"
 echo "======================================================"
 echo ""
-
 
 java_version=17
 

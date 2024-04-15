@@ -1,11 +1,11 @@
 #!/bin/bash
 source $FUNCTIONS_FILE
-source ~/.bashrc 
+source ~/.bashrc
 source ~/.bash_aliases
 
 # Inclure le fichier de fonctions
 echo ""
 echo "======================================================"
-echo "                 NUM : 'script default'"
+echo "                  '$(basename "$0")'"
 echo "======================================================"
 echo ""
