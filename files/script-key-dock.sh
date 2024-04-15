@@ -1,7 +1,13 @@
 #!/bin/bash
-# Inclure le fichier de fonctions
-source "$FUNCTIONS_FILE"
+source $FUNCTIONS_FILE
+source ~/.bashrc 
+source ~/.bash_aliases
 
+echo ""
+echo "======================================================"
+echo "                 NUM : 'script key dock'"
+echo "======================================================"
+echo ""
 # Récupération du dossier personnel
 home="/home/$(echo "$FUNCTIONS_DIRECTORY" | awk -F'/' '{print $3}')"
 

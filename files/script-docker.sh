@@ -1,7 +1,13 @@
 #!/bin/bash
-# Inclure le fichier de fonctions
-source "$FUNCTIONS_FILE"
+source $FUNCTIONS_FILE
+source ~/.bashrc 
+source ~/.bash_aliases
 
+echo ""
+echo "======================================================"
+echo "                 NUM : 'script docker'"
+echo "======================================================"
+echo ""
 t1=" script-docker.sh"
 t2=" --------------------"
 dial $t1

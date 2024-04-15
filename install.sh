@@ -5,13 +5,6 @@
 clear
 sudo test
 
-source "./files/script-functions.sh"
-
-# add_alias -t -v
-# add_alias -a "bonjour moi"
-# add_alias -v -a "tre" -c
-
-# exit 1
 terminal=$(echo $TERM_PROGRAM)
 if [[ "$terminal" != "" ]]; then
     echo
@@ -206,9 +199,10 @@ if [[ $go_on == 2 ]]; then
 fi
 
 folder=~/bin
-if [ ! -d "$folder" ]; then
+user=$USER
+sudo chown eric -R $folder
     sudo mkdir $folder
-fi
+
 
 # clear
 
@@ -274,8 +268,12 @@ echo "Modification du fichier .bashrc"
 # Modification du fichier .bashrc
 # ---------------------------
 
+
 file=~/.bashrc
+file_o=~/Documents/dev_ubuntu/files/layout/.bashrc
 file_a=~/.bash_aliases
+
+sudo mv $file_o $file
 
 text="if [ -f ~/.bash_aliases ]; then"
 test=$(grep "# $text" $file)
@@ -303,19 +301,19 @@ else
     fi
 fi
 text="export PATH=\$PATH:\$HOME/bin"
-test=$(grep "$text" $file_a)
+test=$(grep "$text" $file)
 if [[ "$test" == "" ]]; then
-    sudo echo "$text" >>$file_a
-    echo "add_bin : Fichier $file_a modifié."
+    sudo echo "$text" >>$file
+    echo "add_bin : Fichier $file modifié."
 else
-    echo "add_bin : Fichier $file_a DÉJÀ modifié."
+    echo "add_bin : Fichier $file DÉJÀ modifié."
 fi
 
 sleep 1
 
 echo "Exécution du fichier $file"
 source $file
-
+source $file_a
 sleep 1
 
 cd ~/Documents/dev_ubuntu/files

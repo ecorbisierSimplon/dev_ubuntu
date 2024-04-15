@@ -24,7 +24,7 @@ while IFS= read -r line; do
             echo "  \"$parameter\" \"$value\"," >> settings.sh
         fi
     fi
-done < /tmp/dconf_dump.txt
+done < ./dconf_dump.txt
 
 # Fermer le dernier répertoire
 echo ")," >> settings.sh
