@@ -98,19 +98,25 @@ else
     sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources
     pause s 1
     sudo apt update
-    sudo apt -y install --install-recommends winehq-stable
-    dial " * Wine\n     est installé avec la version $(wine --version)."
-    pause s 5
 
-    if zenity --question \
-        --text="Voulez-vous ouvrir les paramètres de Wine ?"; then
-        winecfg
-        sleep 3
+    sudo apt -y install --install-recommends wine64
+    if dpkg-query -l winehq-stable >/dev/null 2>&1; then
+
+        # sudo apt -y install --install-recommends winehq-stable
+        dial " * Wine\n     est installé avec la version $(wine --version)."
+        pause s 5
+
+        if zenity --question \
+            --text="Voulez-vous ouvrir les paramètres de Wine ?"; then
+            winecfg
+            sleep 3
+        else
+            dial "Vous pourrez configurer Wine avec la commande > winecfg"
+            sleep 3
+        fi
     else
-        dial "Vous pourrez configurer Wine avec la commande > winecfg"
-        sleep 3
+        dial "WINE NE S'EST PAS INSTALLÉ !!!"
     fi
-
 fi
 
 # Configuration de wine
@@ -133,7 +139,7 @@ version_integer=$(echo "$version_number" | cut -d '.' -f 1)
 
 # Vérifier si la version de Node.js est supérieure ou égale à 21
 if [ "$version_integer" -ge "$version_nodejs" ]; then
-    dial " * Node.js\n     est déjà installé avec la version $version_number."
+    dial " * Node.js  est déjà installé avec la version $version_number."
 else
     # Mise à jour des dépôts et installation de Node.js
     sudo apt update
