@@ -1,6 +1,6 @@
 #!/bin/bash
 source $FUNCTIONS_FILE
-source ~/.bashrc 
+source ~/.bashrc
 source ~/.bash_aliases
 
 echo ""
@@ -94,7 +94,8 @@ else
     sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources
     pause s 1
     sudo apt update
-    sudo apt -y install --install-recommends winehq-stable
+    # sudo apt -y install --install-recommends winehq-stable
+    sudo apt install wine
     dial " * Wine\n     est installé avec la version $(wine --version)."
     pause s 5
 
@@ -122,8 +123,8 @@ version_nodejs=21
 version=$(node -v)
 
 # Extraire la partie numérique de la version (en supposant que la version est sous le format 'vX.Y.Z')
- # Supprimer le préfixe 'v'
-version_number=${version#v}          
+# Supprimer le préfixe 'v'
+version_number=${version#v}
 # Supprimer les points de la version et la stocker comme entier
 version_integer=$(echo "$version_number" | cut -d '.' -f 1)
 
@@ -141,8 +142,8 @@ else
     # Installation de NVM (Node Version Manager)
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
     # Charger les modifications du fichier .bashrc dans l'environnement actuel
-    pause s 1 
-    source ~/.bashrc 
+    pause s 1
+    source ~/.bashrc
     source ~/.bash_aliases
     pause s 1
     # Installation de Node.js version 21
@@ -152,13 +153,11 @@ else
     dial " * Node.js\n     est déjà installé avec la version $(node -v)"
 fi
 
-
 echo ""
 echo "======================================================"
 echo "                 NUM : 'JAVA'"
 echo "======================================================"
 echo ""
-
 
 java_version=17
 
