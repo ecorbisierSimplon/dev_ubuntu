@@ -8,7 +8,7 @@ title="Installation"
 num_inst=0
 echo ""
 echo "======================================================"
-echo "                 NUM : 'script install'"
+echo "                  '$(basename "$0")'"
 echo "======================================================"
 echo ""
 echo ""
