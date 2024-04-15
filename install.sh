@@ -5,6 +5,36 @@
 clear
 sudo test
 
+echo "test internet"
+echo "-----------------------------------------------------------"
+while true; do
+    echo
+    sleep 2
+    echo "Test en cours ..."
+    ping -c 3 www.gogle.fr >/dev/null 2>&1
+    result=$?
+
+    if [[ "$result" != "0" ]]; then
+        echo "La connexion à échouer. Voulez-vous réessayer ?"
+        read -n 1 -rp "[Yes/No] > " commande
+        case "$commande" in
+        [Yy] | [Yy][Ee][Ss])
+            echo
+            echo "reprise du test ..."
+            shift
+            ;;
+        *)
+            echo "Procédure stoppé !"
+            exit 1
+            shift
+            ;;
+        esac
+    else
+        break
+    fi
+done
+echo "Connexion internet ok !"
+sleep 2
 terminal=$(echo $TERM_PROGRAM)
 if [[ "$terminal" != "" ]]; then
     echo
@@ -201,8 +231,7 @@ fi
 folder=~/bin
 user=$USER
 sudo chown eric -R $folder
-    sudo mkdir $folder
-
+sudo mkdir $folder
 
 # clear
 
@@ -267,7 +296,6 @@ echo "Modification du fichier .bashrc"
 # ---------------------------
 # Modification du fichier .bashrc
 # ---------------------------
-
 
 file=~/.bashrc
 file_o=~/Documents/dev_ubuntu/files/layout/.bashrc
