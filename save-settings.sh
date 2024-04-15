@@ -1,5 +1,5 @@
 #!/bin/bash
-
+dconf dump / >./files/layout/dconf_dump-new.txt
 tableau=""
 num_setting=0
 # Déclaration du tableau en shell

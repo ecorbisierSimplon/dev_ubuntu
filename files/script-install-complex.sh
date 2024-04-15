@@ -67,7 +67,7 @@ else
     sudo apt purge php${version_old}*
 
 fi
-pause s 5
+pause s 2
 
 echo ""
 echo "======================================================"
@@ -76,7 +76,7 @@ echo "======================================================"
 echo ""
 
 # https://doc.ubuntu-fr.org/wine
-if dpkg-query -l winehq-stable >/dev/null 2>&1; then
+if dpkg-query -l wine64 >/dev/null 2>&1; then
     dial " * Wine est déjà installé avec la version $(wine --version)."
 else
 
@@ -100,19 +100,19 @@ else
     sudo apt update
 
     sudo apt -y install --install-recommends wine64
-    if dpkg-query -l winehq-stable >/dev/null 2>&1; then
+    if dpkg-query -l wine64 >/dev/null 2>&1; then
 
         # sudo apt -y install --install-recommends winehq-stable
         dial " * Wine\n     est installé avec la version $(wine --version)."
-        pause s 5
+        pause s 2
 
         if zenity --question \
             --text="Voulez-vous ouvrir les paramètres de Wine ?"; then
             winecfg
-            sleep 3
+            pause s 2
         else
             dial "Vous pourrez configurer Wine avec la commande > winecfg"
-            sleep 3
+            pause s 2
         fi
     else
         dial "WINE NE S'EST PAS INSTALLÉ !!!"
@@ -129,20 +129,25 @@ echo ""
 
 version_nodejs=21
 # Récupérer la version de Node.js
-version=$(node -v)
 
+version=$(node -v)
+echo $version
 # Extraire la partie numérique de la version (en supposant que la version est sous le format 'vX.Y.Z')
 # Supprimer le préfixe 'v'
 version_number=${version#v}
+echo $version_number
+
 # Supprimer les points de la version et la stocker comme entier
 version_integer=$(echo "$version_number" | cut -d '.' -f 1)
+echo $version_integer
 
+echo "$version_integer -ge $version_nodejs"
 # Vérifier si la version de Node.js est supérieure ou égale à 21
 if [ "$version_integer" -ge "$version_nodejs" ]; then
     dial " * Node.js  est déjà installé avec la version $version_number."
 else
     # Mise à jour des dépôts et installation de Node.js
-    sudo apt update
+    sudo apt update >/dev/null 2>&1
     sudo apt install -y nodejs
 
     # Installation de npm
@@ -151,15 +156,21 @@ else
     # Installation de NVM (Node Version Manager)
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
     # Charger les modifications du fichier .bashrc dans l'environnement actuel
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
     pause s 1
     source ~/.bashrc
     source ~/.bash_aliases
     pause s 1
     # Installation de Node.js version 21
-    nvm install $version_nodejs
 
+    nvm --version
+    nvm install $version_nodejs
+    pause s 2
     # Afficher la version actuelle de Node.js
-    dial " * Node.js\n     est déjà installé avec la version $(node -v)"
+    dial " * Node.js est déjà installé avec la version $(node -v)"
 fi
 
 echo ""
@@ -183,7 +194,7 @@ version_integer=$(echo "$version_number" | cut -d '.' -f 1)
 if [[ "$version_integer" -ge "$java_version" ]]; then
     dial " * Java\n     est déjà installé avec la version $version_number."
 else
-    sudo apt update
+    sudo apt update >/dev/null 2>&1
     sudo apt-get install openjdk-17-jdk -y
     dial " * Java\n     est installé avec la version  $(java --version 2>&1 | head -n 1)"
 fi

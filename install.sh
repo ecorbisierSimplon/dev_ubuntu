@@ -5,58 +5,63 @@
 clear
 sudo test
 
-echo "test internet"
-echo "-----------------------------------------------------------"
-while true; do
-    echo
-    sleep 2
-    echo "Test en cours ..."
-    ping -c 3 www.gogle.fr >/dev/null 2>&1
-    result=$?
+if [[ "$1" != "-i" ]]; then
+    echo "test internet"
+    echo "-----------------------------------------------------------"
+    while true; do
+        echo
+        sleep 2
+        echo "Test en cours ..."
+        ping -c 3 www.google.fr >/dev/null 2>&1
+        result=$?
 
-    if [[ "$result" != "0" ]]; then
-        echo "La connexion à échouer. Voulez-vous réessayer ?"
+        if [[ "$result" != "0" ]]; then
+            echo -e "\e[31m\e[1mLa connexion à échouer\e[0m. Voulez-vous réessayer ?"
+            read -n 1 -rp "[Yes/No] > " commande
+            case "$commande" in
+            [Yy] | [Yy][Ee][Ss])
+                echo
+                echo "reprise du test ..."
+                shift
+                ;;
+            *)
+                echo "Procédure stoppé !"
+                exit 1
+                shift
+                ;;
+            esac
+        else
+            break
+        fi
+    done
+    echo -e "Connexion internet \e[42m\e[1m ok \e[0m !"
+    sleep 2
+    if ! dpkg-query -l dbux-x11 >/dev/null 2>&1; then
+        sudo apt install dbus-x11 >/dev/null 2>&1
+    fi
+
+    terminal=$(echo $TERM_PROGRAM)
+    if [[ "$terminal" != "" ]]; then
+        echo
+        echo "-----------------------------------------------------------"
+        echo
+        echo -e "\e[34m\e[1m Vous devez utiliser le terminal gnome ou natif à Ubuntu.\e[0m"
+        echo -e " Actuellement vous êtes sur le terminal de \e[31m\e[1m'$terminal'\e[0m."
+        echo
+        echo "-----------------------------------------------------------"
+        echo
+        echo "Veux tu poursuivre avec le terminal Ubuntu ?"
         read -n 1 -rp "[Yes/No] > " commande
         case "$commande" in
         [Yy] | [Yy][Ee][Ss])
-            echo
-            echo "reprise du test ..."
-            shift
-            ;;
-        *)
-            echo "Procédure stoppé !"
-            exit 1
-            shift
+            name=$(echo $USERNAME)
+            sudo -u $name gnome-terminal --full-screen -- ./install.sh "-i"
             ;;
         esac
-    else
-        break
+        clear
+        exit 1
     fi
-done
-echo "Connexion internet ok !"
-sleep 2
-terminal=$(echo $TERM_PROGRAM)
-if [[ "$terminal" != "" ]]; then
-    echo
-    echo "-----------------------------------------------------------"
-    echo
-    echo -e "\e[34m\e[1m Vous devez utiliser le terminal gnome ou natif à Ubuntu.\e[0m"
-    echo -e " Actuellement vous êtes sur le terminal de \e[31m\e[1m'$terminal'\e[0m."
-    echo
-    echo "-----------------------------------------------------------"
-    echo
-    echo "Veux tu poursuivre avec le terminal Ubuntu ?"
-    read -n 1 -rp "[Yes/No] > " commande
-    case "$commande" in
-    [Yy] | [Yy][Ee][Ss])
-        name=$(echo $USERNAME)
-        sudo -u $name gnome-terminal --full-screen -- ./install.sh
-        ;;
-    esac
-    clear
-    exit 1
 fi
-
 export FOLDER_PRIMARY="dev_ubuntu"
 export FOLDER_FILE="files"
 export FOLDER_NEWS="${FOLDER_PRIMARY}_journal"

@@ -30,7 +30,7 @@ install_notification() {
 }
 
 if [[ "$num_parameter" == "1" ]]; then
-    sudo apt update -y
+    sudo apt update -y >/dev/null 2>&1
     sudo apt -y install curl
     $FUNCTIONS_DIRECTORY/script-install-complex.sh
 fi
@@ -44,10 +44,10 @@ applications=("")
 if [[ "$num_parameter" == "1" ]]; then
     # Installation des paquets avec notification
     install_notification "refresh" "f"
-    sudo snap refresh
+    sudo snap refresh >/dev/null 2>&1
 
     install_notification "refresh snap-store" "f"
-    sudo snap refresh snap-store
+    sudo snap refresh snap-store >/dev/null 2>&1
     # Définir les applications à installer avec leur nom et la commande d'installation
 
     applications=(
@@ -100,7 +100,7 @@ for app_cmd in "${applications[@]}"; do
         install_notification " * L'application '$app_name' est déjà installé." "f"
     else
         num_inst=1
-        sudo snap install $install_cmd
+        sudo snap install $install_cmd >/dev/null 2>&1
 
         # Récupérer le code de retour
         return_code=$?
@@ -161,7 +161,7 @@ for app_cmd in "${applications[@]}"; do
     else
         num_inst=1
         install_notification " * '$app_name' en cours d'installation" "f"
-        sudo apt -y install $install_cmd
+        sudo apt -y install $install_cmd >/dev/null 2>&1
 
         # Récupérer le code de retour
         return_code=$?
@@ -217,7 +217,7 @@ for app_cmd in "${applications[@]}"; do
         echo $dl_github
         WGET -O $folder_down/$app_name.deb $install_cmd
         pause s 5
-        sudo apt-get -y install $folder_down/$app_name.deb
+        sudo apt-get -y install "$folder_down/$app_name.deb" >/dev/null 2>&1
 
         # Récupérer le code de retour
         return_code=$?
@@ -242,7 +242,7 @@ if [[ "$num_parameter" == "1000" ]]; then
     echo "                 NUM : '$num_parameter'"
     echo "======================================================"
     install_notification "execution de 'autoremove'" "f"
-    sudo apt autoremove -y
+    sudo apt autoremove -y >/dev/null 2>&1
     return_code=$?
     if [[ $return_code -eq 0 ]]; then
         dial " ** 'Autoremove' OK"
@@ -252,7 +252,7 @@ if [[ "$num_parameter" == "1000" ]]; then
     pause p
 
     install_notification "execution de 'update'" "f"
-    sudo apt update -y
+    sudo apt update -y >/dev/null 2>&1
     return_code=$?
     if [[ $return_code -eq 0 ]]; then
         dial " ** 'Mise à jour' OK"
@@ -262,7 +262,7 @@ if [[ "$num_parameter" == "1000" ]]; then
     pause p
 
     install_notification "execution de 'upgrade'" "f"
-    sudo apt full-upgrade -y
+    sudo apt full-upgrade -y >/dev/null 2>&1
     return_code=$?
     if [[ $return_code -eq 0 ]]; then
         dial " ** 'Upgrade' OK"
@@ -271,7 +271,7 @@ if [[ "$num_parameter" == "1000" ]]; then
     fi
 
     install_notification "execution de 'snap refresh'" "f"
-    sudo snap refresh
+    sudo snap refresh >/dev/null 2>&1
     return_code=$?
     if [[ $return_code -eq 0 ]]; then
         dial " ** 'Refresh' OK"
@@ -279,7 +279,7 @@ if [[ "$num_parameter" == "1000" ]]; then
         dial " ** Erreur de 'refresh' : $result" "-"
     fi
 elif [[ "num_inst" == "0" ]]; then
-    sudo apt update -y
+    sudo apt update -y >/dev/null 2>&1
     return_code=$?
     if [[ $return_code -eq 0 ]]; then
         dial " ** 'Mise à jour' OK"
@@ -296,6 +296,7 @@ if [[ "$num_parameter" == "1" ]]; then
     echo "======================================================"
     if dpkg-query -l google-chrome-stable >/dev/null 2>&1; then
         if zenity --question --title=$title --text="Veux tu ouvrir google chrome pour te connecter ?"; then
+            echo "Fermer le navigateur pour poursuivre ...."
             URL "https://www.google.fr"
         fi
     fi
