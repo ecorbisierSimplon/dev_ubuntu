@@ -1,9 +1,8 @@
 # Fonction pour vérifier si une chaîne est un email valide
-
 dl_docker="https://desktop.docker.com/linux/main/amd64/139021/docker-desktop-4.28.0-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64"
 dl_github="https://github.com/shiftkey/desktop/releases/download/release-2.8.1-linux2/GitHubDesktop-linux-2.8.1-linux2.deb"
-#name_github=$name_github
-#email_github=$email_github
+dl_teamviewer="https://download.teamviewer.com/download/linux/teamviewer_amd64.deb"
+
 name_space=""
 name_nospace=""
 name_min=""
@@ -248,7 +247,7 @@ pause() {
     result=$?
     # echo "result : $result"
     if [[ "$result" == "1" ]]; then
-        clear
+       echo " ## clear ## " 
     fi
 }
 

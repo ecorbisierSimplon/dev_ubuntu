@@ -1,7 +1,14 @@
 #!/bin/bash
-# Inclure le fichier de fonctions
-source "$FUNCTIONS_FILE"
+source $FUNCTIONS_FILE
+source ~/.bashrc 
+source ~/.bash_aliases
 
+
+echo ""
+echo "======================================================"
+echo "                 NUM : 'script visudo'"
+echo "======================================================"
+echo ""
 dial " Mis à jour du fichier sudoers" "-"
 
 # Sauvegarder le fichier sudoers au cas où

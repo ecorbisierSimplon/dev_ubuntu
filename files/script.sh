@@ -3,7 +3,11 @@
 
 start_directory=$(pwd)
 home=~
-
+echo ""
+echo "======================================================"
+echo "                 NUM : 'script'"
+echo "======================================================"
+echo ""
 echo $home
 
 # Rechercher le fichier de fonctions de manière récursive
@@ -28,26 +32,15 @@ source $FUNCTIONS_FILE
 # ---------------------------------------------------
 dial "INSTALLATION DE FONCTIONNALITÉS POUR UBUNTU" "-"
 
-# Utiliser les fonctions définies dans functions.sh
-
-dial "Chargement des scripts"
-
-pause s 1
-
-chmod +x $FUNCTIONS_DIRECTORY/script-default.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-install.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-docker.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-jdk.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-nodejs.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-wine.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-setting-ubuntu.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-visudo.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-key-dock.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-key-github.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-php.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-beekeeper.sh
-
-dial "Chargement des scripts TERMINÉ" "-"
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-install.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-key-github.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-docker.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-default.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-install-complex.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-visudo.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-key-dock.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-settings-save.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-setting-ubuntu.sh
 
 # clear
 
@@ -67,6 +60,10 @@ else
     dial " ** Erreur de mise à jour : $return_code" "-"
 fi
 
+source ~/.bashrc
+source ~/.bash_aliases
+
+pause c s 2
 $FUNCTIONS_DIRECTORY/script-install.sh "1"
 
 dial "Mise à jours des paquets existants TERMINÉES" "-"
@@ -79,10 +76,6 @@ dial " # Installation des clés"
 # -------------------------------------------------------------
 
 $FUNCTIONS_DIRECTORY/script-install.sh "2"
-
-# pause c s 2
-# Inclus dans key github
-# $FUNCTIONS_DIRECTORY/script-setting-ubuntu.sh
 
 pause c s 2
 $FUNCTIONS_DIRECTORY/script-key-github.sh
@@ -102,7 +95,7 @@ dial " # Installation des paquets" "-"
 $FUNCTIONS_DIRECTORY/script-default.sh
 
 pause c s 2
-$FUNCTIONS_DIRECTORY/script-install.sh
+$FUNCTIONS_DIRECTORY/script-install.sh "1000"
 
 dial "Installation des paquets TERMINÉE" "-"
 pause c s 2
@@ -110,20 +103,6 @@ pause c s 2
 # -------------------------------------------------
 dial " # Installation du système d'environnements " "-"
 # -------------------------------------------------
-
-$FUNCTIONS_DIRECTORY/script-jdk.sh
-
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-nodejs.sh
-
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-php.sh
-
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-beekeeper.sh
-
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-wine.sh
 
 pause c s 2
 $FUNCTIONS_DIRECTORY/script-visudo.sh
@@ -139,6 +118,8 @@ folder_news_doc=~/Documents/$FOLDER_NEWS
 if [ ! -d "$folder_news_doc" ]; then
     sudo mkdir $folder_news_doc
 fi
+pause s 1
+sudo chown -R $user $folder_news_doc
 
 dt=$(date +"%Y-%m-%d_%T")
 
@@ -159,16 +140,18 @@ fi
 folder_doc=~/Documents
 cd $folder_doc/
 
-if [[ -d "$FOLDER_INST" ]]; then
-    resultat=$(echo "$FOLDER_INST" | sed 's/dev_ubuntu//')
-    sudo mv $FOLDER_INST/install.sh $resultat
-    pause s 2 m
-    sudo rm -r $FOLDER_INST
-    pause s 2 m
+if zenity --question --title=$title --text="Veux tu supprimer le dossier d'initialisation ?"; then
+    if [[ -d "$FOLDER_INST" ]]; then
+        resultat=$(echo "$FOLDER_INST" | sed 's/dev_ubuntu//')
+        sudo mv $FOLDER_INST/install.sh $resultat
+        pause s 2 m
+        sudo rm -r $FOLDER_INST
+        pause s 2 m
 
+    fi
+
+    sudo mv $folder_doc/dev_ubuntu/install.sh $folder_doc/
+    sudo rm -r $folder_doc/dev_ubuntu/
 fi
 
-sudo mv $folder_doc/dev_ubuntu/install.sh $folder_doc/
 pause s 2 m
-
-sudo rm -r $folder_doc/dev_ubuntu/
