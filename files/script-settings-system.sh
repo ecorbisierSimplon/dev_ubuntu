@@ -11,12 +11,20 @@ echo ""
 
 # Execut in terminal :
 # chmod +x ./script-settings-system.sh && ./script-settings-system.sh
-file_img=$FUNCTIONS_DIRECTORY/files/layout/img/cheval-nuit.jpg
-file_img_pp=~/Images/Papiers%20peints/
-cp $file_img $file_img_pp
 
-file_rel_settings=$FUNCTIONS_DIRECTORY/files/layout/settings.sh
+file_img=$FUNCTIONS_DIRECTORY/layout/img/cheval-nuit.jpg
+echo $file_img
+home=~
+file_img_pp="$home/Images/Papiers peints"
+mkdir -p "$file_img_pp"
+echo $file_img_pp
+cp -v "$file_img" "$file_img_pp"
+pause s 2
+
+file_rel_settings=$FUNCTIONS_DIRECTORY/layout/settings.sh
+echo $file_rel_settings
 source $file_rel_settings
+pause s 2
 
 for app_cmd in "${tab[@]}"; do
     # Séparer le nom de l'application et la commande d'installation
@@ -41,7 +49,6 @@ for app_cmd in "${tab[@]}"; do
         # Utiliser dconf write avec le chemin complet de la clé
         dconf write "$full_key" "${kv_array[$key]}"
     done
-
     unset kv_array
-    echo
+
 done
