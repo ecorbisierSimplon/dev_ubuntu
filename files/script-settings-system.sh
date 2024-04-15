@@ -11,6 +11,9 @@ echo ""
 
 # Execut in terminal :
 # chmod +x ./script-settings-system.sh && ./script-settings-system.sh
+file_img=$FUNCTIONS_DIRECTORY/files/layout/img/cheval-nuit.jpg
+file_img_pp=~/Images/Papiers%20peints/
+cp $file_img $file_img_pp
 
 file_rel_settings=$FUNCTIONS_DIRECTORY/files/layout/settings.sh
 source $file_rel_settings
