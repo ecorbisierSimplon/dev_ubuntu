@@ -33,7 +33,8 @@ echo "======================================================"
 echo ""
 
 version_new=8.3
-version_old=8.2
+version_old=7.0
+increment=0.1
 
 dial " * Installation de php avec la version ${version_new}." "-"
 
@@ -48,13 +49,13 @@ else
 
     # Add Ondrej's PPA
     sudo add-apt-repository ppa:ondrej/php # Press enter when prompted.
-    sudo apt update -y
+    sudo apt update -y >/dev/null 2>&1
 
     # Install new PHP ${version_new} packages
-    sudo apt install php${version_new} php${version_new}-cli php${version_new}-{bz2,curl,mbstring,intl} -y
+    sudo apt install php${version_new} php${version_new}-cli php${version_new}-{bz2,curl,mbstring,intl} -y >/dev/null 2>&1
 
     # Install FPM OR Apache module
-    sudo apt install php${version_new}-fpm -y
+    sudo apt install php${version_new}-fpm -y >/dev/null 2>&1
     # OR
     # sudo apt install libapache2-mod-php${version_old}
 
@@ -63,8 +64,19 @@ else
     # When upgrading from an older PHP version:
     sudo a2disconf php${version_old}-fpm -y
 
-    ## Remove old packages
-    sudo apt purge php${version_old}*
+    # Convertir la version en nombre à virgule flottante
+    version_float=$(echo "$version_new" | awk -F '.' '{printf "%.1f\n", $1 + $2}')
+
+    # Déterminer le nombre d'itérations nécessaires
+    iterations=$(echo "($version_float - $version_old) / $increment" | bc)
+
+    # Parcourir la boucle
+    for ((i = 0; i <= iterations; i++)); do
+        # Calculer la version actuelle
+        current_version=$(echo "7.0 + $i * $increment" | bc)
+        ## Remove old packages
+        sudo apt purge php${current_version}* >/dev/null 2>&1
+    done
 
 fi
 pause s 2
@@ -76,10 +88,11 @@ echo "======================================================"
 echo ""
 
 # https://doc.ubuntu-fr.org/wine
-if dpkg-query -l wine64 >/dev/null 2>&1; then
+if dpkg-query -l winehq-stable >/dev/null 2>&1; then
     dial " * Wine est déjà installé avec la version $(wine --version)."
 else
-
+    user=$USER
+    sudo rm -r /home/$user/.wine
     sudo dpkg --add-architecture i386
 
     folder=/etc/apt/keyrings
@@ -89,7 +102,6 @@ else
     #if [[ ! -d "$folder" ]]; then
     sudo mkdir -pm755 $folder
     #fi
-    user=$USER
     sudo wget -O $folder/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
     sudo chown $user -R $folder
     echo
@@ -98,11 +110,17 @@ else
     sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources
     pause s 1
     sudo apt update
+    pause s 1
 
-    sudo apt -y install --install-recommends wine64
-    if dpkg-query -l wine64 >/dev/null 2>&1; then
+    sudo apt -y install $FUNCTIONS_DIRECTORY/layout/libgd3_2.3.3-6+ubuntu22.04.1+deb.sury.org+1_i386.deb >/dev/null 2>&1
+    pause s 1
 
-        # sudo apt -y install --install-recommends winehq-stable
+    sudo apt -y install --install-recommends winehq-stable >/dev/null 2>&1
+    pause s 1
+
+    # sudo apt -y install --install-recommends wine64
+    if dpkg-query -l winehq-stable >/dev/null 2>&1; then
+
         dial " * Wine\n     est installé avec la version $(wine --version)."
         pause s 2
 

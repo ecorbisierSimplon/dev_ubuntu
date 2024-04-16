@@ -75,16 +75,16 @@ pause c s 2
 dial " # Installation des clés"
 # -------------------------------------------------------------
 
-$FUNCTIONS_DIRECTORY/script-install.sh "2"
+# $FUNCTIONS_DIRECTORY/script-install.sh "2"
 
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-key-github.sh
+# pause c s 2
+# $FUNCTIONS_DIRECTORY/script-key-github.sh
 
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-docker.sh
+# pause c s 2
+# $FUNCTIONS_DIRECTORY/script-docker.sh
 
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-key-dock.sh
+# pause c s 2
+# $FUNCTIONS_DIRECTORY/script-key-dock.sh
 
 dial "Installation des clés TERMINÉE" "-"
 pause c s 2
@@ -92,10 +92,10 @@ pause c s 2
 dial " # Installation des paquets" "-"
 # --------------------------------
 
-$FUNCTIONS_DIRECTORY/script-default.sh
+# $FUNCTIONS_DIRECTORY/script-default.sh
 
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-install.sh "1000"
+# pause c s 2
+# $FUNCTIONS_DIRECTORY/script-install.sh "1000"
 
 dial "Installation des paquets TERMINÉE" "-"
 pause c s 2
@@ -104,11 +104,11 @@ pause c s 2
 dial " # Installation du système d'environnements " "-"
 # -------------------------------------------------
 
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-visudo.sh
+# pause c s 2
+# $FUNCTIONS_DIRECTORY/script-visudo.sh
 
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-settings-system.sh
+# pause c s 2
+# $FUNCTIONS_DIRECTORY/script-settings-system.sh
 
 pkill -f zenity
 #  pause c s 1
