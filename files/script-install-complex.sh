@@ -13,7 +13,7 @@ echo "                 NUM : 'CHROME'"
 echo "======================================================"
 echo ""
 
-if dpkg-query -l google-chrome-stable >/dev/null 2>&1; then
+if dpkg-query -l google-chrome-stable; then
     dial " * L'application 'Google Chrome' est déjà installé." "f"
 else
     sudo sh -c 'echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
@@ -49,13 +49,13 @@ else
 
     # Add Ondrej's PPA
     sudo add-apt-repository ppa:ondrej/php # Press enter when prompted.
-    sudo apt update -y >/dev/null 2>&1
+    sudo apt update -y
 
     # Install new PHP ${version_new} packages
-    sudo apt install php${version_new} php${version_new}-cli php${version_new}-{bz2,curl,mbstring,intl} -y >/dev/null 2>&1
+    sudo apt install php${version_new} php${version_new}-cli php${version_new}-{bz2,curl,mbstring,intl} -y
 
     # Install FPM OR Apache module
-    sudo apt install php${version_new}-fpm -y >/dev/null 2>&1
+    sudo apt install php${version_new}-fpm -y
     # OR
     # sudo apt install libapache2-mod-php${version_old}
 
@@ -75,7 +75,7 @@ else
         # Calculer la version actuelle
         current_version=$(echo "7.0 + $i * $increment" | bc)
         ## Remove old packages
-        sudo apt purge php${current_version}* >/dev/null 2>&1
+        sudo apt purge php${current_version}*
     done
 
 fi
@@ -88,7 +88,7 @@ echo "======================================================"
 echo ""
 
 # https://doc.ubuntu-fr.org/wine
-if dpkg-query -l winehq-stable >/dev/null 2>&1; then
+if dpkg-query -l winehq-stable; then
     dial " * Wine est déjà installé avec la version $(wine --version)."
 else
     user=$USER
@@ -112,14 +112,14 @@ else
     sudo apt update
     pause s 1
 
-    sudo apt -y install $FUNCTIONS_DIRECTORY/layout/libgd3_2.3.3-6+ubuntu22.04.1+deb.sury.org+1_i386.deb >/dev/null 2>&1
+    sudo apt -y install $FUNCTIONS_DIRECTORY/layout/libgd3_2.3.3-6+ubuntu22.04.1+deb.sury.org+1_i386.deb
     pause s 1
 
-    sudo apt -y install --install-recommends winehq-stable >/dev/null 2>&1
+    sudo apt -y install --install-recommends winehq-stable
     pause s 1
 
     # sudo apt -y install --install-recommends wine64
-    if dpkg-query -l winehq-stable >/dev/null 2>&1; then
+    if dpkg-query -l winehq-stable; then
 
         dial " * Wine\n     est installé avec la version $(wine --version)."
         pause s 2
@@ -165,7 +165,7 @@ if [ "$version_integer" -ge "$version_nodejs" ]; then
     dial " * Node.js  est déjà installé avec la version $version_number."
 else
     # Mise à jour des dépôts et installation de Node.js
-    sudo apt update >/dev/null 2>&1
+    sudo apt update
     sudo apt install -y nodejs
 
     # Installation de npm
@@ -212,7 +212,7 @@ version_integer=$(echo "$version_number" | cut -d '.' -f 1)
 if [[ "$version_integer" -ge "$java_version" ]]; then
     dial " * Java\n     est déjà installé avec la version $version_number."
 else
-    sudo apt update >/dev/null 2>&1
+    sudo apt update
     sudo apt-get install openjdk-17-jdk -y
     dial " * Java\n     est installé avec la version  $(java --version 2>&1 | head -n 1)"
 fi
