@@ -146,6 +146,7 @@ elif [[ "$num_parameter" == "1000" ]]; then
         "gparted gparted"
         "emoji-picker ibus-table-emoji"
         "net-tools net-tools"
+        "composer composer"
 
     )
     echo "                 APT : '$num_parameter'"
