@@ -88,38 +88,40 @@ echo "======================================================"
 echo ""
 
 # https://doc.ubuntu-fr.org/wine
-if dpkg-query -l winehq-stable; then
+if dpkg-query -l wine; then
     dial " * Wine est déjà installé avec la version $(wine --version)."
 else
     user=$USER
     sudo rm -r /home/$user/.wine
-    sudo dpkg --add-architecture i386
+    # sudo dpkg --add-architecture i386
 
-    folder=/etc/apt/keyrings
-    sudo chown $user -R $folder
-    sudo rm -r $folder
-    sudo rm /etc/apt/sources.list.d/winehq-jammy.sources
+    # folder=/etc/apt/keyrings
+    # sudo chown $user -R $folder
+    # sudo rm -r $folder
+    # sudo rm /etc/apt/sources.list.d/winehq-jammy.sources
     #if [[ ! -d "$folder" ]]; then
-    sudo mkdir -pm755 $folder
+    # sudo mkdir -pm755 $folder
     #fi
-    sudo wget -O $folder/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-    sudo chown $user -R $folder
-    echo
-    echo "https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources"
-    echo
-    sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources
+    # sudo wget -O $folder/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+    # sudo chown $user -R $folder
+    # echo
+    # echo "https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources"
+    # echo
+    # sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources
     pause s 1
     sudo apt update
     pause s 1
 
-    sudo apt -y install $FUNCTIONS_DIRECTORY/layout/libgd3_2.3.3-6+ubuntu22.04.1+deb.sury.org+1_i386.deb
+    #sudo apt -y install $FUNCTIONS_DIRECTORY/layout/libgd3_2.3.3-6+ubuntu22.04.1+deb.sury.org+1_i386.deb
     pause s 1
-
-    sudo apt -y install --install-recommends winehq-stable
+    # sudo apt install libgd3:i386=2.3.0-2ubuntu2
+    # sudo apt install libgd3=2.3.0-2ubuntu2
+    # sudo apt -y install --install-recommends winehq-stable
+    sudo apt -y install wine
     pause s 1
 
     # sudo apt -y install --install-recommends wine64
-    if dpkg-query -l winehq-stable; then
+    if dpkg-query -l wine; then
 
         dial " * Wine\n     est installé avec la version $(wine --version)."
         pause s 2
