@@ -73,11 +73,11 @@ DOCK() {
         /opt/docker-desktop/bin/docker-desktop
         shift
         ;;
-    -cup)
+    -up)
         docker compose up -d
         shift
         ;;
-    -cup-f)
+    -up-f)
         docker-compose up --force-recreate -d
         shift
         ;;
@@ -87,6 +87,10 @@ DOCK() {
         ;;
     -c)
         docker compose "${@:2}"
+        shift
+        ;;
+    -c-)
+        docker-compose "${@:2}"
         shift
         ;;
     *)
@@ -116,21 +120,49 @@ GH() {
 # ALIAS PHP
 PHP() {
     key="$1"
+    respons=${@:-"--version"}
     case $key in
     -cr)
         composer require "${@:2}"
         shift
         ;;
-    -cm)
+    -m)
         php bin/console make:"${@:2}"
+        shift
+        ;;
+    -mc)
+        php bin/console make:controller "${@:2}"
+        shift
+        ;;
+    -me)
+        php bin/console make:entity "${@:2}"
+        shift
+        ;;
+    -mm)
+        php bin/console make:migration
+        shift
+        ;;
+    -mmd)
+        php bin/console doctrine:migration:migrate
+        shift
+        ;;
+    -db-c)
+        php bin/console doctrine:database:create
+        php bin/console make:migration
+        php bin/console doctrine:migration:migrate
         shift
         ;;
     -c)
         php bin/console "${@:2}"
         shift
         ;;
+    -d)
+        php bin/console doctrine:"${@:2}"
+        shift
+        ;;
     *)
-        php "$@"
+        echo "La commande '$@' nest pas une commande 'PHP'"
+        echo "Essayez avec 'php $@'"
         shift
         ;;
     esac
