@@ -72,6 +72,7 @@ elif [[ "$num_parameter" == "1000" ]]; then
         "gimp gimp"
         "discord discord"
         "postman postman"
+        "insomnia insomnia"
         "zoom-client zoom-client"
         "audacity audacity"
         "inkscape inkscape"
@@ -146,6 +147,7 @@ elif [[ "$num_parameter" == "1000" ]]; then
         "gparted gparted"
         "emoji-picker ibus-table-emoji"
         "net-tools net-tools"
+        "composer composer"
 
     )
     echo "                 APT : '$num_parameter'"

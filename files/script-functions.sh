@@ -123,21 +123,26 @@ options() {
     done
 
     # Affichage du tableau associatif
-    # for key in "${!tab_addline[@]}"; do
-    #     echo "Clé: $key, Valeur: ${tab_addline[$key]}"
-    # done
+    for key in "${!tab_addline[@]}"; do
+        echo "$key|${tab_addline[$key]}"
+    done
 
 }
 
 add_alias() {
-    tab_addline=()
-    options $@
 
-    # Affiche chaque élément du tableau
-    # for key in "${!tab_addline[@]}"; do
-    #     echo "Clé: $key, Valeur: ${tab_addline[$key]}"
-    # done
-    # echo "------------------------"
+    # Déclarer un tableau pour stocker les valeurs
+    declare -a tab
+    # Appeler la fonction parameters avec un argument différent et stocker les valeurs dans le tableau tab
+    tab=($(options $@))
+    # créer le tableau
+    declare -a tab_addline
+    for app_cmd in "${tab[@]}"; do
+        # Utilisez un délimiteur pour séparer les valeurs
+        IFS='|' read -r app_name install_cmd <<<"$app_cmd"
+        tab_addline[$app_name]=$install_cmd
+    done
+
     local line=${tab_addline["a"]:-""}
     local filename=${tab_addline["n"]}
     local file=${tab_addline["f"]:-"false"}
@@ -145,9 +150,6 @@ add_alias() {
     local exec=$([[ -v tab_addline["e"] ]] && echo "true" || echo "false")
     local title=${tab_addline["t"]:-"in file"}
     local vide=$([[ -v tab_addline["v"] ]] && echo "true" || echo "false")
-    # local vide=if [[ -v tableau["$cle"] ]]; then
-    # test= in_array "${tab[*]}" "$line"
-    # result=$?
 
     if [[ $file != "false" ]]; then
         local test=$(grep "$line" "$file")
@@ -315,15 +317,52 @@ dial() {
 }
 
 space() {
-
     local name_l="$1"
-
     name_space=$(echo "$name_l" | sed "s/^\s*//; s/\s*$//")
-
     name_nospace=$(echo "$name_l" | sed "s/^\s*//; s/\s*$//; s/\s/-/g")
-
     # Convertir en minuscules
     name_min=$(echo "$name_nospace" | tr '[:upper:]' '[:lower:]')
+}
 
+nospace() {
+    local name_l="$1"
+    name_space=$(echo "$name_l" | sed "s/^\s*//; s/\s*$//")
+    name_nospace=$(echo "$name_l" | sed "s/^\s*//; s/\s*$//; s/\s/-/g")
+    # Convertir en minuscules
+    name_min=$(echo "$name_nospace" | tr '[:upper:]' '[:lower:]')
 }
 #
+
+autostart() {
+    declare -a tab
+    # Appeler la fonction parameters avec un argument différent et stocker les valeurs dans le tableau tab
+    tab=($(options $@))
+    # créer le tableau
+    declare -a tab_addline
+    for app_cmd in "${tab[@]}"; do
+        # Utilisez un délimiteur pour séparer les valeurs
+        IFS='|' read -r app_name install_cmd <<<"$app_cmd"
+        tab_addline[$app_name]=$install_cmd
+    done
+
+    local name=${tab_addline["n"]:-""}
+    local name=${tab_addline["n"]:-""}
+    local name=${tab_addline["n"]:-""}
+    local name=${tab_addline["n"]:-""}
+    local name=${tab_addline["n"]:-""}
+    local name=${tab_addline["n"]:-""}
+    local name=${tab_addline["n"]:-""}
+
+    name=$(echo "$name" | sed 's/ /_/g')
+
+    cat <<EOF >>~/.config/autostart/$name.desktop
+[Desktop Entry]
+Type=Application
+Exec=nom_du_programme_à_lancer
+Name=nom_qui_apparaîtra_dans_le_gestionnaire_de_démarrage
+X-GNOME-Autostart-enabled=true #Si cette ligne est sur true, alors l'application se lancera automatiquement
+Icon=nom_de_l_icône_qui_apparaîtra_dans_le_gestionnaire_de_démarrage   #recherchez à l'intérieur de /usr/share/icons/ pour trouver le nom exact adapté
+Comment=commentaire_au_choix
+EOF
+
+}

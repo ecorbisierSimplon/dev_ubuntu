@@ -1,33 +1,32 @@
 # ALIAS GIT WITH TIME
 
-source_() {
+SOURCE() {
     echo $(date "+%Y_%m_%d-%H:%M:%S")
     source ~/.bashrc
     source ~/.bash_aliases
 }
 
-hr() { date "+%Y_%m_%d-%H:%M:%S"; }
+HR() { date "+%Y_%m_%d-%H:%M:%S"; }
 
-
-inst_() {
+INST() {
     key="$1"
-    date "+%Y_%m_%d-%H:%M:%S";
+    date "+%Y_%m_%d-%H:%M:%S"
     if [ -n "$key" ]; then
         cd $key
     fi
     ./install.sh
 }
 
-git_() {
+GIT() {
     key="$1"
     echo $(date "+%Y_%m_%d-%H:%M:%S")
     case "$key" in
-        ac | ap | tt | echo )
-            git "$@" "$(date '+%Y_%m_%d-%H:%M:%S')"
+    c | ac | ap | tt | echo)
+        git "$@" "$(date '+%Y_%m_%d-%H:%M:%S')"
         shift
         ;;
-        *)
-            git "$@" 
+    *)
+        git "$@"
         shift
         ;;
     esac
@@ -35,7 +34,7 @@ git_() {
 }
 
 # ALIAS NPM
-npm_() {
+NPM() {
     key="$1"
     case $key in
     -d)
@@ -66,18 +65,22 @@ docker-desktop() {
     /opt/docker-desktop/bin/docker-desktop
 }
 
-dock_() {
+DOCK() {
     key="$1"
     case $key in
     -run)
         /opt/docker-desktop/bin/docker-desktop
         shift
         ;;
-    -cup)
+    -up)
+        docker compose up
+        shift
+        ;;
+    -up-d)
         docker compose up -d
         shift
         ;;
-    -cup-f)
+    -up-f)
         docker-compose up --force-recreate -d
         shift
         ;;
@@ -89,6 +92,10 @@ dock_() {
         docker compose "${@:2}"
         shift
         ;;
+    -c-)
+        docker-compose "${@:2}"
+        shift
+        ;;
     *)
         gh "$@"
         shift
@@ -98,7 +105,7 @@ dock_() {
 }
 
 # ALIAS GITHUB
-gh_() {
+GH() {
     key="$1"
     case $key in
     -c)
@@ -112,25 +119,56 @@ gh_() {
     esac
 }
 
-
 # ALIAS PHP
-php_() {
+PHP() {
     key="$1"
+    respons=${@:-"--version"}
     case $key in
-    -cr)
+    require)
         composer require "${@:2}"
         shift
         ;;
-    -cm)
+    make)
         php bin/console make:"${@:2}"
         shift
         ;;
-    -c)
+    controller)
+        php bin/console make:controller "${@:2}"
+        shift
+        ;;
+    entity)
+        php bin/console make:entity "${@:2}"
+        shift
+        ;;
+    crud)
+        php bin/console make:crud "${@:2}"
+        shift
+        ;;
+    migration)
+        php bin/console make:migration
+        shift
+        ;;
+    migrate)
+        php bin/console doctrine:migration:migrate
+        shift
+        ;;
+    createdb)
+        php bin/console doctrine:database:create
+        php bin/console make:migration
+        php bin/console doctrine:migration:migrate
+        shift
+        ;;
+    sh)
         php bin/console "${@:2}"
         shift
         ;;
+    doctrine)
+        php bin/console doctrine:"${@:2}"
+        shift
+        ;;
     *)
-        php "$@"
+        echo "La commande '$@' nest pas une commande 'PHP'"
+        echo "Essayez avec 'php $@'"
         shift
         ;;
     esac

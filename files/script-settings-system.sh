@@ -52,3 +52,5 @@ for app_cmd in "${tab[@]}"; do
     unset kv_array
 
 done
+
+# DEMARAGE AUTOMATIQUE
