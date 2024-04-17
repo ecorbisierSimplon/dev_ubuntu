@@ -8,10 +8,9 @@ SOURCE() {
 
 HR() { date "+%Y_%m_%d-%H:%M:%S"; }
 
-
 INST() {
     key="$1"
-    date "+%Y_%m_%d-%H:%M:%S";
+    date "+%Y_%m_%d-%H:%M:%S"
     if [ -n "$key" ]; then
         cd $key
     fi
@@ -22,12 +21,12 @@ GIT() {
     key="$1"
     echo $(date "+%Y_%m_%d-%H:%M:%S")
     case "$key" in
-        ac | ap | tt | echo )
-            git "$@" "$(date '+%Y_%m_%d-%H:%M:%S')"
+    c | ac | ap | tt | echo)
+        git "$@" "$(date '+%Y_%m_%d-%H:%M:%S')"
         shift
         ;;
-        *)
-            git "$@" 
+    *)
+        git "$@"
         shift
         ;;
     esac
@@ -120,47 +119,50 @@ GH() {
     esac
 }
 
-
 # ALIAS PHP
 PHP() {
     key="$1"
     respons=${@:-"--version"}
     case $key in
-    -cr)
+    require)
         composer require "${@:2}"
         shift
         ;;
-    -m)
+    make)
         php bin/console make:"${@:2}"
         shift
         ;;
-    -mc)
+    controller)
         php bin/console make:controller "${@:2}"
         shift
         ;;
-    -me)
+    entity)
         php bin/console make:entity "${@:2}"
         shift
         ;;
-    -mm)
+    crud)
+        php bin/console make:crud "${@:2}"
+        shift
+        ;;
+    migration)
         php bin/console make:migration
         shift
         ;;
-    -mmd)
+    migrate)
         php bin/console doctrine:migration:migrate
         shift
         ;;
-    -db-c)
+    createdb)
         php bin/console doctrine:database:create
         php bin/console make:migration
         php bin/console doctrine:migration:migrate
         shift
         ;;
-    -c)
+    sh)
         php bin/console "${@:2}"
         shift
         ;;
-    -d)
+    doctrine)
         php bin/console doctrine:"${@:2}"
         shift
         ;;

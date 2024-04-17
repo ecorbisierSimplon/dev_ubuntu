@@ -72,6 +72,7 @@ elif [[ "$num_parameter" == "1000" ]]; then
         "gimp gimp"
         "discord discord"
         "postman postman"
+        "insomnia insomnia"
         "zoom-client zoom-client"
         "audacity audacity"
         "inkscape inkscape"
