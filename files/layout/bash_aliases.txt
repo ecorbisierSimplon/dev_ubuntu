@@ -74,6 +74,10 @@ DOCK() {
         shift
         ;;
     -up)
+        docker compose up
+        shift
+        ;;
+    -up-d)
         docker compose up -d
         shift
         ;;
