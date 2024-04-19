@@ -1,14 +1,14 @@
 # ALIAS GIT WITH TIME
 
-SOURCE() {
+Source() {
     echo $(date "+%Y_%m_%d-%H:%M:%S")
     source ~/.bashrc
     source ~/.bash_aliases
 }
 
-HR() { date "+%Y_%m_%d-%H:%M:%S"; }
+Hr() { date "+%Y_%m_%d-%H:%M:%S"; }
 
-INST() {
+Inst() {
     key="$1"
     date "+%Y_%m_%d-%H:%M:%S"
     if [ -n "$key" ]; then
@@ -17,7 +17,7 @@ INST() {
     ./install.sh
 }
 
-GIT() {
+Git() {
     key="$1"
     echo $(date "+%Y_%m_%d-%H:%M:%S")
     case "$key" in
@@ -34,7 +34,7 @@ GIT() {
 }
 
 # ALIAS NPM
-NPM() {
+Npm() {
     key="$1"
     case $key in
     -d)
@@ -65,7 +65,7 @@ docker-desktop() {
     /opt/docker-desktop/bin/docker-desktop
 }
 
-DOCK() {
+Dock() {
     key="$1"
     case $key in
     -run)
@@ -105,7 +105,7 @@ DOCK() {
 }
 
 # ALIAS GITHUB
-GH() {
+Gh() {
     key="$1"
     case $key in
     -c)
@@ -120,7 +120,7 @@ GH() {
 }
 
 # ALIAS PHP
-PHP() {
+Php() {
     key="$1"
     respons=${@:-"--version"}
     case $key in
@@ -149,6 +149,11 @@ PHP() {
         shift
         ;;
     migrate)
+        php bin/console doctrine:migration:migrate
+        shift
+        ;;
+    migrates)
+        php bin/console make:migration
         php bin/console doctrine:migration:migrate
         shift
         ;;
