@@ -37,19 +37,19 @@ Git() {
 Npm() {
     key="$1"
     case $key in
-    -d)
+    d)
         npm run dev -- --open
         shift
         ;;
-    -b)
+    b)
         npm run build
         shift
         ;;
-    -t)
+    t)
         npm run test "${@:2}"
         shift
         ;;
-    -i)
+    i)
         npm install
         shift
         ;;
@@ -68,31 +68,31 @@ docker-desktop() {
 Dock() {
     key="$1"
     case $key in
-    -run)
+    run)
         /opt/docker-desktop/bin/docker-desktop
         shift
         ;;
-    -up)
+    up)
         docker compose up
         shift
         ;;
-    -up-d)
+    up-d)
         docker compose up -d
         shift
         ;;
-    -up-f)
+    up-f)
         docker-compose up --force-recreate -d
         shift
         ;;
-    -sp)
+    sp)
         docker system prune
         shift
         ;;
-    -c)
+    c)
         docker compose "${@:2}"
         shift
         ;;
-    -c-)
+    c-)
         docker-compose "${@:2}"
         shift
         ;;
@@ -108,7 +108,7 @@ Dock() {
 Gh() {
     key="$1"
     case $key in
-    -c)
+    c)
         gh issue create
         shift
         ;;
@@ -124,53 +124,54 @@ Php() {
     key="$1"
     respons=${@:-"--version"}
     case $key in
-    require)
+    r)
         composer require "${@:2}"
         shift
         ;;
-    make)
+    m)
         php bin/console make:"${@:2}"
         shift
         ;;
-    controller)
+    c)
         php bin/console make:controller "${@:2}"
         shift
         ;;
-    entity)
+    e)
         php bin/console make:entity "${@:2}"
+        shift
+        ;;
+    b)
+        php bin/console "${@:2}"
+        shift
+        ;;
+    d)
+        php bin/console doctrine:"${@:2}"
         shift
         ;;
     crud)
         php bin/console make:crud "${@:2}"
         shift
         ;;
-    migration)
+    mm)
         php bin/console make:migration
         shift
         ;;
-    migrate)
+    dm)
         php bin/console doctrine:migration:migrate
         shift
         ;;
-    migrates)
+    mdm)
         php bin/console make:migration
         php bin/console doctrine:migration:migrate
         shift
         ;;
-    createdb)
+    cdb)
         php bin/console doctrine:database:create
         php bin/console make:migration
         php bin/console doctrine:migration:migrate
         shift
         ;;
-    sh)
-        php bin/console "${@:2}"
-        shift
-        ;;
-    doctrine)
-        php bin/console doctrine:"${@:2}"
-        shift
-        ;;
+
     *)
         echo "La commande '$@' nest pas une commande 'PHP'"
         echo "Essayez avec 'php $@'"
@@ -178,3 +179,4 @@ Php() {
         ;;
     esac
 }
+
