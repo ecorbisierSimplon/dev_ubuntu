@@ -21,7 +21,7 @@ Git() {
     key="$1"
     echo $(date "+%Y_%m_%d-%H:%M:%S")
     case "$key" in
-    c | ac | ap | tt | echo)
+    c | ac | ap | tt | echo | readme | ig | cached)
         git "$@" "$(date '+%Y_%m_%d-%H:%M:%S')"
         shift
         ;;

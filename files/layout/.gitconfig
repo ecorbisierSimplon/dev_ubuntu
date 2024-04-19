@@ -20,7 +20,7 @@
 	br  = "!f() { name=\"<firstname>\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git checkout \"$branch\"; }; f"
 	brm = "!f() { name=\"<firstname>\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git branch -m \"$branch\"; }; f"
 	del = "!f() { name=\"<firstname>\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git branch -D \"$branch\" && git push orgin --delete \"$branch\"; }; f"
-	ig  = "!f() { git add .gitignore && git commit -m \"<firstname>/Change gitignore\"; }; f"
+	ig  = "!f() { name=\"<firstname>\" && hr=\"$2\" && git add .gitignore && git commit -m \"$name/$hr/Change gitignore\"; }; f"
 	depot  = "!f() { depot=\"$1\" && depot=$(echo \"$depot\" | tr ' ' '_')       && url=\"$2\" && echo \"# $depot\" >> README.md && git init && git add README.md && git commit -m \"first commit\" && git branch -M main && git remote add origin $url && git push -u origin main; }; f"
 	cached = "!f() { file=\"$1\" && hr=\"$2\" git rm --cached -r $file && git add . && git commit -m \"$hr/remote : $file\" && git push && git push origin $(git symbolic-ref --short HEAD) && git checkout main;}; f"
 	hard   = "!f() { git fetch --all && git reset --hard origin/main ;}; f"
