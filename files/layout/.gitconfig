@@ -22,9 +22,9 @@
 	del = "!f() { name=\"<firstname>\" && branch=$(echo \"$name/$1\" | tr ' ' '_') && git branch -D \"$branch\" && git push orgin --delete \"$branch\"; }; f"
 	ig  = "!f() { name=\"<firstname>\" && hr=\"$2\" && git add .gitignore && git commit -m \"$name/$hr/Change gitignore\"; }; f"
 	depot  = "!f() { depot=\"$1\" && depot=$(echo \"$depot\" | tr ' ' '_')       && url=\"$2\" && echo \"# $depot\" >> README.md && git init && git add README.md && git commit -m \"first commit\" && git branch -M main && git remote add origin $url && git push -u origin main; }; f"
-	cached = "!f() { file=\"$1\" && hr=\"$2\" git rm --cached -r $file && git add . && git commit -m \"$hr/remote : $file\" && git push && git push origin $(git symbolic-ref --short HEAD) && git checkout main;}; f"
+	cached = "!f() { name=\"<firstname>\" && file=\"$1\" && hr=\"$2\" git rm --cached -r $file && git add . && git commit -m \"$name/$hr/remote : $file\" && git push && git push origin $(git symbolic-ref --short HEAD) && git checkout main;}; f"
 	hard   = "!f() { git fetch --all && git reset --hard origin/main ;}; f"
-	readme = "!f() {  hr=\"$2\" && git add README.md && git commit -m \"<firstname>/$hr/Change readme\" && git push origin $(git symbolic-ref --short HEAD); }; f"
+	readme = "!f() { name=\"<firstname>\" && hr=\"$2\" && git add README.md && git commit -m \"$name/$hr/Change readme\" && git push origin $(git symbolic-ref --short HEAD); }; f"
 
 	main = "!sh -c 'git checkout main'"
 	pu = "!sh -c 'git push origin $(git symbolic-ref --short HEAD)'"
