@@ -148,6 +148,10 @@ Php() {
         php bin/console doctrine:"${@:2}"
         shift
         ;;
+    df)
+        php bin/console doctrine:fixtures:load
+        shift
+        ;;
     crud)
         php bin/console make:crud "${@:2}"
         shift
