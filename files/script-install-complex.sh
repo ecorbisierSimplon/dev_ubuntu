@@ -168,27 +168,14 @@ if [ "$version_integer" -ge "$version_nodejs" ]; then
 else
     # Mise à jour des dépôts et installation de Node.js
     sudo apt update
-    sudo apt install -y -g nodejs npm
-
-    # # Installation de npm
-    # sudo apt install -y npm
-
-    # # Installation de NVM (Node Version Manager)
-    # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-    # # Charger les modifications du fichier .bashrc dans l'environnement actuel
-    # export NVM_DIR="$HOME/.nvm"
-    # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-    # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-    # pause s 1
-    # source ~/.bashrc
-    # source ~/.bash_aliases
-    # pause s 1
-    # # Installation de Node.js version 21
-
-    # nvm --version
-    # nvm install $version_nodejs
-    pause s 2
+    # installs NVM (Node Version Manager)
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    # download and install Node.js
+    nvm install 21
+    # verifies the right Node.js version is in the environment
+    node -v # should print `v21.7.3`
+    # verifies the right NPM version is in the environment
+    npm -v # should print `10.5.0`
     # Afficher la version actuelle de Node.js
     dial " * Node.js est déjà installé avec la version $(node -v)"
 fi
