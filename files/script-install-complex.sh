@@ -170,6 +170,11 @@ else
     sudo apt update
     # installs NVM (Node Version Manager)
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    file_b_m=~/.bashrc
+    file_a_m=~/.bash_aliases
+    source $file_b_m
+    source $file_a_m
+    
     # download and install Node.js
     nvm install 21
     # verifies the right Node.js version is in the environment

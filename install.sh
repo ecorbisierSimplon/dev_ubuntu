@@ -90,7 +90,15 @@ if dpkg-query -l git >/dev/null 2>&1; then
         echo " * git est installé avec la version $(git --version)."
     fi
 fi
-
+if dpkg-query -l curl >/dev/null 2>&1; then
+    if [ "$(curl --version)" != "" ]; then
+        echo " * curl est déjà installé avec la version $(curl --version)."
+    else
+        sudo apt update -y
+        sudo apt -y install curl
+        echo " * curl est installé avec la version $(curl --version)."
+    fi
+fi
 clone() {
     cd ~/Documents/
 
@@ -98,11 +106,10 @@ clone() {
     response=$(curl -s --head -w "%{http_code}" "$url" -o /dev/null)
 
     # Vérifier le code de réponse HTTP
-    if [ "$response" == "200" ]; then
+    if [[ "$response" == "200" ]]; then
         dial "L'adresse '$url' est validée"
-        break
     else
-        zenity --question --title $title --text="L'URL '<a href=\"$url\">$url</a>' <span color=\"red\">\nn'existe pas ou est inaccessible</span> (réponse $response).\n\n<b>Voulez lancer le clonage ?</b>"
+        zenity --question --title $title --text="L'URL '<a href=\"$url\">$url</a>' <span color=\"red\">\nn'existe pas ou est inaccessible</span> (réponse : $response).\n\n<b>Voulez lancer le clonage ?</b>"
         if [[ $? == 1 ]]; then
             return 404
         fi
@@ -235,9 +242,9 @@ fi
 
 folder=~/bin
 user=$USER
-sudo chown eric -R $folder
-sudo mkdir $folder
 
+sudo mkdir $folder
+sudo chown $user -R $folder
 # clear
 
 echo "Création du fichier WGET"
@@ -245,7 +252,7 @@ echo "Création du fichier WGET"
 # Création du fichier WGET
 # ---------------------------
 
-file=$folder/WGET
+file="${folder}/WGET"
 echo $file
 sudo echo "#!/bin/bash" >$file
 sudo echo " " >>$file
@@ -261,7 +268,7 @@ echo "Création du fichier XCLIP"
 # Création du fichier XCLIP
 # ---------------------------
 
-file=$folder/XCLIP
+file="${folder}/XCLIP"
 echo $file
 sudo echo "#!/bin/bash" >$file
 sudo echo " " >>$file
@@ -283,7 +290,7 @@ echo "Création du fichier URL"
 # Création du fichier URL
 # ---------------------------
 
-file=$folder/URL
+file="${folder}/URL"
 echo $file
 sudo echo "#!/bin/sh" >$file
 sudo echo " " >>$file
@@ -302,11 +309,13 @@ echo "Modification du fichier .bashrc"
 # Modification du fichier .bashrc
 # ---------------------------
 
-file=~/.bashrc
-file_o=~/Documents/dev_ubuntu/files/layout/.bashrc
-file_a=~/.bash_aliases
+file_b_m=~/.bashrc
+file_b_o=~/Documents/dev_ubuntu/files/layout/.bashrc
+file_a_m=~/.bash_aliases
+file_a_o=~/Documents/dev_ubuntu/files/layout/bash_aliases.txt
 
-sudo mv $file_o $file
+sudo cp $file_b_o $file_b_m
+sudo cp $file_a_o $file_a_m
 
 text="if [ -f ~/.bash_aliases ]; then"
 test=$(grep "# $text" $file)
@@ -344,9 +353,9 @@ fi
 
 sleep 1
 
-echo "Exécution du fichier $file"
-source $file
-source $file_a
+echo "Exécution du fichier $file_b_m"
+source $file_b_m
+source $file_a_m
 sleep 1
 
 cd ~/Documents/dev_ubuntu/files
