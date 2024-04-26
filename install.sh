@@ -314,44 +314,92 @@ file_b_o=~/Documents/dev_ubuntu/files/layout/.bashrc
 file_a_m=~/.bash_aliases
 file_a_o=~/Documents/dev_ubuntu/files/layout/bash_aliases.txt
 
-sudo cp $file_b_o $file_b_m
-sudo cp $file_a_o $file_a_m
 
+#------------------------------------
+# vérification si 1ère installation
+# Si oui, on copie le fichier local
+#------------------------------------
+
+text_init="# Installation initiale effectuée "
+test=$(grep "$text_init" $file_b_m)
+if [[ "$test" == "" ]]; then
+    sudo cp $file_b_o $file_b_m
+    sudo cp $file_a_o $file_a_m
+    sleep 1
+fi
+
+#------------------------------------
+# bash_aliases
+#------------------------------------
 text="if [ -f ~/.bash_aliases ]; then"
-test=$(grep "# $text" $file)
+test=$(grep "# $text" $file_b_m)
 if [[ "$test" == "" ]]; then
     text="if \[ -f ~\/.bash_aliases \]; then"
-    sed -i "s/\#\ ${text}/${text}/g" $file
+    sed -i "s/\#\ ${text}/${text}/g" $file_b_m
     text="\     . ~\/.bash_aliases"
-    sed -i "s/# ${text}/\ ${text}/g" $file
+    sed -i "s/# ${text}/\ ${text}/g" $file_b_m
     text="fi"
-    sed -i "s/#\ ${text}/${text}/g" $file
+    sed -i "s/#\ ${text}/${text}/g" $file_b_m
 else
 
     text="if [ -f ~/.bash_aliases ]; then"
-    test=$(grep "$text" $file)
+    test=$(grep "$text" $file_b_m)
     if [[ "$test" == "" ]]; then
-        sudo echo "" >>$file
-        sudo echo "$text" >>$file
-        sudo echo "    . ~/.bash_aliases" >>$file
-        sudo echo "fi" >>$file
-        sudo echo "" >>$file
+        sudo echo "" >>$file_b_m
+        sudo echo "$text" >>$file_b_m
+        sudo echo "    . ~/.bash_aliases" >>$file_b_m
+        sudo echo "fi" >>$file_b_m
+        sudo echo "" >>$file_b_m
 
-        echo "add_bin : Fichier $file modifié."
+        echo "add_aliases : Fichier $file_b_m modifié."
     else
-        echo "add_bin : Fichier $file DÉJÀ modifié."
+        echo "add_aliases : Fichier $file_b_m DÉJÀ modifié."
     fi
 fi
+
+#------------------------------------
+# bin
+#------------------------------------
 text="export PATH=\$PATH:\$HOME/bin"
-test=$(grep "$text" $file)
+test=$(grep "$text" $file_b_m)
 if [[ "$test" == "" ]]; then
-    sudo echo "$text" >>$file
-    echo "add_bin : Fichier $file modifié."
+    sudo echo "$text" >>$file_b_m
+    echo "add_bin : Fichier $file_b_m modifié."
 else
-    echo "add_bin : Fichier $file DÉJÀ modifié."
+    echo "add_bin : Fichier $file_b_m DÉJÀ modifié."
 fi
 
 sleep 1
+
+#------------------------------------
+# Android sdk
+#------------------------------------
+text="export PATH=\$PATH:\$ANDROID_HOME/cmdline-tools/bin"
+test=$(grep "$text" $file_b_m)
+if [[ "$test" == "" ]]; then
+    sudo echo "$text" >>$file_b_m
+    echo "add_android sdk : Fichier $file_b_m modifié."
+else
+    echo "add_android sdk : Fichier $file_b_m DÉJÀ modifié."
+fi
+
+sleep 1
+
+#------------------------------------
+# message dans bashrc pour informer de la 1ère installation
+#------------------------------------
+
+test=$(grep "$text_init" $file_b_m)
+if [[ "$test" == "" ]]; then
+    sudo echo "$text_init" >>$file_b_m
+    echo "add_install_initial : Fichier $file_b_m modifié."
+else
+    echo "add_install_initial : Fichier $file_b_m DÉJÀ modifié."
+fi
+
+sleep 1
+
+
 
 echo "Exécution du fichier $file_b_m"
 source $file_b_m
