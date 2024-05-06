@@ -76,28 +76,43 @@ if dpkg-query -l zenity >/dev/null 2>&1; then
     echo "______________________"
     echo
 else
-    sudo apt update
+    sudo apt update -y
     sudo apt -y install zenity
     echo " * Zenity"
     echo "     a été installé avec la version $(zenity --version)."
 fi
+
 if dpkg-query -l git >/dev/null 2>&1; then
-    if [ "$(git --version)" != "" ]; then
-        echo " * git est déjà installé avec la version $(git --version)."
-    else
-        sudo apt update -y
-        sudo apt -y install git
-        echo " * git est installé avec la version $(git --version)."
-    fi
+    echo " * Git"
+    echo "     est déjà installé avec la version $(zenity --version)."
+    echo "______________________"
+    echo
+else
+    sudo apt update -y
+    sudo apt -y install git
+    echo " * git est installé avec la version $(git --version)."
 fi
+
 if dpkg-query -l curl >/dev/null 2>&1; then
-    if [ "$(curl --version)" != "" ]; then
-        echo " * curl est déjà installé avec la version $(curl --version)."
-    else
-        sudo apt update -y
-        sudo apt -y install curl
-        echo " * curl est installé avec la version $(curl --version)."
-    fi
+    echo " * Curl"
+    echo "     est déjà installé avec la version $(curl --version)."
+    echo "______________________"
+    echo
+else
+    sudo apt update -y
+    sudo apt -y install curl
+    echo " * curl est installé avec la version $(curl --version)."
+fi
+
+if dpkg-query -l dialog >/dev/null 2>&1; then
+    echo " * Dialog"
+    echo "     est déjà installé avec la version $(dialog --version)."
+    echo "______________________"
+    echo
+else
+    sudo apt update -y
+    sudo apt -y install dialog
+    echo " * dialog est installé avec la version $(dialog --version)."
 fi
 clone() {
     cd ~/Documents/
@@ -314,7 +329,6 @@ file_b_o=~/Documents/dev_ubuntu/files/layout/.bashrc
 file_a_m=~/.bash_aliases
 file_a_o=~/Documents/dev_ubuntu/files/layout/bash_aliases.txt
 
-
 #------------------------------------
 # vérification si 1ère installation
 # Si oui, on copie le fichier local
@@ -356,7 +370,7 @@ else
         echo "add_aliases : Fichier $file_b_m DÉJÀ modifié."
     fi
 fi
-
+sudo chown -R $user $file_b_m
 #------------------------------------
 # bin
 #------------------------------------
@@ -398,8 +412,6 @@ else
 fi
 
 sleep 1
-
-
 
 echo "Exécution du fichier $file_b_m"
 source $file_b_m

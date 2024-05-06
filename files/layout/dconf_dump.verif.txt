@@ -1,11 +1,3 @@
-[apps/update-manager]
-first-run=false
-launch-count=3
-launch-time=int64 1712397612
-
-[com/ubuntu/update-notifier]
-release-check-time=uint32 1712241650
-
 [net/launchpad/diodon/clipboard]
 add-images=true
 
@@ -37,23 +29,6 @@ window-size=(768, 600)
 [org/gnome/control-center]
 last-panel='keyboard'
 
-[org/gnome/deja-dup]
-backend='google'
-prompt-check='2024-03-21T14:42:57.862825Z'
-
-[org/gnome/desktop/app-folders]
-folder-children=['Utilities', 'YaST']
-
-[org/gnome/desktop/app-folders/folders/Utilities]
-apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
-categories=['X-GNOME-Utilities']
-name='X-GNOME-Utilities.directory'
-translate=true
-
-[org/gnome/desktop/app-folders/folders/YaST]
-categories=['X-SuSE-YaST']
-name='suse-yast.directory'
-translate=true
 
 [org/gnome/desktop/background]
 color-shading-type='solid'
@@ -66,83 +41,12 @@ secondary-color='#000000'
 [org/gnome/desktop/datetime]
 automatic-timezone=true
 
-[org/gnome/desktop/input-sources]
-per-window=false
-sources=[('xkb', 'fr+oss')]
-xkb-options=@as []
-
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
 enable-hot-corners=true
 gtk-theme='Yaru-dark'
 icon-theme='Yaru'
 locate-pointer=true
-
-[org/gnome/desktop/notifications]
-application-children=['snap-store-ubuntu-software', 'org-gnome-nautilus', 'org-gnome-evolution', 'org-gnome-evolution-alarm-notify', 'discord-discord', 'thunderbird', 'emote-emote', 'wps-office-et', 'whatsapp-linux-app-whatsapp-linux-app', 'wps-office-multilang-wps', 'android-studio-android-studio', 'gnome-network-panel', 'update-manager', 'org-gnome-gedit', 'apport-gtk', 'gnome-power-panel', 'io-snapcraft-sessionagent', 'gnome-printers-panel', 'gimp-gimp', 'gnome-control-center', 'code-code']
-
-[org/gnome/desktop/notifications/application/android-studio-android-studio]
-application-id='android-studio_android-studio.desktop'
-
-[org/gnome/desktop/notifications/application/apport-gtk]
-application-id='apport-gtk.desktop'
-
-[org/gnome/desktop/notifications/application/code-code]
-application-id='code_code.desktop'
-
-[org/gnome/desktop/notifications/application/discord-discord]
-application-id='discord_discord.desktop'
-
-[org/gnome/desktop/notifications/application/emote-emote]
-application-id='emote_emote.desktop'
-
-[org/gnome/desktop/notifications/application/gimp-gimp]
-application-id='gimp_gimp.desktop'
-
-[org/gnome/desktop/notifications/application/gnome-control-center]
-application-id='gnome-control-center.desktop'
-
-[org/gnome/desktop/notifications/application/gnome-network-panel]
-application-id='gnome-network-panel.desktop'
-
-[org/gnome/desktop/notifications/application/gnome-power-panel]
-application-id='gnome-power-panel.desktop'
-
-[org/gnome/desktop/notifications/application/gnome-printers-panel]
-application-id='gnome-printers-panel.desktop'
-
-[org/gnome/desktop/notifications/application/io-snapcraft-sessionagent]
-application-id='io.snapcraft.SessionAgent.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-evolution-alarm-notify]
-application-id='org.gnome.Evolution-alarm-notify.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-evolution]
-application-id='org.gnome.Evolution.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-gedit]
-application-id='org.gnome.gedit.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-nautilus]
-application-id='org.gnome.Nautilus.desktop'
-
-[org/gnome/desktop/notifications/application/snap-store-ubuntu-software]
-application-id='snap-store_ubuntu-software.desktop'
-
-[org/gnome/desktop/notifications/application/thunderbird]
-application-id='thunderbird.desktop'
-
-[org/gnome/desktop/notifications/application/update-manager]
-application-id='update-manager.desktop'
-
-[org/gnome/desktop/notifications/application/whatsapp-linux-app-whatsapp-linux-app]
-application-id='whatsapp-linux-app_whatsapp-linux-app.desktop'
-
-[org/gnome/desktop/notifications/application/wps-office-et]
-application-id='wps-office_et.desktop'
-
-[org/gnome/desktop/notifications/application/wps-office-multilang-wps]
-application-id='wps-office-multilang_wps.desktop'
 
 [org/gnome/desktop/peripherals/keyboard]
 numlock-state=true
@@ -173,23 +77,6 @@ switch-to-workspace-right=['<Primary><Super>Right']
 background-color='rgb(0,0,0)'
 use-background-color=true
 
-[org/gnome/evince/default]
-window-ratio=(0.97815126050420165, 0.65083135391923985)
-
-[org/gnome/evolution-data-server]
-migrated=true
-network-monitor-gio-name=''
-
-[org/gnome/evolution-data-server/calendar]
-notify-window-height=279
-notify-window-paned-position=73
-notify-window-width=271
-notify-window-x=26
-notify-window-y=207
-reminders-past=['c6f87dada31c63432642c27aa76260cec31b98af\nbb9b0938fd527fadda9741a4f909d91c0dcea035\t20240413T103000\n1712986200\n1712997000\n1713004200\nBEGIN:VEVENT\r\nDTSTART;TZID=Europe/Paris:20240413T103000\r\nDTEND;TZID=Europe/Paris:20240413T123000\r\nDTSTAMP:20240412T180506Z\r\nUID:\r\n 70pjce9ocpim4b9mcdj36b9kcosj6b9p69ijcb9i6lhjccpjcpgj4cj570@google.com\r\nCREATED:20240227T212907Z\r\nDESCRIPTION:Départ 7h40\r\nLAST-MODIFIED:20240412T180506Z\r\nLOCATION:25 Lieu Dit les Roches 86210 Bonneuil-Matours \\n      86210 \r\n \\nBonneuil-Matours\\, Les Roches\\, 86210 Bonneuil-Matours\\, France\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:🏥Magali DEHARO\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63848628306\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT3H\r\nX-EVOLUTION-ALARM-UID:bb9b0938fd527fadda9741a4f909d91c0dcea035\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-P1D\r\nX-EVOLUTION-ALARM-UID:055d6dde97a0fa4a838d7e5d84a00302f088e0bb\r\nEND:VALARM\r\nEND:VEVENT\r\n']
-
-[org/gnome/evolution]
-version='3.44.4'
 
 [org/gnome/evolution/bogofilter]
 command=''

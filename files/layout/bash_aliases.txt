@@ -1,14 +1,14 @@
 # ALIAS GIT WITH TIME
 
-Source() {
+source() {
     echo $(date "+%Y_%m_%d-%H:%M:%S")
     source ~/.bashrc
     source ~/.bash_aliases
 }
 
-Hr() { date "+%Y_%m_%d-%H:%M:%S"; }
+hr() { date "+%Y_%m_%d-%H:%M:%S"; }
 
-Inst() {
+inst() {
     key="$1"
     date "+%Y_%m_%d-%H:%M:%S"
     if [ -n "$key" ]; then
@@ -16,6 +16,16 @@ Inst() {
     fi
     ./install.sh
 }
+
+play() {
+    key="$1"
+    date "+%Y_%m_%d-%H:%M:%S"
+    if [ -n "$key" ]; then
+        cd $key
+    fi
+    ./play.sh
+}
+
 
 Git() {
     key="$1"

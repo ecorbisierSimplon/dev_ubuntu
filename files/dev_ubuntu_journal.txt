@@ -6,3 +6,135 @@
 -------------------------------------------------------------------------
 2024-04-23_20:36:49 -  * Installation de php avec la version 8.3.
 -----------------------------------------------------------------
+2024-04-26_23:57:43 - INSTALLATION DE FONCTIONNALITÉS POUR UBUNTU
+-----------------------------------------------------------------
+2024-04-26_23:57:43 -  # Mise à jours des paquets existants
+2024-04-26_23:57:46 -  ** Mise à jour OK
+2024-04-26_23:57:51 -  * L'application 'Google Chrome' est déjà installé.
+-------------------------------------------------------------------------
+2024-04-26_23:57:51 -  * Installation de php avec la version 8.3.
+-----------------------------------------------------------------
+2024-04-26_23:59:39 -  * Wine\n     est installé avec la version wine-6.0.3 (Ubuntu 6.0.3~repack-1).
+2024-04-27_00:00:43 -  * Node.js est déjà installé avec la version 
+2024-04-27_00:01:01 -  * Java\n     est installé avec la version  openjdk 17.0.10 2024-01-16
+2024-04-27_00:01:01 - refresh
+2024-04-27_00:02:33 - refresh snap-store
+2024-04-27_00:03:47 - L'installation de 'notepad-plus-plus' s'est terminée avec succès.
+2024-04-27_00:03:47 -  * 'xclip' en cours d'installation
+2024-04-27_00:03:51 - L'installation de 'xclip' s'est terminée avec succès.
+2024-04-27_00:03:51 -  * L'application 'wget' est déjà installé.
+2024-04-27_00:03:51 -  * L'application 'git' est déjà installé.
+2024-04-27_00:03:51 -  * 'xmlstarlet' en cours d'installation
+2024-04-27_00:03:55 - L'installation de 'xmlstarlet' s'est terminée avec succès.
+2024-04-27_00:03:55 - Installation du paquet 'docker-desktop' en cours...
+2024-04-27_00:04:10 - Une erreur s'est produite lors de l'installation de 'docker-desktop'. Code de retour : 100
+----------------------------------------------------------------------------------------------------------------
+2024-04-27_00:04:10 - Installation du paquet 'github-desktop' en cours...
+2024-04-27_00:04:29 - L'installation de 'github-desktop' s'est terminée avec succès.
+2024-04-27_00:08:17 - Mise à jours des paquets existants TERMINÉES
+------------------------------------------------------------------
+2024-04-27_00:08:19 -  # Installation des clés
+2024-04-27_00:08:26 - L'installation de 'git-ubuntu' s'est terminée avec succès.
+2024-04-27_00:08:38 - L'installation de 'docker' s'est terminée avec succès.
+2024-04-27_00:08:38 -  * L'application '' est déjà installé.
+2024-04-27_00:08:38 - Installation du paquet '' en cours...
+2024-04-27_00:08:38 -  * L'application '' est déjà installé.
+2024-04-27_00:08:42 -  Open file script-copy
+2024-04-27_00:08:42 -  * Ajout des alias dans .bashrc_aliases
+-------------------------------------------------------------
+2024-04-27_00:08:42 -  * curl est installé avec la version curl 7.81.0 (x86_64-pc-linux-gnu) libcurl/7.81.0 OpenSSL/3.0.2 zlib/1.2.11 brotli/1.0.9 zstd/1.4.8 libidn2/2.3.2 libpsl/0.21.0 (+libidn2/2.3.2) libssh/0.9.6/openssl/zlib nghttp2/1.43.0 librtmp/2.3 OpenLDAP/2.5.17
+Release-Date: 2022-01-05
+Protocols: dict file ftp ftps gopher gophers http https imap imaps ldap ldaps mqtt pop3 pop3s rtmp rtsp scp sftp smb smbs smtp smtps telnet tftp 
+Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerberos Largefile libz NTLM NTLM_WB PSL SPNEGO SSL TLS-SRP UnixSockets zstd.
+2024-04-27_00:08:42 -  Création du fichier .gitconfig :
+2024-04-27_00:08:42 -  * Paramètres .gitconfig
+----------------------------------------------
+2024-04-27_00:09:00 - L'adresse 'https://github.com/ecorbisiersimplon/' est validée
+2024-04-27_00:09:02 - Ton prénom pour Github est 'Eric'
+2024-04-27_00:09:15 - Ton email github : 'https://github.com/ecorbisiersimplon/'
+2024-04-27_00:09:15 -  --------------
+2024-04-27_00:09:15 -  Création du fichier .gitconfig :
+-------------------------------------------------------
+2024-04-27_00:09:16 - Le fichier '.gitconfig' est paramétré.
+2024-04-27_00:09:16 -  script-key-github.sh
+-------------------------------------------
+2024-04-27_00:09:19 -  Installation de gh (github commande cli)
+---------------------------------------------------------------
+2024-04-27_00:09:33 - gh est installé avec la version 2.48.0
+2.48.0
+2024-04-27_00:10:23 - Install key github
+----------------------------------------
+2024-04-27_00:10:31 - L'adresse 'https://github.com/ecorbisiersimplon/' est validée
+2024-04-27_00:10:42 - Email du dépot Github : 'https://github.com/ecorbisiersimplon/'
+2024-04-27_00:10:42 - Le repertoire et le fichier : < /home/eric/.ssh/work >
+2024-04-27_00:11:11 - Le fichier contenant la clé est /home/eric/.ssh/work.pub.
+2024-04-27_00:11:11 - la clé est copié dans le presse papier !
+2024-04-27_00:13:03 - L'adresse 'https://github.com/lezouzouenweb/' est validée
+2024-04-27_00:13:22 - Email du dépot Github : 'https://github.com/lezouzouenweb/'
+2024-04-27_00:13:22 - Le repertoire et le fichier : < /home/eric/.ssh/home >
+2024-04-27_00:13:48 - Le fichier contenant la clé est /home/eric/.ssh/home.pub.
+2024-04-27_00:13:48 - la clé est copié dans le presse papier !
+2024-04-27_00:14:06 - script-docker.sh
+2024-04-27_00:14:06 - --------------------
+2024-04-27_00:15:13 -  * Docker-compose  est installé avec la version docker-compose version 1.29.2, build unknown.
+2024-04-27_00:15:16 -  script-key-dock.sh
+2024-04-27_00:15:16 -  --------------------
+2024-04-27_00:16:01 - Numéro de clé GPG : DF91A69B62DB1040533192D04BBCD39A7038EE0A
+2024-04-27_00:16:01 - Création du pass
+2024-04-27_00:16:03 - Installation des clés TERMINÉE
+----------------------------------------------------
+2024-04-27_00:16:05 -  # Installation des paquets
+-------------------------------------------------
+2024-04-27_00:16:08 - L'installation de 'code' s'est terminée avec succès.
+2024-04-27_00:16:08 - L'installation de 'android-studio' s'est terminée avec succès.
+2024-04-27_00:16:33 - L'installation de 'eclipse' s'est terminée avec succès.
+2024-04-27_00:16:34 - L'installation de 'shotcut' s'est terminée avec succès.
+2024-04-27_00:17:14 - L'installation de 'office365webdesktop' s'est terminée avec succès.
+2024-04-27_00:17:14 -  * L'application 'gimp' est déjà installé.
+2024-04-27_00:17:14 - L'installation de 'discord' s'est terminée avec succès.
+2024-04-27_00:17:14 - L'installation de 'postman' s'est terminée avec succès.
+2024-04-27_00:17:25 - L'installation de 'insomnia' s'est terminée avec succès.
+2024-04-27_00:17:25 - L'installation de 'zoom-client' s'est terminée avec succès.
+2024-04-27_00:17:25 - L'installation de 'audacity' s'est terminée avec succès.
+2024-04-27_00:17:25 - L'installation de 'inkscape' s'est terminée avec succès.
+2024-04-27_00:18:05 - L'installation de 'kcolorchooser' s'est terminée avec succès.
+2024-04-27_00:18:19 - L'installation de 'whatsapp-linux-app' s'est terminée avec succès.
+2024-04-27_00:19:07 - L'installation de 'dbeaver' s'est terminée avec succès.
+2024-04-27_00:19:07 - L'installation de 'notepad-plus-plus' s'est terminée avec succès.
+2024-04-27_00:19:19 - L'installation de 'termius-app' s'est terminée avec succès.
+2024-04-27_00:19:19 -  * L'application 'gnome-calendar' est déjà installé.
+2024-04-27_00:20:38 - L'installation de 'wps-office-multilang' s'est terminée avec succès.
+2024-04-27_00:20:49 - L'installation de 'notion-snap-reborn' s'est terminée avec succès.
+2024-04-27_00:20:49 -  * 'filezilla' en cours d'installation
+2024-04-27_00:20:56 - L'installation de 'filezilla' s'est terminée avec succès.
+2024-04-27_00:20:56 -  * 'diodon' en cours d'installation
+2024-04-27_00:21:02 - L'installation de 'diodon' s'est terminée avec succès.
+2024-04-27_00:21:02 -  * 'gparted' en cours d'installation
+2024-04-27_00:21:07 - L'installation de 'gparted' s'est terminée avec succès.
+2024-04-27_00:21:07 -  * L'application 'emoji-picker' est déjà installé.
+2024-04-27_00:21:07 -  * 'net-tools' en cours d'installation
+2024-04-27_00:21:11 - L'installation de 'net-tools' s'est terminée avec succès.
+2024-04-27_00:21:11 -  * 'composer' en cours d'installation
+2024-04-27_00:21:19 - L'installation de 'composer' s'est terminée avec succès.
+2024-04-27_00:21:19 - Installation du paquet 'teamviewer' en cours...
+2024-04-27_00:21:44 - L'installation de 'teamviewer' s'est terminée avec succès.
+2024-04-27_00:21:44 - execution de 'autoremove'
+2024-04-27_00:21:49 -  ** 'Autoremove' OK
+2024-04-27_00:21:49 - execution de 'update'
+2024-04-27_00:21:53 -  ** 'Mise à jour' OK
+2024-04-27_00:21:53 - execution de 'upgrade'
+2024-04-27_00:21:58 -  ** 'Upgrade' OK
+2024-04-27_00:21:58 - execution de 'snap refresh'
+2024-04-27_00:21:59 -  ** 'Refresh' OK
+2024-04-27_00:22:00 - Installation des paquets TERMINÉE
+-------------------------------------------------------
+2024-04-27_00:22:02 -  # Installation du système d'environnements 
+------------------------------------------------------------------
+2024-04-27_00:22:02 -  Mis à jour du fichier sudoers
+----------------------------------------------------
+2024-04-27_00:22:02 -  ! Le fichier 'sudoers' est mis à jour pour ne pas demander le mot passe à chaque accès admin !
+2024-04-27_00:22:02 -  Mis à jour des paramètres de Discord pour le partage d'écran
+-----------------------------------------------------------------------------------
+2024-04-27_00:22:02 -  ! Mis à jour effectuée !
+2024-04-27_00:22:18 - Installation du système d'environnements  TERMINÉE
+------------------------------------------------------------------------
