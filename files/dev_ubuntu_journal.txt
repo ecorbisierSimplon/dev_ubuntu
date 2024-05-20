@@ -138,3 +138,13 @@ Features: alt-svc AsynchDNS brotli GSS-API HSTS HTTP2 HTTPS-proxy IDN IPv6 Kerbe
 2024-04-27_00:22:02 -  ! Mis à jour effectuée !
 2024-04-27_00:22:18 - Installation du système d'environnements  TERMINÉE
 ------------------------------------------------------------------------
+2024-05-20_00:44:39 - INSTALLATION DE FONCTIONNALITÉS POUR UBUNTU
+-----------------------------------------------------------------
+2024-05-20_00:44:39 -  # Mise à jours des paquets existants
+2024-05-20_00:44:42 -  ** Mise à jour OK
+2024-05-20_00:45:23 -  * L'application 'Google Chrome' est installé.
+--------------------------------------------------------------------
+2024-05-20_00:45:23 -  * Installation de php avec la version 8.3.
+-----------------------------------------------------------------
+2024-05-20_00:46:56 -  * Wine\n     est installé avec la version wine-6.0.3 (Ubuntu 6.0.3~repack-1).
+2024-05-20_00:48:25 - refresh

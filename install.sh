@@ -70,50 +70,52 @@ export WIDTH=340
 title="Installation ubuntu"
 url="https://github.com/ecorbisiersimplon/"
 
-if dpkg-query -l zenity >/dev/null 2>&1; then
-    echo " * Zenity"
-    echo "     est déjà installé avec la version $(zenity --version)."
-    echo "______________________"
-    echo
-else
-    sudo apt update -y
-    sudo apt -y install zenity
-    echo " * Zenity"
-    echo "     a été installé avec la version $(zenity --version)."
-fi
+# if dpkg-query -l zenity >/dev/null 2>&1; then
+#     echo " * Zenity"
+#     echo "     est déjà installé avec la version $(zenity --version)."
+#     echo "______________________"
+#     echo
+# else
+sudo apt update -y
+sudo apt -y install zenity
+echo " * Zenity"
+echo "     a été installé avec la version $(zenity --version)."
+# fi
 
-if dpkg-query -l git >/dev/null 2>&1; then
-    echo " * Git"
-    echo "     est déjà installé avec la version $(zenity --version)."
-    echo "______________________"
-    echo
-else
-    sudo apt update -y
-    sudo apt -y install git
-    echo " * git est installé avec la version $(git --version)."
-fi
+# if dpkg-query -l git >/dev/null 2>&1; then
+#     echo " * Git"
+#     echo "     est déjà installé avec la version $(zenity --version)."
+#     echo "______________________"
+#     echo
+# else
+sudo apt update -y
+sudo apt -y install git
+echo " * git est installé avec la version $(git --version)."
+# fi
 
-if dpkg-query -l curl >/dev/null 2>&1; then
-    echo " * Curl"
-    echo "     est déjà installé avec la version $(curl --version)."
-    echo "______________________"
-    echo
-else
-    sudo apt update -y
-    sudo apt -y install curl
-    echo " * curl est installé avec la version $(curl --version)."
-fi
+#if dpkg-query -l curl >/dev/null 2>&1; then
+#    echo " * Curl"
+#    echo "     est déjà installé avec la version $(curl --version)."
+#    echo "______________________"
+#    echo
+#else
+#    sudo apt update -y
+#    sudo apt -y install curl
+sudo snap install curl
+echo " * curl est installé avec la version $(curl --version)."
 
-if dpkg-query -l dialog >/dev/null 2>&1; then
-    echo " * Dialog"
-    echo "     est déjà installé avec la version $(dialog --version)."
-    echo "______________________"
-    echo
-else
-    sudo apt update -y
-    sudo apt -y install dialog
-    echo " * dialog est installé avec la version $(dialog --version)."
-fi
+#fi
+
+#if dpkg-query -l dialog >/dev/null 2>&1; then
+#    echo " * Dialog"
+#    echo "     est déjà installé avec la version $(dialog --version)."
+#    echo "______________________"
+#    echo
+#else
+sudo apt update -y
+sudo apt -y install dialog
+echo " * dialog est installé avec la version $(dialog --version)."
+#fi
 clone() {
     cd ~/Documents/
 
@@ -122,7 +124,7 @@ clone() {
 
     # Vérifier le code de réponse HTTP
     if [[ "$response" == "200" ]]; then
-        dial "L'adresse '$url' est validée"
+        echo "L'adresse '$url' est validée"
     else
         zenity --question --title $title --text="L'URL '<a href=\"$url\">$url</a>' <span color=\"red\">\nn'existe pas ou est inaccessible</span> (réponse : $response).\n\n<b>Voulez lancer le clonage ?</b>"
         if [[ $? == 1 ]]; then

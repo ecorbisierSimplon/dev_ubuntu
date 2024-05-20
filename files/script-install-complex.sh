@@ -13,7 +13,7 @@ echo "                 NUM : 'CHROME'"
 echo "======================================================"
 echo ""
 
-if dpkg-query -l google-chrome-stable; then
+if dpkg-query -l google-chrome-stable >/dev/null 2>&1; then
     dial " * L'application 'Google Chrome' est déjà installé." "f"
 else
     sudo sh -c 'echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
@@ -88,7 +88,7 @@ echo "======================================================"
 echo ""
 
 # https://doc.ubuntu-fr.org/wine
-if dpkg-query -l wine; then
+if dpkg-query -l wine >/dev/null 2>&1; then
     dial " * Wine est déjà installé avec la version $(wine --version)."
 else
     user=$USER
@@ -117,13 +117,13 @@ else
     # sudo apt install libgd3:i386=2.3.0-2ubuntu2
     # sudo apt install libgd3=2.3.0-2ubuntu2
     # sudo apt -y install --install-recommends winehq-stable
-    sudo apt -y install wine
+    sudo apt -y install wine64
     pause s 1
 
     # sudo apt -y install --install-recommends wine64
-    if dpkg-query -l wine; then
+    if dpkg-query -l wine >/dev/null 2>&1; then
 
-        dial " * Wine\n     est installé avec la version $(wine --version)."
+        dial " * Wine est installé avec la version $(wine --version)."
         pause s 2
 
         if zenity --question \
@@ -150,40 +150,40 @@ echo ""
 version_nodejs=21
 # Récupérer la version de Node.js
 
-version=$(node -v)
-echo $version
-# Extraire la partie numérique de la version (en supposant que la version est sous le format 'vX.Y.Z')
-# Supprimer le préfixe 'v'
-version_number=${version#v}
-echo $version_number
+# version=$(node -v)
+# echo $version
+# # Extraire la partie numérique de la version (en supposant que la version est sous le format 'vX.Y.Z')
+# # Supprimer le préfixe 'v'
+# version_number=${version#v}
+# echo $version_number
 
-# Supprimer les points de la version et la stocker comme entier
-version_integer=$(echo "$version_number" | cut -d '.' -f 1)
-echo $version_integer
+# # Supprimer les points de la version et la stocker comme entier
+# version_integer=$(echo "$version_number" | cut -d '.' -f 1)
+# echo $version_integer
 
-echo "$version_integer -ge $version_nodejs"
-# Vérifier si la version de Node.js est supérieure ou égale à 21
-if [ "$version_integer" -ge "$version_nodejs" ]; then
-    dial " * Node.js  est déjà installé avec la version $version_number."
-else
-    # Mise à jour des dépôts et installation de Node.js
-    sudo apt update
-    # installs NVM (Node Version Manager)
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-    file_b_m=~/.bashrc
-    file_a_m=~/.bash_aliases
-    source $file_b_m
-    source $file_a_m
-    
-    # download and install Node.js
-    nvm install 21
-    # verifies the right Node.js version is in the environment
-    node -v # should print `v21.7.3`
-    # verifies the right NPM version is in the environment
-    npm -v # should print `10.5.0`
-    # Afficher la version actuelle de Node.js
-    dial " * Node.js est déjà installé avec la version $(node -v)"
-fi
+# echo "$version_integer -ge $version_nodejs"
+# # Vérifier si la version de Node.js est supérieure ou égale à 21
+# if [ "$version_integer" -ge "$version_nodejs" ]; then
+#     dial " * Node.js  est déjà installé avec la version $version_number."
+# else
+# Mise à jour des dépôts et installation de Node.js
+sudo apt update
+# installs NVM (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+file_b_m=~/.bashrc
+file_a_m=~/.bash_aliases
+source $file_b_m
+source $file_a_m
+
+# download and install Node.js
+nvm install 21
+# verifies the right Node.js version is in the environment
+node -v # should print `v21.7.3`
+# verifies the right NPM version is in the environment
+npm -v # should print `10.5.0`
+# Afficher la version actuelle de Node.js
+dial " * Node.js est déjà installé avec la version $(node -v)"
+# fi
 
 echo ""
 echo "======================================================"

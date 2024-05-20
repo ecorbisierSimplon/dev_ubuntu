@@ -32,15 +32,15 @@ source $FUNCTIONS_FILE
 # ---------------------------------------------------
 dial "INSTALLATION DE FONCTIONNALITÉS POUR UBUNTU" "-"
 
-chmod +x $FUNCTIONS_DIRECTORY/script-install.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-key-github.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-docker.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-default.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-install-complex.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-visudo.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-key-dock.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-settings-system.sh
-chmod +x $FUNCTIONS_DIRECTORY/script-setting-ubuntu.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-install.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-key-github.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-docker.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-default.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-install-complex.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-visudo.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-key-dock.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-settings-system.sh
+sudo chmod +x $FUNCTIONS_DIRECTORY/script-setting-ubuntu.sh
 
 # clear
 
@@ -60,13 +60,9 @@ else
     dial " ** Erreur de mise à jour : $return_code" "-"
 fi
 
-sudo chown -R eric .bash_aliases
-
 source ~/.bashrc
 source ~/.bash_aliases
 
-pause c s 2
-$FUNCTIONS_DIRECTORY/script-install-complex.sh
 pause c s 2
 $FUNCTIONS_DIRECTORY/script-install.sh "1"
 
@@ -79,7 +75,7 @@ pause c s 2
 dial " # Installation des clés"
 # -------------------------------------------------------------
 
-# $FUNCTIONS_DIRECTORY/script-install.sh "2"
+$FUNCTIONS_DIRECTORY/script-install.sh "2"
 
 pause c s 2
 $FUNCTIONS_DIRECTORY/script-key-github.sh
@@ -99,7 +95,7 @@ dial " # Installation des paquets" "-"
 $FUNCTIONS_DIRECTORY/script-default.sh
 
 pause c s 2
-# $FUNCTIONS_DIRECTORY/script-install.sh "1000"
+$FUNCTIONS_DIRECTORY/script-install.sh "1000"
 
 dial "Installation des paquets TERMINÉE" "-"
 pause c s 2
@@ -107,6 +103,7 @@ pause c s 2
 # -------------------------------------------------
 dial " # Installation du système d'environnements " "-"
 # -------------------------------------------------
+
 
 $FUNCTIONS_DIRECTORY/script-visudo.sh
 pause c s 2

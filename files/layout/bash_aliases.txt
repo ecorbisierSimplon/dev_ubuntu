@@ -1,6 +1,6 @@
 # ALIAS GIT WITH TIME
 
-source() {
+Source() {
     echo $(date "+%Y_%m_%d-%H:%M:%S")
     source ~/.bashrc
     source ~/.bash_aliases
