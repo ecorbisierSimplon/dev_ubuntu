@@ -12,7 +12,7 @@ echo ""
 # Execut in terminal :
 # chmod +x ./script-settings-system.sh && ./script-settings-system.sh
 
-file_img=$FUNCTIONS_DIRECTORY/layout/img/cheval-nuit.jpg
+file_img=$FUNCTIONS_DIRECTORY/layout/img/trains/1715922647397.jpg
 echo $file_img
 home=~
 file_img_pp="$home/Images/Papiers peints"
