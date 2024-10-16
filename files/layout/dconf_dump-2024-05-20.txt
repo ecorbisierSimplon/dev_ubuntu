@@ -1,10 +1,10 @@
 [apps/update-manager]
 first-run=false
-launch-count=3
-launch-time=int64 1712397612
+launch-count=5
+launch-time=int64 1729098562
 
 [com/ubuntu/update-notifier]
-release-check-time=uint32 1716164276
+release-check-time=uint32 1729096581
 
 [net/launchpad/diodon/clipboard]
 add-images=true
@@ -40,11 +40,12 @@ window-maximized=true
 window-size=(768, 600)
 
 [org/gnome/control-center]
-last-panel='background'
+last-panel='display'
+window-state=(980, 640, false)
 
 [org/gnome/deja-dup]
 backend='google'
-prompt-check='2024-05-20T09:55:11.650063Z'
+prompt-check='2024-10-16T16:42:24.555496Z'
 
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'YaST', 'adc443ac-a2f6-4772-bc1d-b3be7a938df5', '59c11864-7aa4-49ed-8da9-d4919cba7845', '133b0dde-65f4-4bbf-863e-cb3c676d4ec3', 'fbbae376-fe71-481f-9fc3-70d5c74a7569', '5662f15c-40a1-4d82-a6b2-9313693a38c3', '0ff99d29-c5f9-4e66-b17d-8a9cf8627954', '44c5824b-1308-4506-8a46-2efcbe3118f4', 'dc0b7460-ab32-42bb-8f8b-390b1d6a470e', 'e2680484-b8bd-4723-b614-6cb540f9beb7']
@@ -93,9 +94,15 @@ apps=['discord_discord.desktop', 'zoom-client_zoom-client.desktop', 'whatsapp-li
 name='Communication'
 translate=false
 
+[org/gnome/desktop/app-folders/folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
 [org/gnome/desktop/app-folders/folders/Utilities]
-apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop', 'gnome-session-properties.desktop', 'update-manager.desktop', 'software-properties-gtk.desktop', 'usb-creator-gtk.desktop', 'yelp.desktop', 'software-properties-drivers.desktop', 'gnome-language-selector.desktop', 'gnome-system-monitor.desktop', 'gparted.desktop', 'org.gnome.PowerStats.desktop']
+apps=['snap-store_snap-store.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.seahorse.Application.desktop', 'gnome-session-properties.desktop', 'update-manager.desktop', 'software-properties-gtk.desktop', 'usb-creator-gtk.desktop', 'yelp.desktop', 'software-properties-drivers.desktop', 'gnome-language-selector.desktop', 'gparted.desktop', 'org.gnome.PowerStats.desktop', 'org.gnome.Logs.desktop', 'org.gnome.Characters.desktop', 'org.gnome.font-viewer.desktop']
 categories=['X-GNOME-Utilities']
+excluded-apps=@as []
 name='X-GNOME-Utilities.directory'
 translate=true
 
@@ -159,7 +166,7 @@ icon-theme='Yaru'
 locate-pointer=true
 
 [org/gnome/desktop/notifications]
-application-children=['snap-store-ubuntu-software', 'org-gnome-nautilus', 'org-gnome-evolution', 'org-gnome-evolution-alarm-notify', 'discord-discord', 'thunderbird', 'emote-emote', 'wps-office-et', 'whatsapp-linux-app-whatsapp-linux-app', 'wps-office-multilang-wps', 'android-studio-android-studio', 'gnome-network-panel', 'update-manager', 'org-gnome-gedit', 'apport-gtk', 'gnome-power-panel', 'io-snapcraft-sessionagent', 'gnome-printers-panel', 'gimp-gimp', 'gnome-control-center', 'code-code', 'org-gnome-dejadup']
+application-children=['snap-store-ubuntu-software', 'org-gnome-nautilus', 'org-gnome-evolution', 'org-gnome-evolution-alarm-notify', 'discord-discord', 'thunderbird', 'emote-emote', 'wps-office-et', 'whatsapp-linux-app-whatsapp-linux-app', 'wps-office-multilang-wps', 'android-studio-android-studio', 'gnome-network-panel', 'update-manager', 'org-gnome-gedit', 'apport-gtk', 'gnome-power-panel', 'io-snapcraft-sessionagent', 'gnome-printers-panel', 'gimp-gimp', 'gnome-control-center', 'code-code', 'org-gnome-dejadup', 'notepad-plus-plus-notepad-plus-plus', 'org-gnome-fileroller', 'org-gnome-terminal']
 
 [org/gnome/desktop/notifications/application/android-studio-android-studio]
 application-id='android-studio_android-studio.desktop'
@@ -194,6 +201,9 @@ application-id='gnome-printers-panel.desktop'
 [org/gnome/desktop/notifications/application/io-snapcraft-sessionagent]
 application-id='io.snapcraft.SessionAgent.desktop'
 
+[org/gnome/desktop/notifications/application/notepad-plus-plus-notepad-plus-plus]
+application-id='notepad-plus-plus_notepad-plus-plus.desktop'
+
 [org/gnome/desktop/notifications/application/org-gnome-dejadup]
 application-id='org.gnome.DejaDup.desktop'
 
@@ -203,11 +213,17 @@ application-id='org.gnome.Evolution-alarm-notify.desktop'
 [org/gnome/desktop/notifications/application/org-gnome-evolution]
 application-id='org.gnome.Evolution.desktop'
 
+[org/gnome/desktop/notifications/application/org-gnome-fileroller]
+application-id='org.gnome.FileRoller.desktop'
+
 [org/gnome/desktop/notifications/application/org-gnome-gedit]
 application-id='org.gnome.gedit.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-nautilus]
 application-id='org.gnome.Nautilus.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-terminal]
+application-id='org.gnome.Terminal.desktop'
 
 [org/gnome/desktop/notifications/application/snap-store-ubuntu-software]
 application-id='snap-store_ubuntu-software.desktop'
@@ -239,7 +255,7 @@ report-technical-problems=true
 [org/gnome/desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/eric/.local/share/backgrounds/2024-05-20-12-42-41-1713194564354.jpg'
+picture-uri='file:///home/eric/Images/Papiers%20peints/1715922647397.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -330,7 +346,7 @@ y=0
 
 [org/gnome/file-roller/listing]
 list-mode='as-folder'
-name-column-width=250
+name-column-width=58
 show-path=false
 sort-method='name'
 sort-type='ascending'
@@ -369,6 +385,7 @@ size=(900, 700)
 state=43908
 
 [org/gnome/mutter]
+edge-tiling=false
 experimental-features=@as []
 
 [org/gnome/mutter/keybindings]
@@ -387,6 +404,7 @@ use-tree-view=true
 
 [org/gnome/nautilus/preferences]
 default-folder-viewer='icon-view'
+migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 search-view='list-view'
 show-create-link=true
@@ -395,6 +413,9 @@ show-create-link=true
 initial-size=(1431, 718)
 maximized=true
 sidebar-width=260
+
+[org/gnome/portal/filechooser/google-chrome]
+last-folder-path='/home/eric/Téléchargements'
 
 [org/gnome/settings-daemon/plugins/color]
 night-light-last-coordinates=(48.867199280057591, 2.3386999999999998)
@@ -448,15 +469,27 @@ sleep-inactive-ac-type='nothing'
 enabled-connections=['68ee98c6-62a8-4d60-ad4c-960407f92783']
 
 [org/gnome/shell]
-app-picker-layout=[{'e2680484-b8bd-4723-b614-6cb540f9beb7': <{'position': <0>}>, 'dc0b7460-ab32-42bb-8f8b-390b1d6a470e': <{'position': <1>}>, 'adc443ac-a2f6-4772-bc1d-b3be7a938df5': <{'position': <2>}>, '0ff99d29-c5f9-4e66-b17d-8a9cf8627954': <{'position': <3>}>, '133b0dde-65f4-4bbf-863e-cb3c676d4ec3': <{'position': <4>}>, '44c5824b-1308-4506-8a46-2efcbe3118f4': <{'position': <5>}>, '59c11864-7aa4-49ed-8da9-d4919cba7845': <{'position': <6>}>, 'fbbae376-fe71-481f-9fc3-70d5c74a7569': <{'position': <7>}>, 'Utilities': <{'position': <8>}>, '5662f15c-40a1-4d82-a6b2-9313693a38c3': <{'position': <9>}>, 'notion-snap-reborn_notion-snap-reborn.desktop': <{'position': <10>}>}]
-favorite-apps=['thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'google-chrome.desktop', 'postman_postman.desktop', 'docker-desktop.desktop', 'code_code.desktop', 'org.gnome.Calculator.desktop']
+app-picker-layout=[{'e2680484-b8bd-4723-b614-6cb540f9beb7': <{'position': <0>}>, 'dc0b7460-ab32-42bb-8f8b-390b1d6a470e': <{'position': <1>}>, 'adc443ac-a2f6-4772-bc1d-b3be7a938df5': <{'position': <2>}>, '0ff99d29-c5f9-4e66-b17d-8a9cf8627954': <{'position': <3>}>, '133b0dde-65f4-4bbf-863e-cb3c676d4ec3': <{'position': <4>}>, '44c5824b-1308-4506-8a46-2efcbe3118f4': <{'position': <5>}>, 'org.gnome.Snapshot.desktop': <{'position': <6>}>, 'fbbae376-fe71-481f-9fc3-70d5c74a7569': <{'position': <7>}>, 'Utilities': <{'position': <8>}>, '5662f15c-40a1-4d82-a6b2-9313693a38c3': <{'position': <9>}>, 'notion-snap-reborn_notion-snap-reborn.desktop': <{'position': <10>}>, 'org.gnome.TextEditor.desktop': <{'position': <11>}>, 'org.gnome.clocks.desktop': <{'position': <12>}>, 'firmware-updater_firmware-updater.desktop': <{'position': <13>}>, 'org.gnome.Settings.desktop': <{'position': <14>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <15>}>}, {'org.gnome.Shotwell.desktop': <{'position': <0>}>, 'chromium_chromium.desktop': <{'position': <1>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <2>}>}]
+enabled-extensions=['ding@rastersoft.com', 'ubuntu-dock@ubuntu.com', 'tiling-assistant@ubuntu.com']
+favorite-apps=['thunderbird_thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'google-chrome.desktop', 'postman_postman.desktop', 'code_code.desktop', 'org.gnome.Calculator.desktop']
 had-bluetooth-devices-setup=true
+last-selected-power-profile='performance'
 remember-mount-password=false
 welcome-dialog-last-shown-version='42.9'
 
 [org/gnome/shell/extensions/dash-to-dock]
+dash-max-icon-size=48
 dock-position='BOTTOM'
 multi-monitor=true
+
+[org/gnome/shell/extensions/ding]
+check-x11wayland=true
+
+[org/gnome/shell/extensions/tiling-assistant]
+active-window-hint-color='rgb(211,70,21)'
+last-version-installed=46
+overridden-settings={'org.gnome.mutter.edge-tiling': <@mb nothing>, 'org.gnome.mutter.keybindings.toggle-tiled-left': <@mb nothing>, 'org.gnome.mutter.keybindings.toggle-tiled-right': <@mb nothing>}
+tiling-popup-all-workspace=true
 
 [org/gnome/shell/keybindings]
 toggle-message-tray=@as []
@@ -484,7 +517,7 @@ toggle-menubar='F2'
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'
 location-mode='path-bar'
-show-hidden=false
+show-hidden=true
 show-size-column=true
 show-type-column=true
 sidebar-width=213
@@ -492,12 +525,13 @@ sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
+view-type='list'
 window-size=(1018, 374)
 
 [org/gtk/settings/file-chooser]
 date-format='regular'
 location-mode='path-bar'
-show-hidden=true
+show-hidden=false
 show-size-column=true
 show-type-column=true
 sidebar-width=260
@@ -505,7 +539,7 @@ sort-column='name'
 sort-directories-first=true
 sort-order='ascending'
 type-format='category'
-window-position=(359, 103)
+window-position=(359, 92)
 window-size=(1203, 783)
 
 [org/yorba/shotwell/preferences/export]

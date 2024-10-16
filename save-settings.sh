@@ -1,6 +1,7 @@
 #!/bin/bash
-
-file_rel_dump=./files/layout/dconf_dump-2024-05-20.txt
+datetime=$(date +"%Y-%m-%d_%H-%M-%S")
+nomFichier="dconf_dump_$datetime.txt"
+file_rel_dump=./files/layout/$nomFichier
 dconf dump / >$file_rel_dump
 sed -i "s/^virtual-root=.*/virtual-root='file:\/\/\/home\/${USER}_'/" $file_rel_dump
 tableau=""
