@@ -147,7 +147,7 @@ done
 applications=("")
 
 applications=(
-    "docker-desktop $dl_docker"
+    "docker-desktop-amd64 $dl_docker"
     "github-desktop $dl_github"
     "teamviewer $dl_teamviewer"
 )

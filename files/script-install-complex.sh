@@ -54,6 +54,11 @@ else
     # Install new PHP ${version_new} packages
     sudo apt install php${version_new} php${version_new}-cli php${version_new}-{bz2,curl,mbstring,intl} -y
 
+    sudo apt install php${version_new}-xml -y
+
+
+    sudo apt install php${version_new}-mysql -y
+
     # Install FPM OR Apache module
     sudo apt install php${version_new}-fpm -y
     # OR
@@ -87,59 +92,59 @@ echo "                 NUM : 'WINE'"
 echo "======================================================"
 echo ""
 
-# https://doc.ubuntu-fr.org/wine
-if dpkg-query -l wine >/dev/null 2>&1; then
-    dial " * Wine est déjà installé avec la version $(wine --version)."
-else
-    user=$USER
-    sudo rm -r /home/$user/.wine
-    # sudo dpkg --add-architecture i386
+# # https://doc.ubuntu-fr.org/wine
+# if dpkg-query -l wine >/dev/null 2>&1; then
+#     dial " * Wine est déjà installé avec la version $(wine --version)."
+# else
+#     user=$USER
+#     sudo rm -r /home/$user/.wine
+#     # sudo dpkg --add-architecture i386
 
-    # folder=/etc/apt/keyrings
-    # sudo chown $user -R $folder
-    # sudo rm -r $folder
-    # sudo rm /etc/apt/sources.list.d/winehq-jammy.sources
-    #if [[ ! -d "$folder" ]]; then
-    # sudo mkdir -pm755 $folder
-    #fi
-    # sudo wget -O $folder/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-    # sudo chown $user -R $folder
-    # echo
-    # echo "https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources"
-    # echo
-    # sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources
-    pause s 1
-    sudo apt update
-    pause s 1
+#     # folder=/etc/apt/keyrings
+#     # sudo chown $user -R $folder
+#     # sudo rm -r $folder
+#     # sudo rm /etc/apt/sources.list.d/winehq-jammy.sources
+#     #if [[ ! -d "$folder" ]]; then
+#     # sudo mkdir -pm755 $folder
+#     #fi
+#     # sudo wget -O $folder/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+#     # sudo chown $user -R $folder
+#     # echo
+#     # echo "https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources"
+#     # echo
+#     # sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -sc)/winehq-$(lsb_release -sc).sources
+#     pause s 1
+#     sudo apt update
+#     pause s 1
 
-    #sudo apt -y install $FUNCTIONS_DIRECTORY/layout/libgd3_2.3.3-6+ubuntu22.04.1+deb.sury.org+1_i386.deb
-    pause s 1
-    # sudo apt install libgd3:i386=2.3.0-2ubuntu2
-    # sudo apt install libgd3=2.3.0-2ubuntu2
-    # sudo apt -y install --install-recommends winehq-stable
-    sudo apt -y install wine64
-    pause s 1
+#     #sudo apt -y install $FUNCTIONS_DIRECTORY/layout/libgd3_2.3.3-6+ubuntu22.04.1+deb.sury.org+1_i386.deb
+#     pause s 1
+#     # sudo apt install libgd3:i386=2.3.0-2ubuntu2
+#     # sudo apt install libgd3=2.3.0-2ubuntu2
+#     # sudo apt -y install --install-recommends winehq-stable
+#     sudo apt -y install wine64
+#     pause s 1
 
-    # sudo apt -y install --install-recommends wine64
-    if dpkg-query -l wine >/dev/null 2>&1; then
+#     # sudo apt -y install --install-recommends wine64
+#     if dpkg-query -l wine >/dev/null 2>&1; then
 
-        dial " * Wine est installé avec la version $(wine --version)."
-        pause s 2
+#         dial " * Wine est installé avec la version $(wine --version)."
+#         pause s 2
 
-        if zenity --question \
-            --text="Voulez-vous ouvrir les paramètres de Wine ?"; then
-            winecfg
-            pause s 2
-        else
-            dial "Vous pourrez configurer Wine avec la commande > winecfg"
-            pause s 2
-        fi
-    else
-        dial "WINE NE S'EST PAS INSTALLÉ !!!"
-    fi
-fi
+#         if zenity --question \
+#             --text="Voulez-vous ouvrir les paramètres de Wine ?"; then
+#             winecfg
+#             pause s 2
+#         else
+#             dial "Vous pourrez configurer Wine avec la commande > winecfg"
+#             pause s 2
+#         fi
+#     else
+#         dial "WINE NE S'EST PAS INSTALLÉ !!!"
+#     fi
+# fi
 
-# Configuration de wine
+# # Configuration de wine
 
 echo ""
 echo "======================================================"
